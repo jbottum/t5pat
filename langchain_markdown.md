@@ -38,7 +38,7 @@ First, we will show the flan-t5-large model, which has 780M parameters and provi
 
 <p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-![alt_text](images/image1.png "image_tooltip")
+![alt_text](image1.png "image_tooltip")
 
 ## LLM2 - S BERT
 
@@ -64,7 +64,7 @@ The **all-*** models where trained on all available training data (more than 1 b
 
 <p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-![alt_text](images/image2.png "image_tooltip")
+![alt_text](image2.png "image_tooltip")
 
 ## LangChain - What is it? Why use it?
 
