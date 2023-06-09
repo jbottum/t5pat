@@ -1,44 +1,30 @@
 
-
-<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 0; ALERTS: 2.</p>
-<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
-
-<p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
-<a href="#gdcalert2">alert2</a>
-
-<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
-
-
-
-## 30 minutes to running LLMs on LangChain in a local environment
-
- 
+# 30 minutes to running LLMs on LangChain in a local environment
 
 Within (30) minutes of reading this post, you should be able to complete model serving requests from two popular python-based large language models (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  
 
-
 ## Why run local
 
-Some of the reasons why you may need to run your model locally, and not use an external API server, include::
+Some of the reasons why you may need to run your model locally, and not use an external API server, include:
 
 * Security
-    * You might want to fine tune the model and not post the derivative model on an external API server
+    * You might want to fine tune the model and not post the derivative model on an external API server.
 * Cost
-    * You might want to avoid paying an external company for API calls 
+    * You might want to avoid paying an external company for API calls. 
 * Performance
-    * You might be able to manage your model response times by using a private network and/or a specific server / processor type
+    * You might need to manage your model's response times by using a private network and/or a specific server / processor type.
 * Functionality
-    * Your model might only run locally (i.e. blenderbot)
+    * Your model might only run locally (i.e. blenderbot).
 
 This project provides the code and process to run two types of pretrained, large language models (FLAN-T5-Large and Sentence-BERT, all-MiniLM-L6-v2) using LangChain on your local computer. We selected these top performing models because several developers were having trouble running a tutorial locally, as tracked in this github issue, [https://github.com/hwchase17/LangChain/issues/4438](https://github.com/hwchase17/langchain/issues/4438).  
 
-## LLM1 - Flan-t5-large
+## LLM #1 - Flan-t5-large
 
-First, we will show the flan-t5-large model, which has 780M parameters and provides good performance for text-to-text and text-generation requirements as defined in this chart. It is a fairly popular model which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
+First, we will show the process to run the flan-t5-large model, which has 780M parameters and provides good performance for text-to-text and text-generation requirements as defined in this chart. It is a fairly popular model which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
 
 ![alt_text](image1.png "image_tooltip")
 
-## LLM2 - S BERT
+## LLM #2 - S BERT, all-MiniLM-L6-v2
 
 Second we will show a sentence-transformer model, specifically the BertModel  model_name='all-MiniLM-L6-v2'.  This model maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.  This model has been extensively evaluated for embedded sentences (Performance Sentence Embeddings) and for embedded search queries & paragraphs (Performance Semantic Search). 
 
@@ -59,7 +45,6 @@ All models are hosted on the [HuggingFace Model Hub](https://huggingface.co/sent
 The following table provides an overview of (selected) models. They have been extensively evaluated for their quality to embedded sentences (Performance Sentence Embeddings) and to embedded search queries & paragraphs (Performance Semantic Search).
 
 The **all-*** models where trained on all available training data (more than 1 billion training pairs) and are designed as **general purpose** models. The **all-mpnet-base-v2** model provides the best quality, while **all-MiniLM-L6-v2** is 5 times faster and still offers good quality. Toggle _All models_ to see all evaluated models or visit [HuggingFace Model Hub](https://huggingface.co/models?library=sentence-transformers) to view all existing sentence-transformers models.
-
 
 ![alt_text](image2.png "image_tooltip")
 
@@ -104,17 +89,59 @@ Best practices and built-in implementations for common LangChain use cases:
 * [Summarization](https://python.langchain.com/en/latest/use_cases/summarization.html): Compressing longer documents. A type of Data-Augmented Generation.
 * [Evaluation](https://python.langchain.com/en/latest/use_cases/evaluation.html): Generative models are hard to evaluate with traditional metrics. One promising approach is to use language models themselves to do the evaluation.
 
-## Getting started
-
-In our example and process, we wanted to simplify the getting started.   We selected specific LLMs to run in the LangChain framework which will run in a local environment i.e. in an older, Mac laptop.   We anticipate that many developers can use this initially and then modify our choices for your requirements.   
-
 As you can see from the previous section, LangChain includes many advanced features and it enables complex model processing.   In our example, we will use models, prompts, and pipelines for question answering, text-to-text, sequence-to-sequence, and text-generation.
 
-### Starting place
+## Getting started
 
-This post assumes that users have docker, python and a terminal installed and the installation for that software can be found on the linkes below.
+In our example and process, we wanted to simplify the getting started.   We selected specific LLMs to run in the LangChain framework, which will run in a local environment i.e. in an older, Mac laptop with 16GB RAM without GPUs.   We anticipate that many developers can use this initially and then modify our choices for your requirements.   
 
-### Install dependencies
+### Step 1
+
+This post assumes that users have docker, python and a terminal installed and the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will you.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory nameed t5pat.
+
+### Installing Docker
+
+To install Docker on macOS, you can follow these steps:
+
+Visit the Docker website to download the Docker Desktop for Mac installer: https://www.docker.com/products/docker-desktop
+
+On the Docker Desktop for Mac page, click on the "Download Docker Desktop" button. You may be asked to create a Docker account or log in if you don't have one.
+
+Once the download is complete, open the downloaded file (usually named Docker.dmg).
+
+In the installer window, drag the Docker icon to the Applications folder to install Docker.
+
+Open the Applications folder and double-click on the Docker icon to launch Docker.
+
+You may be prompted to authorize the Docker app to run on your Mac. Enter your system password and follow the instructions to complete the authorization process.
+
+Docker will start initializing, and you'll see the Docker icon appear in the macOS menu bar.
+
+After Docker has finished starting up, you'll see the Docker whale icon in the menu bar. Docker is now installed and running on your Mac.
+
+To verify that Docker is installed correctly, open a terminal and run the following command: docker version
+
+This command will display the version information of Docker if it is installed properly.
+
+You can now start using Docker on your macOS machine to build, run, and manage containers for your applications.
+
+### Installing Python
+
+Installing Python on a Mac is relatively straightforward. Here's a step-by-step guide to help you:
+
+Check the installed version (optional): Open the Terminal application (found in the Utilities folder within the Applications folder) and type python --version to see if Python is already installed on your system. Note that macOS usually comes with a pre-installed version of Python.
+
+Download Python: Visit the official Python website at https://www.python.org/downloads/ and click on the "Download Python" button. Choose the latest stable version suitable for your macOS.
+
+Run the installer: Locate the downloaded Python installer package (e.g., python-3.x.x-macosx10.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
+
+Customize installation (optional): During the installation, you'll have the option to customize the installation settings. If you're unsure, the default settings are usually sufficient for most users.
+
+Install Python: Proceed with the installation by clicking "Install" or a similar button. You may be prompted to enter your administrator password. Wait for the installation to complete.
+
+Verify the installation: After the installation is finished, open a new Terminal window and type python --version to verify that Python is installed correctly. You should see the version number of the installed Python.
+
+## Installing dependencies for the models
 
 After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below
 
@@ -125,12 +152,9 @@ pip install transformers
 pip install langchain
 ```
 
-What about pytorch ?
-
-
 ### Build your python script, T5pat.py
 
-After installing the dependences, please build your python script.   In your terminal or code editor, please create a file, T5pat.py, and copy in following code into it.
+After installing the dependences, please build your python script.   In your terminal or code editor, please create a file, t5pat.py, in your directory i.e. t5pat, and cut and paste in following code into your t5pat.py file.
 
 ```
 from llama_index import LLMPredictor, PromptHelper, ServiceContext, SimpleDirectoryReader, GPTVectorStoreIndex, GPTListIndex
@@ -174,18 +198,24 @@ print("llm_predictor", llm_predictor, "embed_model", embed_model, "service_conte
 
 ```
 
-Note - We found that the code would not run without the modification to the service_content.   We have left the original code in place as a comment.   The modificiation is that we removed the embed_model reference, which was generating a failure message.   This parameter appears not be required for these models and removing it enables the program to run successfully.
+Note - We found that the code from this github [issue](https://github.com/hwchase17/LangChain/issues/4438) would not run without the modification to the service_content statement.   We have left the original code as a comment.   The modificiation is that we removed the embed_model reference, which was generating a failure message.   This parameter appears not be required for these models and removing it enables the program to run successfully.
 
-### Output
 
-The following provides the output from running the script:
+### Run your script
+
+To run your script, please open your terminal to the directory and to the directory that holds the file.   Then run the following statement:
 
 ```
+python t5pat.py
+````
 
+### Sample model output
+
+The following provides sample model output from running the script:
+
+```
 berlin
-
 turin
-
 toronto
 
 Indexing completed successfully
@@ -320,19 +350,21 @@ These lines simply print out a success message indicating the completion of the 
 
 ## Review of the output
 
-1st let’s examine the results of the flan_t5_large model.   This model provided answers to three questions on the capitals of Germany, Spain and Canada.  It got 2 of the 3 answers wrong, but on the plus side, it did provide cities in the correct country, just not the capital.
+1st, let’s examine the results of the flan_t5_large model.   This model provided answers to three questions on the capitals of Germany, Spain and Canada.  Generated answers: The lines berlin, turin, and toronto represent the generated answers for the given input prompts: "What is the capital of Germany?", "What is the capital of Spain?", and "What is the capital of Canada?" respectively. These answers are produced by the local_llm_g_flan_t5_large model used in the HuggingFacePipeline.
+
+It got 2 of the 3 answers wrong, but on the plus side, it did provide cities in the correct country, just not the capital.
 
 Berlin (correct)
 
-Turin (Madrid)
+Turin (wrong, it's Madrid)
 
-Toronto (Ottowa)
+Toronto (wrong, it's Ottowa)
 
-2nd let’s examine the results of the 'all-MiniLM-L6-v2 model. 
+As discussed in other posts, LLMs often make mistakes on knowledge based answers and there are several options to address i.e use a different model, create a chain thaat evaluations the type of question and routess the question to an appropriate model.   For more on this, please see this post: URL TBD
+
+2nd, let’s examine the results of the 'all-MiniLM-L6-v2 model. 
 
 The output of the code snippets provides the following information:
-
-Generated answers: The lines berlin, turin, and toronto represent the generated answers for the given input prompts: "What is the capital of Germany?", "What is the capital of Spain?", and "What is the capital of Canada?" respectively. These answers are produced by the local_llm_g_flan_t5_large model used in the HuggingFacePipeline.
 
 Indexing completion: The line "Indexing completed successfully" indicates that the process of indexing the documents from the specified directory (directory_path_) was completed without any errors.
 
@@ -340,10 +372,9 @@ Service context information: The line beginning with "llm_predictor" provides in
 
 Overall, the output demonstrates the successful generation of answers, completion of indexing, and displays relevant information about the created objects and their configurations.
 
-
 ## Running this model in a Docker container
 
-This code can be run in a docker container.   You can build a docker container by installing docker and then building a dockerfile using the code below.
+This code can be run in a docker container.   Running a model in a container can have benefits, especially for easier portability and integration with Kubernetes clusters and model serving software like KServe.  Assuming you have docker installed, you can build a docker container using the code below, which can be created in a file named Dockerfile in your working directory i.e. t5pat.
 
 Dockerfile
 
@@ -367,11 +398,15 @@ RUN pip install sentence_transformers
 CMD ["python", "t5pat.py"]
 ```
 
-Build the docker container
+## Build the docker container
+
+To build your docker container, please run this command.   This could take 2-5 minutes to complete and will produce several status messages.
 
 ``` docker build -t t5pat . ```
 
-Run the docker container
+## Run the docker container
+
+To run your docker container, please run this command.  
 
 ``` docker run -it t5pat ```
 
@@ -405,14 +440,10 @@ Falcon 7B, [https://huggingface.co/tiiuae/falcon-7b](https://huggingface.co/tiiu
 
 Falcon-7B
 
-Falcon-7B is a 7B parameters causal decoder-only model built by TII and trained on 1,500B tokens of RefinedWeb enhanced with curated corpora. It is made available under the Apache 2.0 license.
-
-Downloads last month: 100,867
+Falcon-7B is a 7B parameters causal decoder-only model built by TII and trained on 1,500B tokens of RefinedWeb enhanced with curated corpora. It is made available under the Apache 2.0 license.  It had 100,867 downloads last month.
 
 
 #### **Model Description**
-
-
 
 * Developed by: [https://www.tii.ae](https://www.tii.ae/);
 * Model type: Causal decoder-only;
@@ -421,8 +452,6 @@ Downloads last month: 100,867
 
 
 ### Why use Falcon-7B?
-
-
 
 * It outperforms comparable open-source models (e.g., [MPT-7B](https://huggingface.co/mosaicml/mpt-7b), [StableLM](https://github.com/Stability-AI/StableLM), [RedPajama](https://huggingface.co/togethercomputer/RedPajama-INCITE-Base-7B-v0.1) etc.), thanks to being trained on 1,500B tokens of [RefinedWeb](https://huggingface.co/datasets/tiiuae/falcon-refinedweb) enhanced with curated corpora. See the [OpenLLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
 * It features an architecture optimized for inference, with FlashAttention ([Dao et al., 2022](https://arxiv.org/abs/2205.14135)) and multiquery ([Shazeer et al., 2019](https://arxiv.org/abs/1911.02150)).
