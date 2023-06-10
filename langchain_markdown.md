@@ -97,7 +97,7 @@ In our example and process, we wanted to simplify the getting started.   We sele
 
 ### Step 0
 
-This post assumes that users have docker, python and a terminal emulator installed and the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will you.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory nameed t5pat.  If you have a recent version of Docker and Python 3.x, and know how to access your terminal, please skip to Step 1.
+This post assumes that users have docker, python and a terminal emulator installed and the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you have a recent version of Docker and Python 3.x, and know how to access your terminal, please skip to Step 1.
 
 ### Installing Docker
 
