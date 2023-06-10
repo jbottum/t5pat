@@ -1,7 +1,7 @@
 
 # 30 minutes to running LLMs on LangChain in a local environment
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from two popular python-based large language models (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  
+Within (30) minutes of reading this post, you should be able to complete model serving requests from two popular python-based large language models (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.    Note - if you only have a few minutes and just want to run the models (and you have python and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1)
 
 ## Why run local
 
@@ -135,6 +135,28 @@ Install Python: Proceed with the installation by clicking "Install" or a similar
 
 Verify the installation: After the installation is finished, open a new Terminal window and type python --version to verify that Python is installed correctly. You should see the version number of the installed Python.
 
+#### Installing pip
+
+The pip package installer is usually bundled with Python by default. However, if you need to install or upgrade pip, you can follow these steps:
+
+Open a terminal or command prompt on your system.
+
+Check if you have Python installed by running the command python --version or python3 --version. This will display the installed Python version. If Python is not installed, you need to install it before proceeding.
+
+Once you have confirmed that Python is installed, you can proceed to install pip using the following command:
+
+```
+python -m ensurepip --upgrade
+```
+
+Note: If you have multiple versions of Python installed, you may need to use python3 instead of python in the above command.
+
+After running the command, pip should be installed or upgraded to the latest version.
+
+To verify the installation, you can run pip --version or pip3 --version to check if pip is installed correctly and display its version.
+
+That's it! You should now have pip installed on your system.
+
 ### Installing Docker 
 
 To install Docker on macOS, you can follow these steps:
@@ -161,7 +183,7 @@ This command will display the version information of Docker if it is installed p
 
 You can now start using Docker on your macOS machine to build, run, and manage containers for your applications.
 
-## Step 1 - Installing dependencies for the models
+## Step 1 - Installing dependencies for the models (#step1)
 
 After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below
 
