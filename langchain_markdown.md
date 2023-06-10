@@ -26,7 +26,7 @@ First, we will show the process to run the Flan-T5-Large model.   This transform
 
 ## LLM #2 - S BERT, all-MiniLM-L6-v2
 
-Second we will show a sentence-transformer model, specifically the BertModel  model_name='all-MiniLM-L6-v2'.  This model maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.  This model has been extensively evaluated for embedded sentences (Performance Sentence Embeddings) and for embedded search queries & paragraphs (Performance Semantic Search). 
+Second, we will show a sentence-transformer model, specifically the BertModel with model_name='all-MiniLM-L6-v2'.  This model maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.  This model has been extensively evaluated for embedded sentences (Performance Sentence Embeddings) and for embedded search queries & paragraphs (Performance Semantic Search). 
 
 The model is a general purpose model and was trained with more than 1 billion training pairs. The **all-MiniLM-L6-v2** is relatively small (80MB) and fast, yet it still offers good quality.  It is a very popular model and had 2,674,926 downloads last month.  The text below is from this page, [https://www.sbert.net/docs/pretrained_models.html](https://www.sbert.net/docs/pretrained_models.html). For more detailed information on this model’s background, performance and capabilities, please see this link [https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).  
 
@@ -97,9 +97,45 @@ In our example and process, we wanted to simplify the getting started.   We sele
 
 ### Step 0
 
-This post assumes that users have docker, python and a terminal emulator installed and the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you have a recent version of Docker and Python 3.x, and know how to access your terminal, please skip to Step 1.
+This post assumes that users have a terminal emulator, python and Docker installed.  For those that do not, the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you know how to access your terminal and have a recent version of Python 3.x and of Docker, then please skip to Step 1.
 
-### Installing Docker
+### Accessing your terminal
+
+To access the terminal on a MacBook Air or any macOS device, you can follow these steps:
+
+Click on the "Finder" icon in the Dock, which is typically located at the bottom of the screen.
+
+In the Finder window, navigate to the "Applications" folder.
+
+Inside the "Applications" folder, open the "Utilities" folder.
+
+Look for an application called "Terminal" and double-click on it to launch the Terminal.
+
+Alternatively, you can use Spotlight Search to quickly open the Terminal:
+
+Press the "Command" key and the "Space" bar simultaneously to open Spotlight Search.
+
+In the search field that appears, type "Terminal" and press "Return" or click on the "Terminal" application from the search results.
+
+Once the Terminal is open, you will see a command-line interface where you can type commands and interact with the macOS command-line environment.
+
+### Installing Python
+
+Installing Python on a Mac is relatively straightforward. Here's a step-by-step guide to help you:
+
+Check the installed version (optional): Open the Terminal application (found in the Utilities folder within the Applications folder) and type python --version to see if Python is already installed on your system. Note that macOS usually comes with a pre-installed version of Python.
+
+Download Python: Visit the official Python website at https://www.python.org/downloads/ and click on the "Download Python" button. Choose the latest stable version suitable for your macOS.
+
+Run the installer: Locate the downloaded Python installer package (e.g., python-3.x.x-macosx10.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
+
+Customize installation (optional): During the installation, you'll have the option to customize the installation settings. If you're unsure, the default settings are usually sufficient for most users.
+
+Install Python: Proceed with the installation by clicking "Install" or a similar button. You may be prompted to enter your administrator password. Wait for the installation to complete.
+
+Verify the installation: After the installation is finished, open a new Terminal window and type python --version to verify that Python is installed correctly. You should see the version number of the installed Python.
+
+### Installing Docker 
 
 To install Docker on macOS, you can follow these steps:
 
@@ -124,42 +160,6 @@ To verify that Docker is installed correctly, open a terminal and run the follow
 This command will display the version information of Docker if it is installed properly.
 
 You can now start using Docker on your macOS machine to build, run, and manage containers for your applications.
-
-### Installing Python
-
-Installing Python on a Mac is relatively straightforward. Here's a step-by-step guide to help you:
-
-Check the installed version (optional): Open the Terminal application (found in the Utilities folder within the Applications folder) and type python --version to see if Python is already installed on your system. Note that macOS usually comes with a pre-installed version of Python.
-
-Download Python: Visit the official Python website at https://www.python.org/downloads/ and click on the "Download Python" button. Choose the latest stable version suitable for your macOS.
-
-Run the installer: Locate the downloaded Python installer package (e.g., python-3.x.x-macosx10.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
-
-Customize installation (optional): During the installation, you'll have the option to customize the installation settings. If you're unsure, the default settings are usually sufficient for most users.
-
-Install Python: Proceed with the installation by clicking "Install" or a similar button. You may be prompted to enter your administrator password. Wait for the installation to complete.
-
-Verify the installation: After the installation is finished, open a new Terminal window and type python --version to verify that Python is installed correctly. You should see the version number of the installed Python.
-
-### Accessing your terminal
-
-To access the terminal on a MacBook Air or any macOS device, you can follow these steps:
-
-Click on the "Finder" icon in the Dock, which is typically located at the bottom of the screen.
-
-In the Finder window, navigate to the "Applications" folder.
-
-Inside the "Applications" folder, open the "Utilities" folder.
-
-Look for an application called "Terminal" and double-click on it to launch the Terminal.
-
-Alternatively, you can use Spotlight Search to quickly open the Terminal:
-
-Press the "Command" key and the "Space" bar simultaneously to open Spotlight Search.
-
-In the search field that appears, type "Terminal" and press "Return" or click on the "Terminal" application from the search results.
-
-Once the Terminal is open, you will see a command-line interface where you can type commands and interact with the macOS command-line environment.
 
 ## Step 1 - Installing dependencies for the models
 
@@ -488,10 +488,6 @@ To run your docker container, please run this command.
 
 ## Background links
 
-Original post
-
-[http://www.pattersonconsultingtn.com/blog/deploying_huggingface_with_kfserving.html](http://www.pattersonconsultingtn.com/blog/deploying_huggingface_with_kfserving.html) 
-
 Issue running locally
 
 [https://github.com/hwchase17/LangChain/issues/4438](https://github.com/hwchase17/langchain/issues/4438)
@@ -508,38 +504,6 @@ What are embeddings
 
 [https://vickiboykis.com/what_are_embeddings/](https://vickiboykis.com/what_are_embeddings/)
 
+Previous Patterson Consulting post on using Huggingface with Docker and KServe.
 
-
-
-Falcon 7B, [https://huggingface.co/tiiuae/falcon-7b](https://huggingface.co/tiiuae/falcon-7b) 
-
-
-### Falcon 
-
-Falcon-7B
-
-Falcon-7B is a 7B parameters causal decoder-only model built by TII and trained on 1,500B tokens of RefinedWeb enhanced with curated corpora. It is made available under the Apache 2.0 license.  It had 100,867 downloads last month.
-
-
-#### **Model Description**
-
-* Developed by: [https://www.tii.ae](https://www.tii.ae/);
-* Model type: Causal decoder-only;
-* Language(s) (NLP): English and French;
-* License: Apache 2.0.
-
-
-### Why use Falcon-7B?
-
-* It outperforms comparable open-source models (e.g., [MPT-7B](https://huggingface.co/mosaicml/mpt-7b), [StableLM](https://github.com/Stability-AI/StableLM), [RedPajama](https://huggingface.co/togethercomputer/RedPajama-INCITE-Base-7B-v0.1) etc.), thanks to being trained on 1,500B tokens of [RefinedWeb](https://huggingface.co/datasets/tiiuae/falcon-refinedweb) enhanced with curated corpora. See the [OpenLLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
-* It features an architecture optimized for inference, with FlashAttention ([Dao et al., 2022](https://arxiv.org/abs/2205.14135)) and multiquery ([Shazeer et al., 2019](https://arxiv.org/abs/1911.02150)).
-* It is made available under a permissive Apache 2.0 license allowing for commercial use, without any royalties or restrictions.
-
-⚠️ This is a raw, pretrained model, which should be further fine tuned for most use cases. If you are looking for a version better suited to taking generic instructions in a chat format, we recommend taking a look at [Falcon-7B-Instruct](https://huggingface.co/tiiuae/falcon-7b-instruct).
-
-Dependencies
-
-pip install einops
-
-pip install accelerate
-
+[http://www.pattersonconsultingtn.com/blog/deploying_huggingface_with_kfserving.html](http://www.pattersonconsultingtn.com/blog/deploying_huggingface_with_kfserving.html) 
