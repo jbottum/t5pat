@@ -16,11 +16,11 @@ Some of the reasons why you may need to run your model locally, and not use an e
 * Functionality
     * Your model might only run locally (i.e. blenderbot).
 
-This project provides the code and process to run two types of pretrained, large language models (FLAN-T5-Large and Sentence-BERT, all-MiniLM-L6-v2) using LangChain on your local computer. We selected these top performing models because several developers were having trouble running a tutorial locally, as tracked in this github issue, [https://github.com/hwchase17/LangChain/issues/4438](https://github.com/hwchase17/langchain/issues/4438).  
+This project provides the code and process to run two types of pretrained, large language models (Flan-T5-Large and Sentence-BERT, all-MiniLM-L6-v2) using LangChain on your local computer. We selected these top performing models because several developers were having trouble running a tutorial locally, as tracked in this github issue, [https://github.com/hwchase17/LangChain/issues/4438](https://github.com/hwchase17/langchain/issues/4438).  
 
-## LLM #1 - Flan-t5-large
+## LLM #1 - Flan-T5-Large
 
-First, we will show the process to run the flan-t5-large model, which has 780M parameters and provides good performance for text-to-text and text-generation requirements as defined in this chart. It is a fairly popular model which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
+First, we will show the process to run the Flan-T5-Large model.   Flan-T5-Large is a language model that provides both text-to-text and text generation capabilities. It is based on the T5 (Text-To-Text Transfer Transformer) architecture, which is a transformer model designed for various natural language processing tasks. which has 780M parameters and provides good performance.  This [paper](https://arxiv.org/pdf/2210.11416.pdf), which provides the following chart, and to a reference that the Flan-T5-Large achieved a MMLU score of 45.1% compared to Chat GPT3's score of 43.9% (see page 10).  as defined in the following chart.   It is a fairly popular model which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
 
 ![alt_text](image1.png "image_tooltip")
 
@@ -95,9 +95,9 @@ As you can see from the previous section, LangChain includes many advanced featu
 
 In our example and process, we wanted to simplify the getting started.   We selected specific LLMs to run in the LangChain framework, which will run in a local environment i.e. in an older, Mac laptop with 16GB RAM without GPUs.   We anticipate that many developers can use this initially and then modify our choices for your requirements.   
 
-### Step 1
+### Step 0
 
-This post assumes that users have docker, python and a terminal installed and the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will you.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory nameed t5pat.
+This post assumes that users have docker, python and a terminal emulator installed and the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will you.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory nameed t5pat.  If you have a recent version of Docker and Python 3.x, and know how to access your terminal, please skip to Step 1.
 
 ### Installing Docker
 
@@ -141,7 +141,27 @@ Install Python: Proceed with the installation by clicking "Install" or a similar
 
 Verify the installation: After the installation is finished, open a new Terminal window and type python --version to verify that Python is installed correctly. You should see the version number of the installed Python.
 
-## Installing dependencies for the models
+### Accessing your terminal
+
+To access the terminal on a MacBook Air or any macOS device, you can follow these steps:
+
+Click on the "Finder" icon in the Dock, which is typically located at the bottom of the screen.
+
+In the Finder window, navigate to the "Applications" folder.
+
+Inside the "Applications" folder, open the "Utilities" folder.
+
+Look for an application called "Terminal" and double-click on it to launch the Terminal.
+
+Alternatively, you can use Spotlight Search to quickly open the Terminal:
+
+Press the "Command" key and the "Space" bar simultaneously to open Spotlight Search.
+
+In the search field that appears, type "Terminal" and press "Return" or click on the "Terminal" application from the search results.
+
+Once the Terminal is open, you will see a command-line interface where you can type commands and interact with the macOS command-line environment.
+
+## Step 1 - Installing dependencies for the models
 
 After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below
 
@@ -200,6 +220,29 @@ print("llm_predictor", llm_predictor, "embed_model", embed_model, "service_conte
 
 Note - We found that the code from this github [issue](https://github.com/hwchase17/LangChain/issues/4438) would not run without the modification to the service_content statement.   We have left the original code as a comment.   The modificiation is that we removed the embed_model reference, which was generating a failure message.   This parameter appears not be required for these models and removing it enables the program to run successfully.
 
+For reference here is the error message with the original code
+```
+Traceback (most recent call last):
+  File "/Users/xxxx/t5pat/t5pat.py", line 32, in <module>
+    service_context = ServiceContext.from_defaults(embed_model=embed_model, llm_predictor=llm_predictor)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xxxx/t5/.env/lib/python3.11/site-packages/llama_index/indices/service_context.py", line 147, in from_defaults
+    embed_model.callback_manager = callback_manager
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pydantic/main.py", line 357, in pydantic.main.BaseModel.__setattr__
+ValueError: "HuggingFaceEmbeddings" object has no field "callback_manager"
+````
+
+which we traced to this program and found this NOTE that states "the embed_model is not needed for all indices".   Based on this note, we removed it from the original call and the code executed to completion.
+
+```
+/Users/xxxx/t5/.env/lib/python3.11/site-packages/llama_index/indices/service_context.py
+
+         # NOTE: the embed_model isn't used in all indices
+146         embed_model = embed_model or OpenAIEmbedding()
+147         embed_model.callback_manager = callback_manager
+```
+
 
 ### Run your script
 
@@ -209,7 +252,7 @@ To run your script, please open your terminal to the directory and to the direct
 python t5pat.py
 ````
 
-### Sample model output
+### Sample script output
 
 The following provides sample model output from running the script:
 
@@ -231,8 +274,30 @@ llm_predictor &lt;llama_index.llm_predictor.base.LLMPredictor object at 0x120b8b
 ) model_name='all-MiniLM-L6-v2' cache_folder=None model_kwargs={} encode_kwargs={} service_content ServiceContext(llm_predictor=&lt;llama_index.llm_predictor.base.LLMPredictor object at 0x120b8b310>, prompt_helper=&lt;llama_index.indices.prompt_helper.PromptHelper object at 0x1245f3cd0>, embed_model=&lt;llama_index.embeddings.openai.OpenAIEmbedding object at 0x120f0d750>, node_parser=&lt;llama_index.node_parser.simple.SimpleNodeParser object at 0x121006f50>, llama_logger=&lt;llama_index.logger.base.LlamaLogger object at 0x1245f3c90>, callback_manager=&lt;llama_index.callbacks.base.CallbackManager object at 0x120bda850>)
 
 ```
+## Highlevel overview of the script
 
-## Review of the code
+The script executes the following functions by the FLAN-T5-Large and all-miniLM-L6-v2 models:
+
+For FLAN-T5-Large model:
+
+1. AutoTokenizer.from_pretrained(model_id): Loads the tokenizer for the FLAN-T5-Large model.
+2. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the FLAN-T5-Large model for sequence-to-sequence language generation tasks.
+3. pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512): Creates a pipeline object for text generation using the FLAN-T5-Large model.
+
+For all-miniLM-L6-v2 model:
+
+SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2"): Loads the SentenceTransformer model with the all-miniLM-L6-v2 architecture for generating embeddings.
+
+Additional components:
+
+1. SimpleDirectoryReader(directory_path_).load_data(): Reads and loads data from a specified directory.
+2. LLMPredictor(llm=local_llm_g_flan_t5_large): Creates an LLMPredictor object using the FLAN-T5-Large model for predicting outputs.
+3. ServiceContext.from_defaults(llm_predictor=llm_predictor): Creates a ServiceContext object with default settings, including the LLMPredictor.
+4. GPTListIndex.from_documents(documents, service_context=service_context): Creates an index using the GPTListIndex model based on the provided documents and service context.
+
+The code performs text generation using the FLAN-T5-Large model and creates an index using the GPTListIndex model with the help of LLMPredictor and SentenceTransformerEmbeddings. The generated outputs and indexing status are printed for verification purposes.
+
+## Detailed review of the code blocks.
 
 The following provides a review of the code blocks:
 
@@ -273,9 +338,12 @@ The code creates a text generation pipeline using the pipeline function from the
 
 ### Creating a HuggingFacePipeline wrapper:
 
-``` local_llm_g_flan_t5_large = HuggingFacePipeline(pipeline=pipe) ```
+``` 
+local_llm_g_flan_t5_large = HuggingFacePipeline(pipeline=pipe) 
+```
 
 Here, a HuggingFacePipeline object is created, wrapping the previously defined pipeline. This allows for convenient usage of the pipeline with additional functionalities.
+
 
 ### Generating text using the pipeline:
 
@@ -287,6 +355,7 @@ print(local_llm_g_flan_t5_large('What is the capital of Canada? '))
 
 The code demonstrates the usage of the pipeline by generating text for different prompts. The pipeline takes a prompt as input and generates a text output based on the T5 model's trained capabilities.
 
+
 ### Importing the necessary dependencies:
 
 ```
@@ -297,6 +366,7 @@ from llama_index import LangChainEmbedding, ServiceContext
 
 These lines import the required modules and classes for indexing and embedding.
 
+
 ### Setting the directory path and loading documents:
 
 ```
@@ -306,6 +376,7 @@ documents = SimpleDirectoryReader(directory_path_).load_data()
 
 The code specifies the directory_path_ variable as the path to a directory containing documents. The SimpleDirectoryReader is used to load the documents from the specified directory.
 
+
 ### Creating an LLMPredictor object:
 
 ```
@@ -313,6 +384,7 @@ The code specifies the directory_path_ variable as the path to a directory conta
  ```
 
 Here, an LLMPredictor object is created, which is initialized with the local_llm_g_flan_t5_large model. The LLMPredictor is responsible for making predictions using the provided language model.
+
 
 ### Creating an embedding model:
 
@@ -322,6 +394,7 @@ embed_model = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 
 The code creates a SentenceTransformerEmbeddings object, which is initialized with the specified model name. This embedding model is used to convert text into vector representations.
 
+
 ### Creating a service context:
 
 ``` 
@@ -330,6 +403,7 @@ service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
 
 Here, a ServiceContext object is created using the from_defaults method. The llm_predictor parameter is set to the previously created llm_predictor object.
 
+
 ### Creating an index for document retrieval:
 
 ``` 
@@ -337,6 +411,7 @@ index = GPTListIndex.from_documents(documents, service_context=service_context)
 ```
 
 The code creates a GPTListIndex object using the from_documents method. The documents variable containing the loaded documents and the service_context are provided as arguments to the index creation.
+
 
 ### Printing indexing completion and service context information:
 
@@ -348,7 +423,7 @@ print("llm_predictor", llm_predictor, "embed_model", embed_model, "service_conte
 These lines simply print out a success message indicating the completion of the indexing process. It also prints information about the llm_predictor, embed_model, and service_context objects for verification purposes.
 
 
-## Review of the output
+## Review of the script's output
 
 1st, let’s examine the results of the flan_t5_large model.   This model provided answers to three questions on the capitals of Germany, Spain and Canada.  Generated answers: The lines berlin, turin, and toronto represent the generated answers for the given input prompts: "What is the capital of Germany?", "What is the capital of Spain?", and "What is the capital of Canada?" respectively. These answers are produced by the local_llm_g_flan_t5_large model used in the HuggingFacePipeline.
 
@@ -372,9 +447,9 @@ Service context information: The line beginning with "llm_predictor" provides in
 
 Overall, the output demonstrates the successful generation of answers, completion of indexing, and displays relevant information about the created objects and their configurations.
 
-## Running this model in a Docker container
+## Running this script in a Docker container
 
-This code can be run in a docker container.   Running a model in a container can have benefits, especially for easier portability and integration with Kubernetes clusters and model serving software like KServe.  Assuming you have docker installed, you can build a docker container using the code below, which can be created in a file named Dockerfile in your working directory i.e. t5pat.
+This script can be run in a docker container.   Running a model in a container can have benefits, especially for easier portability and integration with Kubernetes clusters and model serving software like KServe.  Assuming you have docker installed, you can build a docker container using the code below, which can be created in a file named Dockerfile in your working directory i.e. t5pat.
 
 Dockerfile
 
@@ -432,6 +507,9 @@ Youtube walkthrough of running models locally
 What are embeddings
 
 [https://vickiboykis.com/what_are_embeddings/](https://vickiboykis.com/what_are_embeddings/)
+
+
+
 
 Falcon 7B, [https://huggingface.co/tiiuae/falcon-7b](https://huggingface.co/tiiuae/falcon-7b) 
 
