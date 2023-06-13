@@ -236,11 +236,10 @@ embed_model = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
 index = GPTListIndex.from_documents(documents, service_context=service_context)
 print("Indexing completed successfully")
-print("llm_predictor", llm_predictor, "embed_model", embed_model, "service_content", service_context)
 
 ```
 
-Note - We found that the code from this github [issue](https://github.com/hwchase17/LangChain/issues/4438) would not run without the modification to the service_content statement.   We have left the original code as a comment.   The modificiation is that we removed the embed_model reference, which was generating a failure message.   This parameter appears not be required for these models and removing it enables the program to run successfully.
+Note - We found that this code, which is from this github [issue](https://github.com/hwchase17/LangChain/issues/4438) would not run without the modification to the service_content statement.   We have left the original code as a comment.   The modificiation is that we removed the embed_model reference, which was generating a failure message.   This parameter appears not be required for these models and removing it enables the program to run successfully.
 
 For reference here is the error message with the original code
 ```
@@ -285,15 +284,6 @@ toronto
 
 Indexing completed successfully
 
-llm_predictor &lt;llama_index.llm_predictor.base.LLMPredictor object at 0x120b8b310> embed_model client=SentenceTransformer(
-
-  (0): Transformer({'max_seq_length': 256, 'do_lower_case': False}) with Transformer model: BertModel 
-
-  (1): Pooling({'word_embedding_dimension': 384, 'pooling_mode_cls_token': False, 'pooling_mode_mean_tokens': True, 'pooling_mode_max_tokens': False, 'pooling_mode_mean_sqrt_len_tokens': False})
-
-  (2): Normalize()
-
-) model_name='all-MiniLM-L6-v2' cache_folder=None model_kwargs={} encode_kwargs={} service_content ServiceContext(llm_predictor=&lt;llama_index.llm_predictor.base.LLMPredictor object at 0x120b8b310>, prompt_helper=&lt;llama_index.indices.prompt_helper.PromptHelper object at 0x1245f3cd0>, embed_model=&lt;llama_index.embeddings.openai.OpenAIEmbedding object at 0x120f0d750>, node_parser=&lt;llama_index.node_parser.simple.SimpleNodeParser object at 0x121006f50>, llama_logger=&lt;llama_index.logger.base.LlamaLogger object at 0x1245f3c90>, callback_manager=&lt;llama_index.callbacks.base.CallbackManager object at 0x120bda850>)
 
 ```
 ## Highlevel overview of the script
@@ -439,10 +429,9 @@ The code creates a GPTListIndex object using the from_documents method. The docu
 
 ``` 
 print("Indexing completed successfully")
-print("llm_predictor", llm_predictor, "embed_model", embed_model, "service_content", service_context)
 ```
 
-These lines simply print out a success message indicating the completion of the indexing process. It also prints information about the llm_predictor, embed_model, and service_context objects for verification purposes.
+This line simply print out a success message indicating the completion of the indexing process. 
 
 
 ## Review of the script's output
@@ -464,8 +453,6 @@ As discussed in other posts, LLMs often make mistakes on knowledge based answers
 The output of the code snippets provides the following information:
 
 Indexing completion: The line "Indexing completed successfully" indicates that the process of indexing the documents from the specified directory (directory_path_) was completed without any errors.
-
-Service context information: The line beginning with "llm_predictor" provides information about the llm_predictor, embed_model, and service_context objects. It shows the object references (&lt;llama_index.llm_predictor.base.LLMPredictor object at 0x120b8b310>, client=SentenceTransformer(...), ServiceContext(...)) along with their configurations and parameters.
 
 Overall, the output demonstrates the successful generation of answers, completion of indexing, and displays relevant information about the created objects and their configurations.
 
@@ -507,6 +494,7 @@ To run your docker container, please run this command.
 
 ``` docker run -it t5pat ```
 
+Please be aware that your container should run similar to running the python script.   You may need to be patient while the software packages are being downloaded.
 
 ## Background links
 
