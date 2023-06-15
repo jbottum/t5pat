@@ -26,7 +26,7 @@ First, we will show the process to run the Flan-T5-Large model.   This transform
 
 ## LLM #2 - S BERT, all-MiniLM-L6-v2
 
-Second, we will show a sentence-transformer framework, specifically the BertModel with model_name='all-MiniLM-L6-v2', which is also open sourced from Google.  This model maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.  This model has been extensively evaluated for embedded sentences (Performance Sentence Embeddings) and for embedded search queries & paragraphs (Performance Semantic Search). 
+Second, we will show a sentence-transformer framework, specifically the BertModel with model_name='all-MiniLM-L6-v2', which was also open sourced from Google.  This model maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.  This model has been extensively evaluated for embedded sentences (Performance Sentence Embeddings) and for embedded search queries & paragraphs (Performance Semantic Search). 
 
 The model is a general purpose model and was trained with more than 1 billion training pairs. The **all-MiniLM-L6-v2** is relatively small (80MB) and fast, yet it still offers good quality.  It is a very popular model and had 2,674,926 downloads last month.  The text below is from this page, [https://www.sbert.net/docs/pretrained_models.html](https://www.sbert.net/docs/pretrained_models.html). For more detailed information on this model’s background, performance and capabilities, please see this link [https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).  
 
