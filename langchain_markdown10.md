@@ -445,7 +445,7 @@ for question in questions:
 The code demonstrates the usage of the pipeline by generating text for different prompts for knowledge retreival. The pipeline takes a prompt as input and generates a text output based on the T5 model's trained capabilities.
 
 
-### Indexing
+### Loading data for Indexing
 
 ```
 directory_path = '/content/dir'  # Replace with the actual directory path
