@@ -1,7 +1,7 @@
 
-# Testing LLMs with LangChain in a local environment for (7) types of reasoning
+# Testing LLMs with LangChain in a local environment for (6) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide scripts that enable you to test these LLMs' capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and seven forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
+Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide scripts that enable you to test these LLMs' capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and six forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
 ## Why run local
 
@@ -409,7 +409,7 @@ These questions test various forms of reasoning.   They use the same process.  A
 
 ## Review of the script's output
 
-The following table provide summary of the model's answers.
+The following table provide summary of the model's answers.  We recognize that the format of the questions, especially asking two question in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
 
 | Task | Result |
 | --- | --- |
