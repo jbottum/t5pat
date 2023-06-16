@@ -276,7 +276,7 @@ Answer: I would have passed the exam.
 
 ## Highlevel overview of the script
 
-The script executes the following functions by the FLAN-T5-Large model:
+The script executes the following functions for the FLAN-T5-Large model:
 
 1. AutoTokenizer.from_pretrained(model_id): Loads the tokenizer for the FLAN-T5-Large model.
 2. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the FLAN-T5-Large model for sequence-to-sequence language generation tasks.
