@@ -1,7 +1,7 @@
 
-# Testing LLMs with LangChain in a local environment for (6) types of reasoning
+# Testing LLMs with LangChain in a local environment for (7) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide you with the scripts that enable you to test the LLM's capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and six forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
+Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide scripts that enable you to test these LLMs' capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and seven forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
 ## Why run local
 
@@ -16,7 +16,7 @@ Some of the reasons why you may need to run your model locally, and not use an e
 * Functionality
     * Your model might only run locally (i.e. Blenderbot, Meta's chatbot models).
 
-## LLM #1 - Flan-T5-Large
+## Large Language Model - Flan-T5-Large
 
 First, we will show the process to run the Flan-T5-Large model.   This transformer model, open sourced from Google, is designed for natural language processing tasks and provides both text-to-text and text generation capabilities. It is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 780M parameters.  This [paper](https://arxiv.org/pdf/2210.11416.pdf), which provides the following chart, claims that the Flan-T5-Large achieved a MMLU score of 45.1%, which is pretty good when compared to ChatGPT3's score of 43.9% (see page 10). It is a fairly popular model, which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
 
@@ -130,9 +130,11 @@ After running the command, pip should be installed or upgraded to the latest ver
 
 To verify the installation, you can run pip --version or pip3 --version to check if pip is installed correctly and display its version.
 
+That's it! You should now have pip installed on your system.
+
 ## Step 1 - Installing dependencies for the models (#step1)
 
-After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below:
+After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below
 
 ```
 pip install transformers
@@ -274,7 +276,9 @@ Answer: I would have passed the exam.
 
 ## Highlevel overview of the script
 
-The script executes the following functions for the FLAN-T5-Large model:
+The script executes the following functions by the FLAN-T5-Large and all-miniLM-L6-v2 models:
+
+For FLAN-T5-Large model:
 
 1. AutoTokenizer.from_pretrained(model_id): Loads the tokenizer for the FLAN-T5-Large model.
 2. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the FLAN-T5-Large model for sequence-to-sequence language generation tasks.
@@ -301,7 +305,7 @@ model_id = 'google/flan-t5-large'
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
 ```
-This code specifies the model_id as 'google/flan-t5-large'. It then initializes the tokenizer and model using the AutoTokenizer and AutoModelForSeq2SeqLM classes from the Transformers library. The tokenizer is responsible for converting text into tokens that the model can process, while the model is a T5-based sequence-to-sequence language model.
+Here, the code specifies the model_id as 'google/flan-t5-large'. It then initializes the tokenizer and model using the AutoTokenizer and AutoModelForSeq2SeqLM classes from the Transformers library. The tokenizer is responsible for converting text into tokens that the model can process, while the model is a T5-based sequence-to-sequence language model.
 
 ```
 pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512)
@@ -395,7 +399,7 @@ These questions test various forms of reasoning.   They use the same process.  A
 
 ## Review of the script's output
 
-The following table provide summary of the model's answers.  We recognize that the format of the questions, especially asking two question in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
+The following table provide summary of the model's answers.
 
 | Task | Result |
 | --- | --- |
@@ -405,11 +409,14 @@ The following table provide summary of the model's answers.  We recognize that t
 | Question Answer, Text2Text | incorrect |
 | Logical Reasoning | incorrect |
 | Logical Reasoning | correct |
+| Cause Effect Reasoning | incorrect |
+| Cause Effect Reasoning | incorrect |
 | Analogical Reasoning | correct |
 | Deductive Reasoning | incorrect |
 | Deductive Reasoning | correct |
 | Inductive Reasoning | correct |
 | Counterfactual Reasoning | correct |
+
 
 For our detailed review of the answers, let’s first examine the results of the flan_t5_large model for knowledge retreival.  
 
@@ -492,17 +499,15 @@ Answer: I would have passed the exam.
 ```
 This question tests counterfactual reasoning.  The model's answer is correct.
 
-
+As you can see, the model's performance can vary depending on the question type.   This is to be expected. 
 
 
 ## Future reading
 
 The following provides relevant material to further your education on these topics.
 
-Chain-of-Thought Hub: Measuring LLMs' Reasoning Performance
 https://github.com/FranxYao/chain-of-thought-hub
 
-LLM Leaderboard
 https://weightwatcher.ai/leaderboard.html
 
 GitHub issue on running LangChain locally
