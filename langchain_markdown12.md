@@ -130,11 +130,9 @@ After running the command, pip should be installed or upgraded to the latest ver
 
 To verify the installation, you can run pip --version or pip3 --version to check if pip is installed correctly and display its version.
 
-That's it! You should now have pip installed on your system.
-
 ## Step 1 - Installing dependencies for the models (#step1)
 
-After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below
+After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below:
 
 ```
 pip install transformers
@@ -303,7 +301,7 @@ model_id = 'google/flan-t5-large'
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
 ```
-Here, the code specifies the model_id as 'google/flan-t5-large'. It then initializes the tokenizer and model using the AutoTokenizer and AutoModelForSeq2SeqLM classes from the Transformers library. The tokenizer is responsible for converting text into tokens that the model can process, while the model is a T5-based sequence-to-sequence language model.
+This code specifies the model_id as 'google/flan-t5-large'. It then initializes the tokenizer and model using the AutoTokenizer and AutoModelForSeq2SeqLM classes from the Transformers library. The tokenizer is responsible for converting text into tokens that the model can process, while the model is a T5-based sequence-to-sequence language model.
 
 ```
 pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512)
@@ -397,7 +395,7 @@ These questions test various forms of reasoning.   They use the same process.  A
 
 ## Review of the script's output
 
-The following table provide summary of the model's answers.
+The following table provide summary of the model's answers.  We recognize that the format of the questions, especially asking two question in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
 
 | Task | Result |
 | --- | --- |
@@ -412,7 +410,6 @@ The following table provide summary of the model's answers.
 | Deductive Reasoning | correct |
 | Inductive Reasoning | correct |
 | Counterfactual Reasoning | correct |
-
 
 For our detailed review of the answers, let’s first examine the results of the flan_t5_large model for knowledge retreival.  
 
@@ -495,7 +492,7 @@ Answer: I would have passed the exam.
 ```
 This question tests counterfactual reasoning.  The model's answer is correct.
 
-As you can see, the model's performance can vary depending on the question type.   This is to be expected. 
+
 
 
 ## Future reading
