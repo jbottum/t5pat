@@ -1,7 +1,7 @@
 
-# Testing LLMs with LangChain in a local environment for (7) types of reasoning
+# Testing LLMs with LangChain in a local environment for (6) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide you with the scripts that enable you to test the LLM's capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and seven forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
+Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide you with the scripts that enable you to test the LLM's capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and six forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
 ## Why run local
 
