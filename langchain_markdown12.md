@@ -1,7 +1,7 @@
 
 # Testing LLMs with LangChain in a local environment for (7) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide scripts that enable you to test these LLMs' capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and seven forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
+Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide you with the scripts that enable you to test these LLMs' capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and seven forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
 ## Why run local
 
@@ -276,7 +276,7 @@ Answer: I would have passed the exam.
 
 ## Highlevel overview of the script
 
-The script executes the following functions for the FLAN-T5-Large model:
+The script executes the following functions by the FLAN-T5-Large model:
 
 1. AutoTokenizer.from_pretrained(model_id): Loads the tokenizer for the FLAN-T5-Large model.
 2. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the FLAN-T5-Large model for sequence-to-sequence language generation tasks.
@@ -502,8 +502,10 @@ As you can see, the model's performance can vary depending on the question type.
 
 The following provides relevant material to further your education on these topics.
 
+Chain-of-Thought Hub: Measuring LLMs' Reasoning Performance
 https://github.com/FranxYao/chain-of-thought-hub
 
+LLM Leaderboard
 https://weightwatcher.ai/leaderboard.html
 
 GitHub issue on running LangChain locally
