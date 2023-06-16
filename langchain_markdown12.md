@@ -1,7 +1,7 @@
 
 # Testing LLMs with LangChain in a local environment for (7) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide scripts that enable you to test these LLMs' capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and seven forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
+Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide scripts that enable you to test these LLMs' capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and seven forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
 ## Why run local
 
@@ -109,6 +109,16 @@ Customize installation (optional): During the installation, you'll have the opti
 Install Python: Proceed with the installation by clicking "Install" or a similar button. You may be prompted to enter your administrator password. Wait for the installation to complete.
 
 Verify the installation: After the installation is finished, open a new Terminal window and type python --version to verify that Python is installed correctly. You should see the version number of the installed Python.
+
+### Python Virtual Environment
+
+You may want to create and use a python virual environment.  When using a python virtual enviornment, you will be running the code within a virtual environment, which ensures that the dependencies are isolated and avoiding conflicts with other Python packages.   Additionallly, without it, you may have to run your python script using a "python3" command rather than just "python".   To create your python virtual environment on a Mac, please run these commands.
+```
+python3 -m venv env
+```
+```
+source env/bin/activate
+```
 
 ## Installing pip
 
