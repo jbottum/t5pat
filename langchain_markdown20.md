@@ -1,6 +1,6 @@
 # Testing LLMs with LangChain in a local environment for (6) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  We provide scripts that enable you to test these LLMs' capabilities to answer three types of prompts - Knowledge Retreival, Text2Text Question Answer and six forms for Reasoning for Question Answer.  We will walk your through installing dependencies, and we will review the code and the output.  Note - if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
+Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides scripts that enable you to test these LLMs' capabilities in answering three types of prompts - Knowledge Retreival, Text2Text Question Answer and six forms for Reasoning for Question Answer.  After providing some details on the models and LangChain, we will walk your through installing dependencies, and we will review the code and the output of each model.  Note - if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
 ## Why run local
 
@@ -18,7 +18,7 @@ Some of the reasons why you may need to run your model locally, and not use an e
 
 ## Large Language Models - Flan-T5-Large and Flan-T5-XL
 
-In this blog, we will show the process to run the Flan-T5-Large and Flan-T5-XL modelss.   This transformer model, open sourced from Google, is designed for natural language processing tasks and provides both text-to-text and text generation capabilities. 
+In this blog, we will show the process to run the Flan-T5-Large and Flan-T5-XL models.   This family of transformer models, open sourced from Google, is designed for natural language processing tasks and provides both text-to-text and text generation capabilities. 
 
 The Flan-T5-Large version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 780M parameters.  This [paper](https://arxiv.org/pdf/2210.11416.pdf), which provides the following chart, claims that the Flan-T5-Large achieved a MMLU score of 45.1%, which is pretty good when compared to ChatGPT3's score of 43.9% (see page 10). It is a fairly popular model, which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
 
@@ -358,7 +358,7 @@ model_ids = ['google/flan-t5-large', 'google/flan-t5-xl']
 ```
 This line defines a list called model_ids containing the IDs of the models that will be used in the script for inference.  The list has two model ids, 'google/flan-t5-large' and 'google/flan-t5-xl'.
 
-# Define Knowledge Retrieval questions in a list
+## Define Knowledge Retrieval questions in a list
 
 ```
 questions = [
@@ -369,7 +369,7 @@ questions = [
 ```
 The code above creates a list, which are contains the knowledge retreieval questions.  This list will be used later as prompts for the model to answer.   
 
-# Load tokenizer and model
+## Load tokenizer and model
 
 ```
 for model_id in model_ids:
@@ -402,7 +402,7 @@ print(f"Results for model {model_id}"): This line prints the model ID to indicat
 print("=" * 30): This line prints a line of equal signs for visual separation.
 
 
-### Test Knowledge retrieval
+## Test Knowledge retrieval
 
 ```
 print("\nKnowledge Retrieval Examples")
@@ -502,7 +502,6 @@ question7: Counterfactual reasoning.
 
 Each question represents a different type of reasoning scenario, and the code generates answers for these questions using the local_llm pipeline. The resulting answers are then printed to the output.
 
-
 ## Review of the script's output
 
 The following table provide summary of the model's answers.  We recognize that the format of the questions, especially asking two question in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
@@ -542,6 +541,19 @@ Flan-T5-XL
 | Deductive Reasoning | correct |
 | Inductive Reasoning | correct |
 | Counterfactual Reasoning | incorrect |
+
+Comparision - Number of Correct Answers
+
+| Task | Large (6)  | XL (8) |
+| --- | --- | --- |
+| Knowledge retrieval | 1 | 2 |
+| Question Answer, Text2Text | 0 | 0 |
+| Logical Reasoning | 1 | 1 | 
+| Cause Effect Reasoning | 0 | 1 |
+| Analogical Reasoning | 1 | 1 |
+| Deductive Reasoning | 1 | 2 |
+| Inductive Reasoning | 1 | 1 |
+| Counterfactual Reasoning | 1 | 0 |
 
 For our detailed review of the answers, let’s first examine the results of the flan-t5-large model for knowledge retreival.  
 
@@ -630,8 +642,7 @@ This question tests counterfactual reasoning.  The model's answer is correct.
 As you can see, the model's performance can vary depending on the question type.   This is to be expected. 
 
 
-
-For our detailed review of the answers, let’s first examine the results of the flan-t5-xl model for knowledge retreival.  
+Now, let's examine the results of the flan-t5-xl model, starting with the answers for knowledge retreival.  
 
 ```
 Results for model google/flan-t5-xl
@@ -648,11 +659,22 @@ Answer: santander
 Question: What is the capital of Canada?
 Answer: ottawa
 
+```
+The flan-t5-xl did better than the flan-t5-large, as the xl version answered Germany and Canada correct, but it still missed Spain, although it did provide a Spanish city as the answer.
 
+Next, let's look at the Question Answer Text2Text Example
+
+```
 Question Answer Examples
 ------------------------------
 Question: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant.  Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: Fort Myers in Florida
+```
+The model provided an answer, Fort Myers in Florida, but it did not provide a time or any context.   Without this information, we would have to consier this answer incorrect.
+
+Next let's look at the answers to the reasoning questions.
+
+```
 
 Question: Logical Reasoning: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
 Answer: Fluffy is a cat, and cats have tails. The next number in the sequence is 8. Therefore, the answer is yes.
@@ -673,6 +695,9 @@ Question: Counterfactual Reasoning: If I had studied harder, would I have passed
 Answer: The light bulb was invented by Thomas Edison.
 
 ```
+The XL version did better than the Large model on several questions (logical, cause and effect, deductive, and inductive) but answered one of the two questions.  It did not answer most of the first questions in each series and it also missed some that the Large got correct (conterfactual, analogical).
+
+
 
 
 ## Future reading
