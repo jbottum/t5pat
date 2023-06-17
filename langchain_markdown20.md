@@ -329,15 +329,14 @@ Answer: The light bulb was invented by Thomas Edison.
 
 ## Highlevel overview of the script
 
-The script executes the following functions by the FLAN-T5-Large and all-miniLM-L6-v2 models:
+Using a loop, the script executes the following functions for each model, e.g. google/flan-t5-large' and google/flan-t5-xl, one at a time:
 
-For FLAN-T5-Large model:
+1. Model_id: Sets the model id to be loaded and tested.
+2. AutoTokenizer.from_pretrained(model_id): Loads the tokenizer for the model.
+3. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the model for sequence-to-sequence language generation tasks.
+3. pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512): Creates a pipeline object for text generation using the model.
 
-1. AutoTokenizer.from_pretrained(model_id): Loads the tokenizer for the FLAN-T5-Large model.
-2. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the FLAN-T5-Large model for sequence-to-sequence language generation tasks.
-3. pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512): Creates a pipeline object for text generation using the FLAN-T5-Large model.
-
-The code performs text generation using the FLAN-T5-Large model. The text generation includes prompting the models to answer questions on knowledge retreival, text2text question answering and question answering with various forms of reasoning.
+The code performs text generation from several prompts to the model and answers questions on knowledge retreival, text2text question answering and question answering with various forms of reasoning.
 
 ## Detailed review of the code blocks
 
