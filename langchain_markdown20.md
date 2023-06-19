@@ -76,7 +76,7 @@ In our example and process, we wanted to simplify the getting started.   We sele
 
 ## Step 0
 
-This post assumes that users have a terminal emulator, python and Docker installed.  For those that do not, the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you know how to access your terminal and have a recent version of Python 3.x and of Docker, then please skip to Step 1.
+This post assumes that users have this software: a terminal emulator, Python and Docker.  For those that do not, the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you know how to access your terminal and have a recent version of Python 3.x and of Docker, then please skip to Step 1.
 
 ## Accessing your terminal
 
@@ -116,7 +116,7 @@ Verify the installation: After the installation is finished, open a new Terminal
 
 ### Python Virtual Environment
 
-You may want to create and use a python virual environment.  When using a python virtual enviornment, you will be running the code within a virtual environment, which ensures that the dependencies are isolated and avoiding conflicts with other Python packages.   Additionallly, without it, you may have to run your python script using a "python3" command rather than just "python".   To create your python virtual environment on a Mac, please run these commands.
+You may want to create and use a python virtual environment.  When using a python virtual enviornment, you will be running the code within a virtual environment, which ensures that the dependencies are isolated and avoiding conflicts with other Python packages.   Additionallly, without it, you may have to run your python script using a "python3" command rather than just "python".   To create your python virtual environment on a Mac, please run these commands.
 ```
 python3 -m venv env
 ```
