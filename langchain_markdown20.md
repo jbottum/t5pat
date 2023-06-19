@@ -615,12 +615,16 @@ This question tests inductive reasoning.  The model's answer is correct.
 
 ```
 Question: Counterfactual Reasoning: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison hadn't invented the light bulb
-Answer: I would have passed the exam.
+Answer: I would have failed the exam.
 ```
-This question tests counterfactual reasoning.  The model's answer is correct (on studying) and ignores the question about the light blub.
+This question tests counterfactual reasoning.  The model's answer is potentially correct (about failing the exam) assuming it would more difficult to study harder without lights, but the lack of context makes judging the answer difficult.
 
 As you can see, the model's performance can vary depending on the question type.   This is to be expected. 
 
+Note - This is a information message that I have not figured out how to suppress.
+```
+Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████| 2/2 [01:44<00:00, 52.47s/it]
+```
 
 Now, let's examine the results of the flan-t5-xl model, starting with the answers for knowledge retreival.  
 
