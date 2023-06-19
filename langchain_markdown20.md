@@ -516,9 +516,9 @@ Each question represents a different type of reasoning scenario, and the code ge
 
 ## Review of the script's output
 
-The following table provides a summary of the model's answers.  We recognize that the format of the questions, especially asking two question in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
+The following table provides a summary of the model's answers.  We recognize that the format of the questions, especially asking two questions in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
 
-Of the 17 questions, both models answered scored under 50%.  The Large answered 6 correctly and XL answered 8 correctly.  The XL was stronger on knowledge retreival, cause and effect and inductive reasoning.  The XL did not perform well on analogical or counterfactual questions.   Neither model did a good job with prompts that contained two questions and both model mostly answered the second question and ignored the 1st question.
+Of the 17 questions, both models answered scored under 50%.  The Large answered 6 correctly and XL answered 8 correctly.  The XL was stronger on knowledge retreival, cause and effect and inductive reasoning.  The XL did not perform well on analogical or counterfactual questions.   Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.
 
 Comparision - Number of Correct Answers / Total Questions
 
