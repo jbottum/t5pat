@@ -240,6 +240,8 @@ To run your script, please open your terminal to the directory and to the direct
 python t5pat.py
 ````
 
+Note - if you are not running in a virtual environment, you might need to use python3 t5pat.py.
+
 ## Sample script output
 
 The following provides sample model output from running the script:
@@ -329,14 +331,13 @@ Answer: The light bulb was invented by Thomas Edison.
 
 ## Highlevel overview of the script
 
-Using a loop, the script executes the following functions for each model, e.g. google/flan-t5-large' and google/flan-t5-xl, one at a time:
+Using a loop, the script executes the following functions for each model, google/flan-t5-large and google/flan-t5-xl:
 
-1. Model_id: Sets the model id to be loaded and tested.
-2. AutoTokenizer.from_pretrained(model_id): Loads the tokenizer for the model.
-3. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the model for sequence-to-sequence language generation tasks.
+1. AutoTokenizer.from_pretrained(model_id): Loads the tokenizer for the model.
+2. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the model for sequence-to-sequence language generation tasks.
 3. pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512): Creates a pipeline object for text generation using the model.
 
-The code performs text generation from several prompts to the model and answers questions on knowledge retreival, text2text question answering and question answering with various forms of reasoning.
+The script then processes several prompts and answers questions on knowledge retreival, text2text question answering and question answering with various forms of reasoning.
 
 ## Detailed review of the code blocks
 
@@ -348,7 +349,8 @@ The following provides a review of the code blocks:
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 ```
-
+The first line imports HuggingFacePipeline from langchain.llms
+The second line imports AutoTokenizer, AutoModelForSeq2SeqLM, pipeline from transformer
 ### Load models and pipelines
 
 ```
@@ -366,7 +368,7 @@ questions = [
     'What is the capital of Canada?'
 ]
 ```
-The code above creates a list, which are contains the knowledge retreieval questions.  This list will be used later as prompts for the model to answer.   
+The code above creates a list, which contains the knowledge retreieval questions.  This list will be used later as prompts for the model to answer.   
 
 ## Load tokenizer and model
 
@@ -378,9 +380,7 @@ for model_id in model_ids:
     pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512)
     local_llm = HuggingFacePipeline(pipeline=pipe)
 ```
-The first line starts a loop that iterates over each model ID in the model_ids list. The next line initializes the tokenizer and model using the AutoTokenizer and AutoModelForSeq2SeqLM classes from the Transformers library. The tokenizer is responsible for converting text into tokens that the model can process, while the model is a T5-based sequence-to-sequence language model.
-
-for model_id in model_ids:: This line starts a loop that iterates over each model ID in the model_ids list.
+for model_id in model_ids: This line starts a loop that iterates over each model ID in the model_ids list.
 
 tokenizer = AutoTokenizer.from_pretrained(model_id): This line loads the tokenizer for the current model ID. The AutoTokenizer.from_pretrained method is used to automatically download and instantiate the tokenizer associated with the given model ID.
 
@@ -408,14 +408,15 @@ print("\nKnowledge Retrieval Examples")
 print("=" * 30)
 
 for question in questions:
-    answer = local_llm_g_flan_t5_large(question)
+    answer = local_llm(question)
     print(f"Question: {question}")
     print(f"Answer: {answer}\n")
 ```
+print("\nKnowledge Retrieval Examples"): This line prints a heading to indicate that the following examples are for question and answer generation.
 
-The code demonstrates the usage of the pipeline by generating text for different prompts for knowledge retreival. The pipeline takes a prompt as input and generates a text output based on the T5 model's trained capabilities.
+print("-" * 30): This line prints a line of dashes for visual separation.
 
-for question in questions:: This line starts a loop that iterates over each question in the questions list.
+for question in questions: This line starts a loop that iterates over each question in the questions list.
 
 answer = local_llm(question): This line calls the local_llm object (which represents the Hugging Face pipeline) with the current question as an argument to obtain the answer.
 
@@ -435,7 +436,7 @@ print(f"Answer: {answer}\n"): This line prints the answer obtained from the mode
     print(f"Answer: {answer1}\n")
 ```
 
-These lines of code perform Text-to-Text testing of question and answer generation using a given question:
+These lines of code perform Text-to-Text testing of question and answer generation:
 
 print("\nQuestion Answer Examples"): This line prints a heading to indicate that the following examples are for question and answer generation.
 
@@ -503,56 +504,23 @@ Each question represents a different type of reasoning scenario, and the code ge
 
 ## Review of the script's output
 
-The following table provide summary of the model's answers.  We recognize that the format of the questions, especially asking two question in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
+The following tables provide summary of the model's answers.  We recognize that the format of the questions, especially asking two question in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
 
-Flan-T5-Large
+Of the 17 questions, both models answered scored under 50%.  The Large answered 6 correctly and XL answered 8 correctly.  The XL was stronger on knowledge retreival, cause and effect and inductive reasoning.  The XL did not perform well on analogical or counterfactual questions.   Neither model did a good job with prompts that contained two questions and both model mostly answered the second question and ignored the 1st question.
 
-| Task | Result |
-| --- | --- |
-| Knowledge retrieval | correct |
-| Knowledge retrieval | incorrect |
-| Knowledge retrieval | incorrect |
-| Question Answer, Text2Text | incorrect |
-| Logical Reasoning | incorrect |
-| Logical Reasoning | correct |
-| Cause Effect Reasoning | incorrect |
-| Cause Effect Reasoning | incorrect |
-| Analogical Reasoning | correct |
-| Deductive Reasoning | incorrect |
-| Deductive Reasoning | correct |
-| Inductive Reasoning | correct |
-| Counterfactual Reasoning | correct |
+Comparision - Number of Correct Answers / Total Questions
 
-Flan-T5-XL
-
-| Task | Result |
-| --- | --- |
-| Knowledge retrieval | correct |
-| Knowledge retrieval | incorrect |
-| Knowledge retrieval | correct |
-| Question Answer, Text2Text | ?? correct |
-| Logical Reasoning | incorrect |
-| Logical Reasoning | correct |
-| Cause Effect Reasoning | incorrect |
-| Cause Effect Reasoning | correct |
-| Analogical Reasoning | correct |
-| Deductive Reasoning | correct |
-| Deductive Reasoning | correct |
-| Inductive Reasoning | correct |
-| Counterfactual Reasoning | incorrect |
-
-Comparision - Number of Correct Answers
-
-| Task | Large (6)  | XL (8) |
+| Task | Large (6/17)  | XL (8/17) |
 | --- | --- | --- |
-| Knowledge retrieval | 1 | 2 |
-| Question Answer, Text2Text | 0 | 0 |
-| Logical Reasoning | 1 | 1 | 
-| Cause Effect Reasoning | 0 | 1 |
-| Analogical Reasoning | 1 | 1 |
-| Deductive Reasoning | 1 | 2 |
-| Inductive Reasoning | 1 | 1 |
-| Counterfactual Reasoning | 1 | 0 |
+| Knowledge retrieval | 1/3 | 2/3 |
+| Question Answer, Text2Text | 0/2| 1/2 |
+| Logical Reasoning | 1/2 | 1/2 | 
+| Cause Effect Reasoning | 0/2 | 1/2 |
+| Analogical Reasoning | 1/2 | 0/2 |
+| Deductive Reasoning | 1/2 | 2/2 |
+| Inductive Reasoning | 1/2 | 1/2 |
+| Counterfactual Reasoning | 1/2 | 0/2 |
+
 
 For our detailed review of the answers, let’s first examine the results of the flan-t5-large model for knowledge retreival.  
 
@@ -574,9 +542,9 @@ Question: What is the capital of Canada?
 Answer: toronto
 ```
 
-The model provided answers to three questions on the capitals of Germany, Spain and Canada.  Generated answers: The lines berlin, turin, and toronto represent the generated answers for the given input prompts: "What is the capital of Germany?", "What is the capital of Spain?", and "What is the capital of Canada?" respectively. These answers are produced by the local_llm_g_flan_t5_large model used in the HuggingFacePipeline.
+The model provided answers to three questions on the capitals of Germany, Spain and Canada.  Generated answers: The lines berlin, turin, and toronto represent the generated answers for the given input prompts: "What is the capital of Germany?", "What is the capital of Spain?", and "What is the capital of Canada?" respectively. These answers are produced by the flan_t5_large model used in the HuggingFacePipeline.
 
-The model answered 2 of the 3 questions incorrectly.  When reviewing the incorrect answers, the model did provide cities in the correct country, just not the capital.
+The model answered 2 of the 3 questions incorrectly.  When reviewing the incorrect answers, the model did answer with cities in the correct country, just not the capital.
 
 Berlin (correct)
 
@@ -592,8 +560,7 @@ Question Answer Example, Text-to-Text
 Question: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant.  Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba
 ```
-The model answered this question inccorectly.   The model did answer with the location and time provided of the location defined in the text but it appeared not to understand the question with respect to landfall.
-
+The model answered this question inccorectly.   The model did answer with a location and time, which was provided in the text.  The model appears to summarize the text and not to process the question's request to calculating a location and time for landfall.  
 
 ## Question Answer with Reasoning Examples - output review
 
@@ -624,7 +591,7 @@ This question tests analogical reasoning.   The model's answer can be considered
 Question: Deductive Reasoning: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary doesn't like to get wet, will Mary take an umbrella?
 Answer: Mary is a dog. An umbrella is used to keep people dry. Therefore, the final answer is yes.
 ```
-This question tests deductive reasoning.   The part of the model's answer is incorrect and part of the model's answer is correct.
+This question tests deductive reasoning.   The part of the model's answer is incorrect (Mary is a dog) and part of the model's answer is correct (yes).
 
 ```
 Question: Inductive Reasoning: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
@@ -636,7 +603,7 @@ This question tests inductive reasoning.  The model's answer is correct.
 Question: Counterfactual Reasoning: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison hadn't invented the light bulb
 Answer: I would have passed the exam.
 ```
-This question tests counterfactual reasoning.  The model's answer is correct.
+This question tests counterfactual reasoning.  The model's answer is correct (on studying) and ignores the question about the light blub.
 
 As you can see, the model's performance can vary depending on the question type.   This is to be expected. 
 
@@ -659,7 +626,7 @@ Question: What is the capital of Canada?
 Answer: ottawa
 
 ```
-The flan-t5-xl did better than the flan-t5-large, as the xl version answered Germany and Canada correct, but it still missed Spain, although it did provide a Spanish city as the answer.
+For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The xl version answered Germany and Canada correct, but it still missed Spain, although it did provide a Spanish city as the answer.
 
 Next, let's look at the Question Answer Text2Text Example
 
@@ -694,12 +661,10 @@ Question: Counterfactual Reasoning: If I had studied harder, would I have passed
 Answer: The light bulb was invented by Thomas Edison.
 
 ```
-The XL version did better than the Large model on several questions (logical, cause and effect, deductive, and inductive) but answered one of the two questions.  It did not answer most of the first questions in each series and it also missed some that the Large got correct (conterfactual, analogical).
+The XL version did better than the Large model on several questions (logical, cause and effect, deductive, and inductive) but answered one of the two questions.  It did not answer most of the first questions in each series and when it did (for logical reasoning i.e. next number sequence), it answered incorrectly.   It also missed some questions that the Large got correct (conterfactual, analogical).
 
 
-
-
-## Future reading
+## Further reading
 
 The following provides relevant material to further your education on these topics.
 
