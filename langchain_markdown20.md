@@ -506,11 +506,11 @@ print(f"Answer: {answer2}\n"): This line prints the generated answer for questio
 
 Similar patterns of code can be observed for the following questions:
 
-question3: Cause and effect reasoning.\n
-question4: Analogical reasoning.\n
-question5: Deductive reasoning.\n
-question6: Inductive reasoning.\n
-question7: Counterfactual reasoning.\n
+question3: Cause and effect reasoning.
+question4: Analogical reasoning.
+question5: Deductive reasoning.
+question6: Inductive reasoning.
+question7: Counterfactual reasoning.
 
 Each question represents a different type of reasoning scenario, and the code generates answers for these questions using the local_llm pipeline. The resulting answers are then printed to the output.
 
