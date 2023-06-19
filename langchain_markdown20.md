@@ -241,13 +241,13 @@ for model_id in model_ids:
 
 ## Run your script
 
-To run your script, please open your terminal to the directory and to the directory that holds the file.   Then run the following statement:
+To run your script, please open your terminal to the directory that holds the file, i.e. t5pat.   Then run the following statement:
 
 ```
-python t5pat.py
+python3 t5pat.py
 ````
 
-Note - if you are not running in a virtual environment, you might need to use python3 t5pat.py.
+Note - if you are not running in a virtual environment, your system might take longer.
 
 ## Sample script output
 
@@ -352,8 +352,7 @@ The following provides a review of the code blocks:
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 ```
-The first line imports HuggingFacePipeline from langchain.llms
-The second line imports AutoTokenizer, AutoModelForSeq2SeqLM, pipeline from transformer
+The first line imports HuggingFacePipeline from langchain.llms. The second line imports AutoTokenizer, AutoModelForSeq2SeqLM, pipeline from transformer.
 
 ```
 import os
@@ -362,8 +361,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Redirect stderr to /dev/null
 os.system("python t5pat20.py 2>/dev/null")
 ```
-Import the OS package and use the os.environ and os.system statements to disable parallelism and to redirect stderr which suppresses the warning messages in the output. 
-
+Import the OS package and use the os.environ and os.system statements to disable parallelism and to redirect stderr, which suppresses the warning messages in the output. 
 
 ### Load models and pipelines
 
@@ -426,7 +424,7 @@ for question in questions:
     print(f"Question: {question}")
     print(f"Answer: {answer}\n")
 ```
-print("\nKnowledge Retrieval Examples"): This line prints a heading to indicate that the following examples are for question and answer generation.
+print("\nKnowledge Retrieval Examples"): This line prints a heading to indicate that the following examples are for knowledge retreival question and answer generation.
 
 print("-" * 30): This line prints a line of dashes for visual separation.
 
@@ -508,11 +506,11 @@ print(f"Answer: {answer2}\n"): This line prints the generated answer for questio
 
 Similar patterns of code can be observed for the following questions:
 
-question3: Cause and effect reasoning.
-question4: Analogical reasoning.
-question5: Deductive reasoning.
-question6: Inductive reasoning.
-question7: Counterfactual reasoning.
+question3: Cause and effect reasoning.\n
+question4: Analogical reasoning.\n
+question5: Deductive reasoning.\n
+question6: Inductive reasoning.\n
+question7: Counterfactual reasoning.\n
 
 Each question represents a different type of reasoning scenario, and the code generates answers for these questions using the local_llm pipeline. The resulting answers are then printed to the output.
 
@@ -644,7 +642,7 @@ Question: What is the capital of Canada?
 Answer: ottawa
 
 ```
-For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The xl version answered Germany and Canada correct, but it still missed Spain, although it did provide a Spanish city as the answer.
+For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The xl version answered Germany and Canada correct, but it still missed the capital of Spain, although Spain is the capital city of Spain's Cantabria region.
 
 Next, let's look at the Question Answer Text2Text Example
 
