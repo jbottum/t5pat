@@ -518,7 +518,7 @@ Each question represents a different type of reasoning scenario, and the code ge
 
 The following table provides a summary of the models' answers.  We recognize that the format of the questions, especially asking two questions in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
 
-Of the 17 questions, both models answered scored under 50%.  The Large answered (6) correctly and XL answered (8) correctly.  The XL was stronger on knowledge retreival, cause and effect and inductive reasoning.  The XL did not perform well on analogical or counterfactual questions.   Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.
+Of the 17 questions, both models answered scored under 50%.  The Large answered (6) correctly and XL answered (8) correctly.  The XL was stronger on knowledge retreival, cause and effect, deductive and inductive reasoning.  The XL did not perform well on analogical or counterfactual questions.   Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.
 
 Comparision - Number of Correct Answers / Total Questions
 
@@ -677,7 +677,7 @@ Question: Counterfactual Reasoning: If I had studied harder, would I have passed
 Answer: The light bulb was invented by Thomas Edison.
 
 ```
-The XL version did better than the Large model on several questions (logical, cause and effect, deductive, and inductive) but answered one of the two questions.  It did not answer most of the first questions in each series and when it did (for logical reasoning i.e. next number sequence), it answered incorrectly.   It also missed some questions that the Large got correct (conterfactual, analogical).
+The XL version did better than the Large model on several questions (logical, cause and effect, deductive, and inductive) but answered one of the two questions.  It did not answer most of the first questions in each series and when it did (for logical reasoning i.e. next number sequence), it answered incorrectly.   It also missed some questions that the Large anwered correct (conterfactual, analogical).
 
 
 ## Further reading
