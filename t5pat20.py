@@ -1,6 +1,12 @@
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
+import os
+# disable parallelism and avoid the warning message
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+# Redirect stderr to /dev/null
+os.system("python t5pat20.py 2>/dev/null")
+
 # Define model IDs
 model_ids = ['google/flan-t5-large', 'google/flan-t5-xl']
 
