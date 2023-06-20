@@ -22,7 +22,7 @@ In this blog, we will show the process to run the Flan-T5-Large and Flan-T5-XL m
 
 The Flan-T5-Large version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 780M parameters.  This [paper](https://arxiv.org/pdf/2210.11416.pdf), which provides the following chart, claims that the Flan-T5-Large achieved a MMLU score of 45.1%, which is pretty good when compared to ChatGPT3's score of 43.9% (see page 10). It is a fairly popular model, which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
 
-The Flan-T5-xl version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 3B parameters.   It is a fairly popular model, which had 349,257 downloads last month. It achieved a MMLU score of 52%.  For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-xl](https://huggingface.co/google/flan-t5-xl). 
+The Flan-T5-xl version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 3B parameters.   It is a fairly popular model, which had 349,257 downloads last month. It achieved a MMLU score of 52%, which is better than T5-Large and ChatGPT3.  For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-xl](https://huggingface.co/google/flan-t5-xl). 
 
 ![alt_text](image1.png "image_tooltip")
 
@@ -102,7 +102,7 @@ Once the Terminal is open, you will see a command-line interface where you can t
 
 Installing Python on a Mac is relatively straightforward. Here's a step-by-step guide to help you:
 
-Check the installed version (optional): Open the Terminal application (found in the Utilities folder within the Applications folder) and type python --version to see if Python is already installed on your system. Note that macOS usually comes with a pre-installed version of Python.
+Check the installed version (optional): Open the Terminal application (found in the Utilities folder within the Applications folder) and type python3 --version to see if Python is already installed on your system. Note that macOS usually comes with a pre-installed version of Python.
 
 Download Python: Visit the official Python website at https://www.python.org/downloads/ and click on the "Download Python" button. Choose the latest stable version suitable for your macOS.
 
@@ -120,30 +120,28 @@ The pip package installer is usually bundled with Python by default. However, if
 
 Open a terminal or command prompt on your system.
 
-Check if you have Python installed by running the command python --version or python3 --version. This will display the installed Python version. If Python is not installed, you need to install it before proceeding.
+Check if you have Python installed by running the command the python3 --version. This will display the installed Python version. If Python is not installed, you need to install it before proceeding.
 
-Once you have confirmed that Python is installed, you can proceed to install pip using the following command:
+Once you have confirmed that Python3 is installed, you can proceed to install pip using the following command:
 
 ```
-python -m ensurepip --upgrade
+python3 -m ensurepip --upgrade
 ```
-
-Note: If you have multiple versions of Python installed, you may need to use python3 instead of python in the above command.
 
 After running the command, pip should be installed or upgraded to the latest version.
 
 To verify the installation, you can run pip3 --version to check if pip is installed correctly and display its version.
 
-That's it! You should now have pip installed on your system.
+That's it! You should now have pip3 installed on your system.
 
 ## Step 1 - Installing dependencies for the models (#step1)
 
 After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below
 
 ```
-pip install transformers
-pip install langchain
-pip install torch
+pip3 install transformers
+pip3 install langchain
+pip3 install torch
 ```
 
 ## Build your python script, T5pat.py
