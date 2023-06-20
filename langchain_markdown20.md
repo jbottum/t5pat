@@ -619,12 +619,11 @@ This question tests counterfactual reasoning.  The model's answer is potentially
 
 As you can see, the model's performance can vary depending on the question type.   This is to be expected. 
 
-Note - This is a information message that I have not figured out how to suppress.
 ```
 Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████| 2/2 [01:44<00:00, 52.47s/it]
 ```
 
-Now, let's examine the results of the flan-t5-xl model, starting with the answers for knowledge retreival.  
+Now, let's examine the results of the flan-t5-xl model. The information message below is printed as the script loads checkpoint shards as part of initializing the model and tokenizer.  Next let's look at the answers for knowledge retreival.  
 
 ```
 Results for model google/flan-t5-xl
