@@ -106,23 +106,13 @@ Check the installed version (optional): Open the Terminal application (found in 
 
 Download Python: Visit the official Python website at https://www.python.org/downloads/ and click on the "Download Python" button. Choose the latest stable version suitable for your macOS.
 
-Run the installer: Locate the downloaded Python installer package (e.g., python-3.x.x-macosx10.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
+Run the installer: Locate the downloaded Python3 installer package (e.g., python-3.x.x-macosx10.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
 
 Customize installation (optional): During the installation, you'll have the option to customize the installation settings. If you're unsure, the default settings are usually sufficient for most users.
 
 Install Python: Proceed with the installation by clicking "Install" or a similar button. You may be prompted to enter your administrator password. Wait for the installation to complete.
 
-Verify the installation: After the installation is finished, open a new Terminal window and type python --version to verify that Python is installed correctly. You should see the version number of the installed Python.
-
-### Python Virtual Environment
-
-You may want to create and use a python virtual environment.  When using a python virtual enviornment, you will be running the code within a virtual environment, which ensures that the dependencies are isolated and avoiding conflicts with other Python packages.   Additionallly, without it, you may have to run your python script using a "python3" command rather than just "python".   To create your python virtual environment on a Mac, please run these commands.
-```
-python3 -m venv env
-```
-```
-source env/bin/activate
-```
+Verify the installation: After the installation is finished, open a new Terminal window and type python3 --version to verify that Python is installed correctly. You should see the version number of the installed Python.
 
 ## Installing pip
 
@@ -142,7 +132,7 @@ Note: If you have multiple versions of Python installed, you may need to use pyt
 
 After running the command, pip should be installed or upgraded to the latest version.
 
-To verify the installation, you can run pip --version or pip3 --version to check if pip is installed correctly and display its version.
+To verify the installation, you can run pip3 --version to check if pip is installed correctly and display its version.
 
 That's it! You should now have pip installed on your system.
 
