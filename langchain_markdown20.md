@@ -114,7 +114,7 @@ Install Python: Proceed with the installation by clicking "Install" or a similar
 
 Verify the installation: After the installation is finished, open a new Terminal window and type python3 --version to verify that Python is installed correctly. You should see the version number of the installed Python.
 
-## Installing pip
+## Installing pip3
 
 The pip package installer is usually bundled with Python by default. However, if you need to install or upgrade pip, you can follow these steps:
 
