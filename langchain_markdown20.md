@@ -106,7 +106,7 @@ Check the installed version (optional): Open the Terminal application (found in 
 
 Download Python: Visit the official Python website at https://www.python.org/downloads/ and click on the "Download Python" button. Choose the latest stable version suitable for your macOS.
 
-Run the installer: Locate the downloaded Python3 installer package (e.g., python-3.x.x-macosx10.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
+Run the installer: Locate the downloaded Python3 installer package (e.g., python-3.x.x-macosx11.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
 
 Customize installation (optional): During the installation, you'll have the option to customize the installation settings. If you're unsure, the default settings are usually sufficient for most users.
 
@@ -506,7 +506,7 @@ Each question represents a different type of reasoning scenario, and the code ge
 
 The following table provides a summary of the models' answers.  We recognize that the format of the questions, especially asking two questions in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
 
-Of the 17 questions, both models answered scored under 50%.  The Large answered (6) correctly and XL answered (8) correctly.  The XL was stronger on knowledge retreival, cause and effect, deductive and inductive reasoning.  The XL did not perform well on analogical or counterfactual questions.   Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.
+Of the 17 questions, both models answered scored under 50%.  The Large answered (6) correctly and XL answered (8) correctly.  The XL was stronger on knowledge retreival, cause and effect, deductive and inductive reasoning.  The XL did not perform well on analogical or counterfactual questions.   Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.  It is important to note that the XL model takes longer to load and run, and there is a delay between when the Large models output completes and the XL model output starts.
 
 Comparision - Number of Correct Answers / Total Questions
 
@@ -665,15 +665,17 @@ Question: Counterfactual Reasoning: If I had studied harder, would I have passed
 Answer: The light bulb was invented by Thomas Edison.
 
 ```
-The XL version did better than the Large model on several questions (logical, cause and effect, deductive, and inductive) but answered one of the two questions.  It did not answer most of the first questions in each series and when it did (for logical reasoning i.e. next number sequence), it answered incorrectly.   It also missed some questions that the Large anwered correct (conterfactual, analogical).
+The XL version did better than the Large model on several questions (logical, cause and effect, deductive, and inductive) but answered one of the two questions.  It did not answer most of the first questions in each series and when it did (for logical reasoning i.e. next number sequence), it answered incorrectly.   It also missed some questions that the Large anwered correctly (conterfactual, analogical).
 
 
 ## Further reading
 
 The following provides relevant material to further your education on these topics.
 
+Chain-of-Thought Hub: Measuring LLMs' Reasoning Performance
 https://github.com/FranxYao/chain-of-thought-hub
 
+weightwatcher.ai, LLM Leaderboard
 https://weightwatcher.ai/leaderboard.html
 
 GitHub issue on running LangChain locally
