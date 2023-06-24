@@ -132,9 +132,6 @@ plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
 plt.title('Tokenizer Load Time Comparison')
 
-# plt.tight_layout()
-# plt.show()
-
 # Plot pipeline load times
 pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]
 
