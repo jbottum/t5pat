@@ -102,6 +102,11 @@ for model_id in model_ids:
         elif model_id == 'google/flan-t5-xl':
             xl_generation_times.append(end_time - start_time)
 
+    print(f"Loading times for model {model_id}")
+    print("Tokenizer Loading Time:", f"{tokenizer_end_time - tokenizer_start_time:.5f}", "seconds")
+    print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "seconds")
+    print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n")
+
 # Plot generation times
 plt.figure(figsize=(18, 6))
 plt.subplot(131)
