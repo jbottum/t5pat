@@ -315,112 +315,122 @@ Note - if you are not running in a virtual environment, your system might take l
 The following provides sample model output from running the script:
 
 ```
-
 Results for model google/flan-t5-large
 ==============================
 Prompt: What is the capital of Germany?
 Answer: berlin
-Generation Time: 0.75208 seconds
+Generation Time: 0.70655 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Spain?
 Answer: turin
-Generation Time: 0.79062 seconds
+Generation Time: 0.69353 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Canada?
 Answer: toronto
-Generation Time: 0.72141 seconds
+Generation Time: 0.68853 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
 Answer: yes
-Generation Time: 0.77981 seconds
+Generation Time: 0.77023 seconds
 Type: Logical Reasoning
 
 Prompt: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
 Answer: no
-Generation Time: 0.64559 seconds
+Generation Time: 0.64670 seconds
 Type: Cause and Effect
 
 Prompt: In the same way that pen is related to paper, what is fork related to? If tree is related to forest, what is brick related to?
 Answer: brick is related to brick
-Generation Time: 1.11533 seconds
+Generation Time: 1.14754 seconds
 Type: Analogical Reasoning
 
 Prompt: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
 Answer: yes
-Generation Time: 0.89685 seconds
+Generation Time: 0.89962 seconds
 Type: Inductive Reasoning
 
 Prompt: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary does not like to get wet, will Mary take an umbrella?
 Answer: yes
-Generation Time: 0.76685 seconds
+Generation Time: 0.76554 seconds
 Type: Deductive Reasoning
 
 Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb?
 Answer: no one would have invented the light bulb
-Generation Time: 1.40766 seconds
+Generation Time: 1.37998 seconds
 Type: Counterfactual Reasoning
 
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba
-Generation Time: 7.50129 seconds
+Generation Time: 7.50308 seconds
 Type: In Context
 
-Loading checkpoint shards: 100%|██████████████████████████████████████████████████| 2/2 [01:26<00:00, 43.33s/it]
+Loading times for model google/flan-t5-large
+Tokenizer Loading Time: 1.53067 seconds
+Model Loading Time: 16.12941 seconds
+Pipeline Loading Time: 0.08664 seconds
+
+
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████| 2/2 [01:37<00:00, 48.64s/it]
 
 Results for model google/flan-t5-xl
 ==============================
 Prompt: What is the capital of Germany?
 Answer: berlin
-Generation Time: 33.72834 seconds
+Generation Time: 48.95853 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Spain?
 Answer: santander
-Generation Time: 2.68822 seconds
+Generation Time: 3.03832 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Canada?
 Answer: ottawa
-Generation Time: 3.03528 seconds
+Generation Time: 3.59796 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
 Answer: yes
-Generation Time: 2.69330 seconds
+Generation Time: 3.09546 seconds
 Type: Logical Reasoning
 
 Prompt: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
 Answer: It increases the risk of developing lung cancer.
-Generation Time: 4.97590 seconds
+Generation Time: 5.94420 seconds
 Type: Cause and Effect
 
 Prompt: In the same way that pen is related to paper, what is fork related to? If tree is related to forest, what is brick related to?
 Answer: building
-Generation Time: 2.45197 seconds
+Generation Time: 2.73911 seconds
 Type: Analogical Reasoning
 
 Prompt: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
 Answer: yes
-Generation Time: 3.15866 seconds
+Generation Time: 3.42616 seconds
 Type: Inductive Reasoning
 
 Prompt: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary does not like to get wet, will Mary take an umbrella?
 Answer: yes
-Generation Time: 2.69511 seconds
+Generation Time: 2.82262 seconds
 Type: Deductive Reasoning
 
 Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb?
 Answer: the world would be dark
-Generation Time: 3.63687 seconds
+Generation Time: 3.74760 seconds
 Type: Counterfactual Reasoning
 
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: Fort Myers in Florida
-Generation Time: 12.89732 seconds
+Generation Time: 14.14607 seconds
 Type: In Context
+
+Loading times for model google/flan-t5-xl
+Tokenizer Loading Time: 0.47110 seconds
+Model Loading Time: 124.32560 seconds
+Pipeline Loading Time: 1.13045 seconds
 
 ```
 
@@ -435,7 +445,7 @@ Using a loop, the script executes the following functions for each model, google
 2. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the model for sequence-to-sequence language generation tasks.
 3. pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512): Creates a pipeline object for text generation using the model.
 
-The script then processes several prompts and answers questions on knowledge retreival, text2text question answering and question answering with various forms of reasoning.
+The script then processes several prompts and answers questions on knowledge retreival, question answering with various forms of reasoning and a long question with details in context to be answered.
 
 ## Detailed review of the code blocks
 
@@ -636,6 +646,23 @@ The "if model_id" line checks if the current model being used is the large model
 
 This "elif model_id" line checks if the current model being used is the XL model. If the current model is the XL model, the last line appends the duration of the generation process (end time minus start time) to the xl_generation_times list.
 
+Next we print details on the loading times for the mode, tokenizer and pipeline.
+
+```
+    print(f"Loading times for model {model_id}")
+    print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "seconds")
+    print("Tokenizer Loading Time:", f"{tokenizer_end_time - tokenizer_start_time:.5f}", "seconds")
+    print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n")
+```
+print(f"Loading times for model {model_id}"): This prints a header with the model id
+
+print("Tokenizer Loading Time:", f"{tokenizer_end_time - tokenizer_start_time:.5f}", "seconds"): This prints the tokenizer loading time in seconds.
+
+print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "seconds"): This prints the model loading time in seconds.
+
+print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n"): This prints the pipeline loading time is seconds.
+
+# Plots for generation and loading times
 
 ```
 # Plot generation times
@@ -648,37 +675,6 @@ plt.ylabel('Type')
 plt.xlabel('Generation Time (seconds)')
 plt.title('Generation Time Comparison')
 plt.legend()
-
-# Plot model load times
-model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]
-model_labels = ['XL Model', 'Large Model']
-
-plt.subplot(132)
-plt.bar(model_labels, model_load_times, color=['blue', 'orange'])
-plt.ylabel('Load Time (seconds)')
-plt.xlabel('Model')
-plt.title('Model Load Time Comparison')
-
-# Plot tokenizer load times
-tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]
-
-plt.subplot(133)
-plt.bar(model_labels, tokenizer_load_times, color=['blue', 'orange'])
-plt.ylabel('Load Time (seconds)')
-plt.xlabel('Model')
-plt.title('Tokenizer Load Time Comparison')
-
-# Plot pipeline load times
-pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]
-
-plt.figure(figsize=(8, 6))
-plt.bar(model_labels, pipeline_load_times, color=['blue', 'orange'])
-plt.ylabel('Load Time (seconds)')
-plt.xlabel('Model')
-plt.title('Pipeline Load Time Comparison')
-
-plt.tight_layout()
-plt.show()
 
 ```
 Generation Time Comparison:
@@ -701,6 +697,20 @@ plt.title('Generation Time Comparison'): This line sets the title of the chart a
 
 plt.legend(): This line adds a legend to the chart, which shows the labels and corresponding colors for the XL model and large model bars.
 
+```
+# Plot model load times
+model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]
+model_labels = ['XL Model', 'Large Model']
+
+plt.subplot(132)
+plt.bar(model_labels, model_load_times, color=['blue', 'orange'])
+plt.ylabel('Load Time (seconds)')
+plt.xlabel('Model')
+plt.title('Model Load Time Comparison')
+
+```
+
+
 Model Load Time Comparison: model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]: This line calculates the total model load times for the XL model and large model by summing up the individual load times. 
 
 model_labels = ['XL Model', 'Large Model']: This line defines the labels for the model load time chart.
@@ -715,6 +725,17 @@ plt.xlabel('Model'): This line sets the x-axis label as 'Model'.
 
 plt.title('Model Load Time Comparison'): This line sets the title of the chart as 'Model Load Time Comparison'.
 
+```
+# Plot tokenizer load times
+tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]
+
+plt.subplot(133)
+plt.bar(model_labels, tokenizer_load_times, color=['blue', 'orange'])
+plt.ylabel('Load Time (seconds)')
+plt.xlabel('Model')
+plt.title('Tokenizer Load Time Comparison')
+
+```
 Tokenizer Load Time Comparison:
 
 tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]: This line calculates the total tokenizer load times for the XL model and large model by summing up the individual load times.
@@ -728,6 +749,20 @@ plt.ylabel('Load Time (seconds)'): This line sets the y-axis label as 'Load Time
 plt.xlabel('Model'): This line sets the x-axis label as 'Model'.
 
 plt.title('Tokenizer Load Time Comparison'): This line sets the title of the chart as 'Tokenizer Load Time Comparison'.
+
+```
+# Plot pipeline load times
+pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]
+
+plt.figure(figsize=(8, 6))
+plt.bar(model_labels, pipeline_load_times, color=['blue', 'orange'])
+plt.ylabel('Load Time (seconds)')
+plt.xlabel('Model')
+plt.title('Pipeline Load Time Comparison')
+
+plt.tight_layout()
+plt.show()
+```
 
 Pipeline Load Time Comparison: pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]: This line calculates the total pipeline load times for the XL model and large model by summing up the individual load times.
 
@@ -746,26 +781,9 @@ plt.tight_layout(): This line adjusts the spacing between subplots to prevent ov
 plt.show(): This line displays all the created charts on the screen.
 
 
-Next we print details on the loading times for the mode, tokenizer and pipeline.
-
-```
-    print(f"Loading times for model {model_id}")
-    print("Tokenizer Loading Time:", f"{tokenizer_end_time - tokenizer_start_time:.5f}", "seconds")
-    print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "seconds")
-    print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n")
-```
-print(f"Loading times for model {model_id}"): This prints a header with the model id
-
-print("Tokenizer Loading Time:", f"{tokenizer_end_time - tokenizer_start_time:.5f}", "seconds"): This prints the tokenizer loading time in seconds.
-
-print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "seconds"): This prints the model loading time in seconds.
-
-print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n"): This prints the pipeline loading time is seconds.
-
-
 ## Review of the script's output
 
-The following table provides a summary of the models' answers.  We recognize that the format of the questions, especially asking two questions in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
+The following table provides a summary of the models' answers.  We recognize that the format of the prompts, especially asking two questions in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type and the prompt.   This is to be expected and could be fine tuned, which is a potential follow-on discussion.
 
 Of the 17 questions, both models answered answered under 50% of the questions correctly.  The Large model answered (6) correctly and XL model answered (8) correctly.  The XL was stronger on knowledge retreival, cause and effect, deductive and inductive reasoning.  The XL did not perform well on analogical or counterfactual questions.   Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.  
 
@@ -773,47 +791,31 @@ Of the 17 questions, both models answered answered under 50% of the questions co
 
 Generation and Loading times
 
-Generation Time: For the reasoning questions, the answer generation time varied from 0.7 to 4.1 seconds.   There does not seem to be a relationship between the generation time and the accuracy of the answer.
-The loading times show that flan-t5-large model takes 16.6 seconds, whereas the tokenizer takes .24 seconds and the Pipeline loading is shortest at 0.08 seconds.
-
-Generation Time: For the reasoning questions, the answer generation time varied from 5.7 to 15.2 seconds.   There does not seem to be a relationship between the generation time and the accuracy of the answer.
-The loading times show that flan-t5-xl model takes 131.1 seconds, whereas the Pipeline loads in 0.71 seconds and the the tokenizer is the shorest with 0.14 seconds to load. 
 
 
-![alt_text](gentimes.png "image_tooltip")
-
-
-Model Load Times: The model loading time for the XL model is 131 seconds verses 16 seconds for the Large model.
-
-![alt_text](model_load.png "image_tooltip")
-
-Tokenizer and Pipeline Load Times: The Large tokenizer took longer 0.24 seconds verses the XL tokenizer at 0.14 seconds.   The Large pipeline took 0.08 seconds wheres the XL took 0.71 seconds to loaad.
-
-![alt_text](tokenizer_load.png "image_tooltip")
 
 For our detailed review of the answers, let’s first examine the results of the flan-t5-large model for knowledge retreival.  
 
-## Knowledge Retreival Example - output review
+## Output review
 
 ```
 Results for model google/flan-t5-large
 ==============================
-
-Knowledge Retrieval Examples
-------------------------------
-Question: What is the capital of Germany?
+Prompt: What is the capital of Germany?
 Answer: berlin
-Generation Time: 0.71421 seconds
+Generation Time: 0.75208 seconds
+Type: Knowledge Retrieval
 
-Question: What is the capital of Spain?
+Prompt: What is the capital of Spain?
 Answer: turin
-Generation Time: 0.73381 seconds
+Generation Time: 0.79062 seconds
+Type: Knowledge Retrieval
 
-Question: What is the capital of Canada?
+Prompt: What is the capital of Canada?
 Answer: toronto
-Generation Time: 0.73072 seconds
+Generation Time: 0.72141 seconds
+Type: Knowledge Retrieval
 ```
-
 The model provided answers to three questions on the capitals of Germany, Spain and Canada.  Generated answers: The lines berlin, turin, and toronto represent the generated answers for the given input prompts: "What is the capital of Germany?", "What is the capital of Spain?", and "What is the capital of Canada?" respectively. These answers are produced by the flan_t5_large model used in the HuggingFacePipeline.
 
 The model answered 2 of the 3 questions incorrectly.  When reviewing the incorrect answers, the model did answer with cities in the correct country, just not the capital.
@@ -824,73 +826,67 @@ Turin (wrong, it's Madrid)
 
 Toronto (wrong, it's Ottowa)
 
-Generation Time: The generation times vary from 0.71 to 0.73 seconds.   These are very similar.
-
-## Question Answer Example - output review
-
-```
-Question Answer Example, Text-to-Text
-==============================
-Question: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant.  Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
-Answer: about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba
-Generation Time: 8.25499 seconds
-```
-The model answered this question inccorectly.   The model did answer with a location and time, which was provided in the text.  The model appears to summarize the text and not to process the question's request to calculating a location and time for landfall.  
-
-Generation Time: The generation time is 8.2 seconds
+Generation Time: The generation times vary from 0.72 to 0.79 seconds.   These are very similar.
 
 ## Question Answer with Reasoning Examples - output review
 
 The following provides analysis of the output of the Question Answer with Reasoning examples:
 
 ```
-Question: Logical Reasoning: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
-Answer: Fluffy is a cat. Cats have tails. The next number in the sequence is 2. The answer: yes.
-Generation Time: 3.72065 seconds
-```
 
-This question tests logical reasoning.  The model's answer for the sequence is incorrect and its answer for the cat is correct.  Generation Time: The generation time is 3.7 seconds.
+Results for model google/flan-t5-large
+==============================
+Prompt: What is the capital of Germany?
+Answer: berlin
+Generation Time: 0.75208 seconds
+Type: Knowledge Retrieval
 
-```
-Question: Cause and Effect: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
+Prompt: What is the capital of Spain?
+Answer: turin
+Generation Time: 0.79062 seconds
+Type: Knowledge Retrieval
+
+Prompt: What is the capital of Canada?
+Answer: toronto
+Generation Time: 0.72141 seconds
+Type: Knowledge Retrieval
+
+Prompt: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
+Answer: yes
+Generation Time: 0.77981 seconds
+Type: Logical Reasoning
+
+Prompt: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
 Answer: no
+Generation Time: 0.64559 seconds
+Type: Cause and Effect
 
-Generation Time: 0.72950 seconds
-```
-This question tests cause and effort.  The model ignored the 1st question about junk food and The model's answer on smoking (no) is also incorrect.  Generation Time: The generation time was 0.72 which is relatively short.
+Prompt: In the same way that pen is related to paper, what is fork related to? If tree is related to forest, what is brick related to?
+Answer: brick is related to brick
+Generation Time: 1.11533 seconds
+Type: Analogical Reasoning
+
+Prompt: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
+Answer: yes
+Generation Time: 0.89685 seconds
+Type: Inductive Reasoning
+
+Prompt: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary does not like to get wet, will Mary take an umbrella?
+Answer: yes
+Generation Time: 0.76685 seconds
+Type: Deductive Reasoning
+
+Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb?
+Answer: no one would have invented the light bulb
+Generation Time: 1.40766 seconds
+Type: Counterfactual Reasoning
+
+Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
+Answer: about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba
+Generation Time: 7.50129 seconds
+Type: In Context
 
 ```
-Question: Analogical Reasoning: In the same way that "pen" is related to "paper", what is "fork" related to? If "tree" is related to "forest", what is "brick" related to?
-Answer: bricks
-
-Generation Time: 1.07006 seconds
-```
-This question tests analogical reasoning.   The model ignored the first quesstion i.e. what is fork related to? The model's answer can be considered correct if you consider the prompt i.e. (tree is to forest as brick is to bricks).  Generation Time: The generation time waas 1.0 seconds.
-
-```
-Question: Deductive Reasoning: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary doesn't like to get wet, will Mary take an umbrella?
-Answer: Mary is a dog. An umbrella is used to keep people dry. Therefore, the final answer is yes.
-Generation Time: 3.65033 seconds
-```
-This question tests deductive reasoning.   The model ignored the 1st question i.e. Does Max have furt?  The part of the model's answer to the second quetion is incorrect (Mary is a dog) and part of the model's answer is correct (yes).  Generation Time: The generation time was 3.6 seconds.
-
-```
-Question: Inductive Reasoning: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
-Answer: Sarah studies for a test every time she gets an A. Sarah will get an A on the next test if she studies.
-
-Generation Time: 4.10722 seconds
-```
-This question tests inductive reasoning.  The model ignored the 1st question i.e. John's peanut allergy, and model's answer is correct. Generation Time: The generation time was 4.1 seconds.
-
-```
-Question: Counterfactual Reasoning: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison hadn't invented the light bulb?
-Answer: I would have failed the exam.
-
-Generation Time: 1.44903 seconds
-```
-This question tests counterfactual reasoning.  The model's answer is potentially correct (about failing the exam) assuming it would more difficult to study harder without lights, but the lack of context makes judging the answer difficult.  Generation time: The generation time as 1.4 seconds.
-
-Generation Time: For the reasonning quesstions, the answer generation time varied from 0.7 to 4.1 seconds.   There does not seem to be a relationship between the generation time and the accuracy of the answer.
 
 As you can see, the model's performance can vary depending on the question type.   This is to be expected. 
 
@@ -913,24 +909,26 @@ Next let's look at the output for the XL model and starting with the answers for
 ```
 Results for model google/flan-t5-xl
 ==============================
-
-Knowledge Retrieval Examples
-------------------------------
-Question: What is the capital of Germany?
+Prompt: What is the capital of Germany?
 Answer: berlin
-Generation Time: 58.97179 seconds
+Generation Time: 33.72834 seconds
+Type: Knowledge Retrieval
 
-Question: What is the capital of Spain?
+Prompt: What is the capital of Spain?
 Answer: santander
-Generation Time: 3.25495 seconds
+Generation Time: 2.68822 seconds
+Type: Knowledge Retrieval
 
-Question: What is the capital of Canada?
+Prompt: What is the capital of Canada?
 Answer: ottawa
-Generation Time: 3.09145 seconds
+Generation Time: 3.03528 seconds
+Type: Knowledge Retrieval
 ```
 For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The xl version answered Germany and Canada correct, but it still missed the capital of Spain, although Spain is the capital city of Spain's Cantabria region.
 
-Generation Time: The generation time varied greatly from 58.9 seconds for Germaany, which was the first question, whereas the answers for Spain and Canada were similar at 3.2 aand 3.0 seconds.
+Generation Time: The generation time varied greatly from 58.9 seconds for Germaany, which was the first question, whereas the answers for Spain and Canada were similar at 2.6 aand 33.7 seconds.   
+
+WE ARE NOT SURE WHY THE GERMANY TOOK SO LONG?
 
 Next, let's look at the Question Answer Text2Text Example
 
@@ -946,61 +944,40 @@ The model provided an answer, Fort Myers in Florida, but it did not provide a ti
 Next let's look at the answers to the reasoning questions.
 
 ```
-Question: Logical Reasoning: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
-Answer: Fluffy is a cat, and cats have tails. The next number in the sequence is 8. Therefore, the answer is yes.
-Generation Time: 12.62524 seconds
+Prompt: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
+Answer: yes
+Generation Time: 2.69330 seconds
+Type: Logical Reasoning
 
-```
-This question tests logical reasoning.  The model's answer for the sequence is incorrect, 8 vs 10, and its answer for the cat is correct. Generation Time: The generation time is 12.6 seconds.
+Prompt: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
+Answer: It increases the risk of developing lung cancer.
+Generation Time: 4.97590 seconds
+Type: Cause and Effect
 
-```
-Question: Cause and Effect: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
-Answer: It causes the lungs to become inflamed.
-Generation Time: 6.47496 seconds
+Prompt: In the same way that pen is related to paper, what is fork related to? If tree is related to forest, what is brick related to?
+Answer: building
+Generation Time: 2.45197 seconds
+Type: Analogical Reasoning
 
-```
-This question tests cause and effort.  The model ignored the 1st question about junk food and The model's answer on smoking appears to relevant and could be considered correct. Generation Time: The generation time was 6.4 seconds.
+Prompt: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
+Answer: yes
+Generation Time: 3.15866 seconds
+Type: Inductive Reasoning
 
-```
-Question: Analogical Reasoning: In the same way that "pen" is related to "paper", what is "fork" related to? If "tree" is related to "forest", what is "brick" related to?
-Answer: The relevant information to answer the above question is: If "tree" is related to "forest", what is "brick" related to?. Therefore, the answer is forest.
+Prompt: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary does not like to get wet, will Mary take an umbrella?
+Answer: yes
+Generation Time: 2.69511 seconds
+Type: Deductive Reasoning
 
-Generation Time: 16.88663 seconds.
-```
-This question tests analogical reasoning.   The model ignored the first quesstion i.e. what is fork related to? The model incorrectly answered the second question (bricks are related to forest) but seemed to provide relevant context.  Generation Time: The generation time waas 16.8 seconds.
+Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb?
+Answer: the world would be dark
+Generation Time: 3.63687 seconds
+Type: Counterfactual Reasoning
 
-```
-
-Question: Deductive Reasoning: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary doesn't like to get wet, will Mary take an umbrella?
-Answer: Mary is a person. An umbrella is a thing. Therefore, the answer is yes.
-
-Generation Time: 10.20256 seconds
-
-```
-This question tests deductive reasoning.   The model ignored the 1st question i.e. Does Max have furt?  The model asnwer the second question correctly and provided relevant context.  Generation Time: The generation time was 10.2 seconds.
-
-```
-
-Question: Inductive Reasoning: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
-Answer: Sarah studies for the test and gets an A. Sarah will get an A on the next test if she studies. Therefore, the answer is yes.
-
-Generation Time: 15.26408 seconds
-
-```
-This question tests inductive reasoning.  The model ignored the 1st question i.e. John's peanut allergy, and model's answer is correct.  Generation Time: The generation time was 4.1 seconds.
-
-```
-Question: Counterfactual Reasoning: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison hadn't invented the light bulb?
-Answer: The light bulb was invented by Thomas Edison.
-
-Generation Time: 5.72028 seconds
-
-```
-This question tests counterfactual reasoning.  The model's answer is incorrect.  Generation Time: The generation time as 5.7 seconds.
-
-The XL version did better than the Large model on several questions (logical, cause and effect, deductive, and inductive) but answered one of the two questions.  It did not answer most of the first questions in each series and when it did (for logical reasoning i.e. next number sequence), it answered incorrectly.   It also missed some questions that the Large anwered correctly (conterfactual, analogical).
-
-Generation Time: For the reasonning questions, the answer generation time varied from 5.7 to 15.2 seconds.   There does not seem to be a relationship between the generation time and the accuracy of the answer.
+Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
+Answer: Fort Myers in Florida
+Generation Time: 12.89732 seconds
+Type: In Context
 
 ```
 Loading times for model google/flan-t5-xl
@@ -1009,6 +986,7 @@ Model Loading Time: 131.39278 seconds
 Pipeline Loading Time: 0.71615 seconds
 ```
 The loading times show that flan-t5-xl model takes 131.1 seconds, whereas the Pipeline loads in 0.71 sseconds and the the tokenizer is the shorest with o.14 seconds to load. 
+
 
 ## Further reading
 
