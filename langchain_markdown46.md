@@ -483,7 +483,7 @@ model_ids = ['google/flan-t5-large', 'google/flan-t5-xl']
 ```
 This line defines a list called model_ids containing the IDs of the models that will be used in the script for inference.  The list has two model ids, 'google/flan-t5-large' and 'google/flan-t5-xl'.
 
-## Define prompts in a list
+### Define prompts in a list
 
 ```
 # Define prompts and types
@@ -500,7 +500,7 @@ prompts = [
     'The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?'
 ]
 ```
-# Defiine each prompt type in a list
+### Defiine each prompt type in a list
 
 ```
 types = [
@@ -516,7 +516,7 @@ types = [
     'In Context'
 ]
 ```
-# Create empty lists to store generation times, model load times, tokenizer load times, pipeline load times, and prompt_types for the XL and Large models.
+### Create empty lists to store generation times, model load times, tokenizer load times, pipeline load times, and prompt_types for the XL and Large models.
 ```
 xl_generation_times = []
 large_generation_times = []
@@ -535,7 +535,7 @@ prompt_types = []
 
  This list will be used later as prompts for the model to answer.   
 
-## Load tokenizer and model
+### Load tokenizer and model
 
 ```
 for model_id in model_ids:
@@ -604,7 +604,7 @@ print(f"Results for model {model_id}"): This line prints the model ID to indicat
 
 print("=" * 30): This line prints a line of equal signs for visual separation.
 
-## Prompt processsing
+### Prompt processsing
 
 ```
  # Prompt processing
@@ -651,7 +651,7 @@ The "if model_id" line checks if the current model being used is the large model
 
 This "elif model_id" line checks if the current model being used is the XL model. If the current model is the XL model, the last line appends the duration of the generation process (end time minus start time) to the xl_generation_times list.
 
-## Print Loading times 
+### Print Loading times 
 
 Next we print details on the loading times for the mode, tokenizer and pipeline.
 
@@ -669,7 +669,7 @@ print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "second
 
 print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n"): This prints the pipeline loading time is seconds.
 
-## Plots for generation and loading times
+### Plots for generation and loading times
 
 ```
 # Plot generation times
@@ -795,7 +795,6 @@ Of the 17 questions, both models answered answered under 50% of the questions co
 ![alt_text](correct.png "image_tooltip")
 
 Generation and Loading times
-
 
 
 
