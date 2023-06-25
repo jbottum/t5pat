@@ -2,7 +2,7 @@
 
 Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides scripts that enable you to test these LLMs' capabilities in answering three types of prompts - Knowledge Retreival, Text2Text Question Answer and six forms of Reasoning in Question Answer.  After providing some details on the models and LangChain, we will walk your through installing dependencies, and we will review the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  
 
-Caveats and notes - Although you will not need a real-time connection to HuggingFace for model serving, you will need a connection to Huggingface to fetch code. Additionally, if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
+Caveats and notes - Although you will not need a real-time connection to HuggingFace for model serving, you will need a connection to Huggingface to fetch code. Additionally, if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip3 installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
 ## Why run local
 
@@ -20,7 +20,7 @@ Some of the reasons why you may need to run your model locally, and not use an e
 
 ## Large Language Models - Flan-T5-Large and Flan-T5-XL
 
-In this blog, we will show the process to run the Flan-T5-Large and Flan-T5-XL models.   This family of transformer models, open sourced from Google, is designed for natural language processing tasks and provides both text-to-text and text generation capabilities. 
+In this blog, we will show the process to run the Flan-T5-Large and Flan-T5-XL models.   This family of transformer models, open sourced from Google, is designed for natural language processing tasks and provides both text-to-text and text generation capabilities, especially for question answering. 
 
 The Flan-T5-Large version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 780M parameters.  This [paper](https://arxiv.org/pdf/2210.11416.pdf), which provides the following chart, claims that the Flan-T5-Large achieved a MMLU score of 45.1%, which is pretty good when compared to ChatGPT3's score of 43.9% (see page 10). It is a fairly popular model, which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
 
@@ -100,7 +100,7 @@ In the search field that appears, type "Terminal" and press "Return" or click on
 
 Once the Terminal is open, you will see a command-line interface where you can type commands and interact with the macOS command-line environment.
 
-## Installing Python
+## Installing Python3
 
 Installing Python on a Mac is relatively straightforward. Here's a step-by-step guide to help you:
 
@@ -235,7 +235,7 @@ for model_id in model_ids:
 
     # Print model results
     print()
-    print(f"Results for model {model_id}")
+    print(f"Results for model: {model_id}")
     print("=" * 30)
 
     # Knowledge retrieval examples
@@ -255,6 +255,11 @@ for model_id in model_ids:
             large_generation_times.append(end_time - start_time)
         elif model_id == 'google/flan-t5-xl':
             xl_generation_times.append(end_time - start_time)
+
+    print(f"Loading times for model {model_id}")
+    print("Tokenizer Loading Time:", f"{tokenizer_end_time - tokenizer_start_time:.5f}", "seconds")
+    print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "seconds")
+    print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n")
 
 # Plot generation times
 plt.figure(figsize=(18, 6))
@@ -297,7 +302,6 @@ plt.title('Pipeline Load Time Comparison')
 
 plt.tight_layout()
 plt.show()
-
 ```
 
 ## Run your script
@@ -308,7 +312,6 @@ To run your script, please open your terminal to the directory that holds the fi
 python3 t5pat.py
 ````
 
-Note - if you are not running in a virtual environment, your system might take longer.
 
 ## Sample script output
 
@@ -513,7 +516,7 @@ types = [
     'In Context'
 ]
 ```
-# Create empty lists to store generation times, model load times, tokenizer load times, pipeline load times, and prompt_types.
+# Create empty lists to store generation times, model load times, tokenizer load times, pipeline load times, and prompt_types for the XL and Large models.
 ```
 xl_generation_times = []
 large_generation_times = []
@@ -601,7 +604,7 @@ print(f"Results for model {model_id}"): This line prints the model ID to indicat
 
 print("=" * 30): This line prints a line of equal signs for visual separation.
 
-# Prompt processsing
+## Prompt processsing
 
 ```
  # Prompt processing
@@ -636,6 +639,8 @@ print(f"Type: {types[i]}"):This line prints the corresponding type of the prompt
 
 prompt_types.append(types[i]): This line appends the type of the prompt (types[i]) to the prompt_types list, which is used to store the prompt types for later use or analysis.
 
+## Save model generation times
+
 ```
       if model_id == 'google/flan-t5-large':
             large_generation_times.append(end_time - start_time)
@@ -645,6 +650,8 @@ prompt_types.append(types[i]): This line appends the type of the prompt (types[i
 The "if model_id" line checks if the current model being used is the large model.  If the current model is the large model, the next line appends the duration of the generation process (end time minus start time) to the large_generation_times list.
 
 This "elif model_id" line checks if the current model being used is the XL model. If the current model is the XL model, the last line appends the duration of the generation process (end time minus start time) to the xl_generation_times list.
+
+## Print Loading times 
 
 Next we print details on the loading times for the mode, tokenizer and pipeline.
 
@@ -662,7 +669,7 @@ print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "second
 
 print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n"): This prints the pipeline loading time is seconds.
 
-# Plots for generation and loading times
+## Plots for generation and loading times
 
 ```
 # Plot generation times
@@ -709,7 +716,6 @@ plt.xlabel('Model')
 plt.title('Model Load Time Comparison')
 
 ```
-
 
 Model Load Time Comparison: model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]: This line calculates the total model load times for the XL model and large model by summing up the individual load times. 
 
@@ -763,7 +769,6 @@ plt.title('Pipeline Load Time Comparison')
 plt.tight_layout()
 plt.show()
 ```
-
 Pipeline Load Time Comparison: pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]: This line calculates the total pipeline load times for the XL model and large model by summing up the individual load times.
 
 plt.figure(figsize=(8, 6)): This line creates a new figure with a specific size (8 inches wide and 6 inches tall) to accommodate the pipeline load time comparison chart.
@@ -929,17 +934,7 @@ For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The 
 Generation Time: The generation time varied greatly from 58.9 seconds for Germaany, which was the first question, whereas the answers for Spain and Canada were similar at 2.6 aand 33.7 seconds.   
 
 WE ARE NOT SURE WHY THE GERMANY TOOK SO LONG?
-
-Next, let's look at the Question Answer Text2Text Example
-
-```
-Question Answer Examples
-------------------------------
-Question: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant.  Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
-Answer: Fort Myers in Florida
-Generation Time: 13.41937 seconds
-```
-The model provided an answer, Fort Myers in Florida, but it did not provide a time or any context.   Without this information, we would have to consier this answer incorrect.  Generation Time: The Generation time for this question was relatively long at 13.4 seconds.   
+   
 
 Next let's look at the answers to the reasoning questions.
 
