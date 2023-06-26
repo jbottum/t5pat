@@ -858,7 +858,7 @@ Turin (wrong, it's Madrid, and Turin is in Italy)
 
 Toronto (wrong, it's Ottowa, but Toronto is the capital of the Canadian state of Ontario)
 
-Generation Time: The generation times vary from 0.72 to 0.79 seconds.   These are very similar.
+Generation Time: The generation times vary from 0.73 to 1.1 seconds and the range is relatively small, especially compared to the XL generation times for the same questions.
 
 ### Question Answer with Reasoning Examples - output review
 
