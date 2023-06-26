@@ -715,7 +715,7 @@ plt.xlabel('Model')
 plt.title('Tokenizer Load Time Comparison')
 
 ```
-Tokenizer Load Time Comparison:
+### Tokenizer Load Time Comparison:
 
 tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]: This line calculates the total tokenizer load times for the XL model and large model by summing up the individual load times.
 
@@ -739,7 +739,7 @@ plt.xlabel('Model')
 plt.title('Pipeline Load Time Comparison')
 
 ```
-Pipeline Load Time Comparison: pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]: This line calculates the total pipeline load times for the XL model and large model by summing up the individual load times.
+### Pipeline Load Time Comparison: pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]: This line calculates the total pipeline load times for the XL model and large model by summing up the individual load times.
 
 plt.figure(figsize=(8, 6)): This line creates a new figure with a specific size (8 inches wide and 6 inches tall) to accommodate the pipeline load time comparison chart.
 
@@ -766,7 +766,7 @@ plt.tight_layout()
 plt.show()
 
 ```
-Generation Time Comparison:
+### Pipeline Generation Time Comparison:
 
 plt.figure(figsize=(18, 6)): This line creates a new figure with a specific size (18 inches wide and 6 inches tall) to accommodate the generation time comparison chart.
 
@@ -799,15 +799,11 @@ The following table provides a summary of the models' correct answers.  We recog
 
 ![alt_text](correct.png "image_tooltip")
 
-## Output review
-
 ### Summary for Large model
 
 Each of the answers did not answer the first question.   The answers did not provide much context, although we did not ask for context in the answer.   Determinining what is correct or incorrect for a reasoning question could have some subjectivity.
 
 Let's look at the output for the Large model's output in the pipeline. This chart provides the question types, the correctness of the answer, and the time required to generate the pipelines answers.
-
-For our detailed review of the answers, let’s first examine the results of the flan-t5-large model for knowledge retreival.  
 
 | Prompt| Correct | Time in sec |
 | --- | --- | --- |
@@ -822,8 +818,9 @@ For our detailed review of the answers, let’s first examine the results of the
 | Counterfactual Reasoning | 50% | 2.2 |
 | In Context | 0%| 10.7 |
 
-```
+Now, let’s examine the results of the flan-t5-large model for knowledge retreival.  
 
+```
 Results for model: google/flan-t5-large
 ==============================
 Prompt: What is the capital of Germany?
@@ -854,7 +851,7 @@ Toronto (wrong, it's Ottowa)
 
 Generation Time: The generation times vary from 0.72 to 0.79 seconds.   These are very similar.
 
-## Question Answer with Reasoning Examples - output review
+### Question Answer with Reasoning Examples - output review
 
 The following provides analysis of the output of the Question Answer with Reasoning examples:
 
@@ -888,7 +885,6 @@ Prompt: If I had studied harder, would I have passed the exam? What would have h
 Answer: no one would have invented the light bulb
 Generation Time: 2.15294 seconds
 Type: Counterfactual Reasoning
-
 ```
 Each of the answers did not answer the first question.   The answers did not provide much context, although we did not ask for context in the answer.   Determinining what is correct or incorrect for a reasoning question could have some subjectivity.
 
@@ -993,7 +989,7 @@ Type: Counterfactual Reasoning
 ```
 Of the answers provided, we considered all of the reasoning answers as correct.  We did not set-up the pipeline to provide context, which would be an interesting follow-on experiment.  The correctness of the answer could be subjective i.e.  Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb? Answer: the world would be dark.  
 
-The analogical prompt took the shortest, 2,6 seconds, and the cause and effect was the longest, 5.0 seconds.   These times might change with difference equipemnt.
+The analogical prompt took the shortest, 2.6 seconds, and the cause and effect was the longest, 5.0 seconds.   These times might change with difference equipemnt.
 
 The last question tests providing several lines of content in the prompt along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided but it does not answer the question correctly regarding the place or time of the storm's landfall.
  
@@ -1002,7 +998,6 @@ Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W
 Answer: Fort Myers in Florida
 Generation Time: 14.06618 seconds
 Type: In Context
-
 ```
 ### Loading time summary
 
@@ -1011,9 +1006,8 @@ Loading times for model google/flan-t5-xl
 Tokenizer Loading Time: 0.54048 seconds
 Model Loading Time: 131.81162 seconds
 Pipeline Loading Time: 0.57841 seconds
-
 ```
-The loading times show that flan-t5-xl model takes 131.1 seconds, whereas the Pipeline loads in 0.71 sseconds and the the tokenizer is the shorest with o.14 seconds to load. 
+The loading times show that flan-t5-xl model takes 131.1 seconds, whereas the Pipeline loads in 0.71 sseconds and the the tokenizer is the shorest with 0.58 seconds to load. 
 
 
 ## Further reading
