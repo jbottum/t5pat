@@ -78,11 +78,11 @@ In our example and process, we wanted to simplify the getting started.   We sele
 
 ## Step 0
 
-This post assumes that users have this software: a terminal emulator, Python3 and pip3.  For those that do not, the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you know how to access your terminal and have a recent version of Python 3.x and pip3, then please skip to Step 1.
+This post assumes that users have this software: a terminal emulator, Python3 and pip3.  For those that do not, the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you know how to access your terminal and have a recent version of Python 3.x and pip3, then please skip to [step 1](## Step 1 - Installing dependencies for the models).
 
 ## Accessing your terminal
 
-To access the terminal on a MacBook Air or any macOS device, you can follow these steps:
+To access the terminal on any macOS device, you can follow these steps:
 
 Click on the "Finder" icon in the Dock, which is typically located at the bottom of the screen.
 
@@ -108,7 +108,7 @@ Check the installed version (optional): Open the Terminal application (found in 
 
 Download Python: Visit the official Python website at https://www.python.org/downloads/ and click on the "Download Python" button. Choose the latest stable version suitable for your macOS.
 
-Run the installer: Locate the downloaded Python3 installer package (e.g., python-3.x.x-macosx11.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
+Run the installer: Locate the downloaded Python3 installer package (e.g., python-3.11.x-macosx11.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
 
 Customize installation (optional): During the installation, you'll have the option to customize the installation settings. If you're unsure, the default settings are usually sufficient for most users.
 
@@ -138,7 +138,7 @@ That's it! You should now have pip3 installed on your system.
 
 ## Step 1 - Installing dependencies for the models (#step1)
 
-After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below
+After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below:
 
 ```
 pip3 install transformers
@@ -316,7 +316,7 @@ python3 t5pat.py
 
 ## Sample script output
 
-The following provides sample model output from running the script.  The script has a text output followed by four charts.  You can save the charts using the file button on the chart displays or just close them out.  Either action will release the script and bring your back to the terminal prompt.
+The following provides sample model output from running the script.  The script has a text output followed by four charts.  You can save the charts using the file button on the chart displays or just close them out.  Either action will release the script and bring you back to the terminal prompt.
 
 ```
 
