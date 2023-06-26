@@ -1,6 +1,6 @@
 # Testing LLMs with LangChain in a local environment for (6) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides scripts that enable you to test these LLMs' capabilities in answering three types of prompts - Knowledge Retreival, Text2Text Question Answer and six forms of Reasoning in Question Answer.  After providing some details on the models and LangChain, we will walk your through installing dependencies, and we will review the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  
+Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides scripts that enable you to test these LLMs' capabilities in answering three prompt types i.e. knowledge retreival, six forms of reasoning questions and a long question with details in context.  After providing some details on the models and LangChain, we will walk your through installing dependencies, and we will review the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  
 
 Caveats and notes - Although you will not need a real-time connection to HuggingFace for model serving, you will need a connection to Huggingface to fetch code. Additionally, if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip3 installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
@@ -261,22 +261,13 @@ for model_id in model_ids:
     print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "seconds")
     print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n")
 
-# Plot generation times
-plt.figure(figsize=(18, 6))
-plt.subplot(131)
-plt.barh(range(len(types)), xl_generation_times, height=0.4, align='center', color='blue', label='XL Model')
-plt.barh([x + 0.4 for x in range(len(types))], large_generation_times, height=0.4, align='center', color='orange', alpha=0.5, label='Large Model')
-plt.yticks(range(len(types)), types)
-plt.ylabel('Type')
-plt.xlabel('Generation Time (seconds)')
-plt.title('Generation Time Comparison')
-plt.legend()
 
 # Plot model load times
 model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]
 model_labels = ['XL Model', 'Large Model']
 
-plt.subplot(132)
+plt.figure(figsize=(18, 6))
+plt.subplot(131)
 plt.bar(model_labels, model_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
@@ -285,7 +276,7 @@ plt.title('Model Load Time Comparison')
 # Plot tokenizer load times
 tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]
 
-plt.subplot(133)
+plt.subplot(132)
 plt.bar(model_labels, tokenizer_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
@@ -293,15 +284,25 @@ plt.title('Tokenizer Load Time Comparison')
 
 # Plot pipeline load times
 pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]
-
-plt.figure(figsize=(8, 6))
+plt.subplot(133)
 plt.bar(model_labels, pipeline_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
 plt.title('Pipeline Load Time Comparison')
 
+# Plot generation times
+plt.figure(figsize=(9, 6))
+plt.barh(range(len(types)), xl_generation_times, height=0.4, align='center', color='blue', label='XL Model')
+plt.barh([x + 0.4 for x in range(len(types))], large_generation_times, height=0.4, align='center', color='orange', alpha=0.5, label='Large Model')
+plt.yticks(range(len(types)), types)
+plt.ylabel('Type')
+plt.xlabel('Generation Time (seconds)')
+plt.title('Generation Time Comparison')
+plt.legend()
+
 plt.tight_layout()
 plt.show()
+
 ```
 
 ## Run your script
@@ -315,140 +316,133 @@ python3 t5pat.py
 
 ## Sample script output
 
-The following provides sample model output from running the script:
+The following provides sample model output from running the script.  The script has a text output followed by four charts.  You can save the charts using the file button on the chart displays or just close them out.  Either action will release the script and bring your back to the terminal prompt.
 
 ```
-Results for model google/flan-t5-large
+
+Results for model: google/flan-t5-large
 ==============================
 Prompt: What is the capital of Germany?
 Answer: berlin
-Generation Time: 0.70655 seconds
+Generation Time: 1.06194 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Spain?
 Answer: turin
-Generation Time: 0.69353 seconds
+Generation Time: 0.73172 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Canada?
 Answer: toronto
-Generation Time: 0.68853 seconds
+Generation Time: 1.12487 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
 Answer: yes
-Generation Time: 0.77023 seconds
+Generation Time: 1.08774 seconds
 Type: Logical Reasoning
 
 Prompt: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
 Answer: no
-Generation Time: 0.64670 seconds
+Generation Time: 0.69614 seconds
 Type: Cause and Effect
 
 Prompt: In the same way that pen is related to paper, what is fork related to? If tree is related to forest, what is brick related to?
 Answer: brick is related to brick
-Generation Time: 1.14754 seconds
+Generation Time: 1.51508 seconds
 Type: Analogical Reasoning
 
 Prompt: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
 Answer: yes
-Generation Time: 0.89962 seconds
+Generation Time: 1.24550 seconds
 Type: Inductive Reasoning
 
 Prompt: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary does not like to get wet, will Mary take an umbrella?
 Answer: yes
-Generation Time: 0.76554 seconds
+Generation Time: 1.28181 seconds
 Type: Deductive Reasoning
 
 Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb?
 Answer: no one would have invented the light bulb
-Generation Time: 1.37998 seconds
+Generation Time: 2.15294 seconds
 Type: Counterfactual Reasoning
 
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba
-Generation Time: 7.50308 seconds
+Generation Time: 10.67541 seconds
 Type: In Context
 
 Loading times for model google/flan-t5-large
-Tokenizer Loading Time: 1.53067 seconds
-Model Loading Time: 16.12941 seconds
-Pipeline Loading Time: 0.08664 seconds
+Tokenizer Loading Time: 0.94174 seconds
+Model Loading Time: 17.28348 seconds
+Pipeline Loading Time: 0.11213 seconds
 
 
-Loading checkpoint shards: 100%|██████████████████████████████████████████████████| 2/2 [01:37<00:00, 48.64s/it]
+Loading checkpoint shards: 100%|██████████████████| 2/2 [01:38<00:00, 49.17s/it]
 
-Results for model google/flan-t5-xl
+Results for model: google/flan-t5-xl
 ==============================
 Prompt: What is the capital of Germany?
 Answer: berlin
-Generation Time: 48.95853 seconds
+Generation Time: 43.58305 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Spain?
 Answer: santander
-Generation Time: 3.03832 seconds
+Generation Time: 2.80783 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Canada?
 Answer: ottawa
-Generation Time: 3.59796 seconds
+Generation Time: 3.06489 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
 Answer: yes
-Generation Time: 3.09546 seconds
+Generation Time: 2.89040 seconds
 Type: Logical Reasoning
 
 Prompt: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
 Answer: It increases the risk of developing lung cancer.
-Generation Time: 5.94420 seconds
+Generation Time: 5.07974 seconds
 Type: Cause and Effect
 
 Prompt: In the same way that pen is related to paper, what is fork related to? If tree is related to forest, what is brick related to?
 Answer: building
-Generation Time: 2.73911 seconds
+Generation Time: 2.60167 seconds
 Type: Analogical Reasoning
 
 Prompt: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
 Answer: yes
-Generation Time: 3.42616 seconds
+Generation Time: 3.53700 seconds
 Type: Inductive Reasoning
 
 Prompt: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary does not like to get wet, will Mary take an umbrella?
 Answer: yes
-Generation Time: 2.82262 seconds
+Generation Time: 2.90499 seconds
 Type: Deductive Reasoning
 
 Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb?
 Answer: the world would be dark
-Generation Time: 3.74760 seconds
+Generation Time: 3.81147 seconds
 Type: Counterfactual Reasoning
 
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: Fort Myers in Florida
-Generation Time: 14.14607 seconds
+Generation Time: 14.06618 seconds
 Type: In Context
 
 Loading times for model google/flan-t5-xl
-Tokenizer Loading Time: 0.47110 seconds
-Model Loading Time: 124.32560 seconds
-Pipeline Loading Time: 1.13045 seconds
+Tokenizer Loading Time: 0.54048 seconds
+Model Loading Time: 131.81162 seconds
+Pipeline Loading Time: 0.57841 seconds
 
 ```
 
 ![alt_text](Figure_1.png "image_tooltip")
 ![alt_text](Figure_2.png "image_tooltip")
 
-## Highlevel overview of the script
 
-Using a loop, the script executes the following functions for each model, google/flan-t5-large and google/flan-t5-xl:
-
-1. AutoTokenizer.from_pretrained(model_id): Loads the tokenizer for the model.
-2. AutoModelForSeq2SeqLM.from_pretrained(model_id): Loads the model for sequence-to-sequence language generation tasks.
-3. pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512): Creates a pipeline object for text generation using the model.
-
-The script then processes several prompts and answers questions on knowledge retreival, question answering with various forms of reasoning and a long question with details in context to be answered.
 
 ## Detailed review of the code blocks
 
@@ -462,9 +456,9 @@ import matplotlib.pyplot as plt
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 ```
-The first line imports time, which we use to time the generation time of each pipeline.
-The second line impoort matplotlib.pyploy as plt, which is used for the chart generations.
-The next line imports HuggingFacePipeline from langchain.llms. The second line imports AutoTokenizer, AutoModelForSeq2SeqLM, pipeline from transformer.
+The first line imports time, which we use to measure the generation time of each pipeline amd the load times for the model, pipelines and tokeneizers.
+The second line imports matplotlib.pyploy as plt, which is used for the chart generations.
+The next line imports HuggingFacePipeline from langchain.llms. The next line imports AutoTokenizer, AutoModelForSeq2SeqLM, pipeline from transformer.
 
 ```
 import os
@@ -473,7 +467,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Redirect stderr to /dev/null
 os.system("python t5pat20.py 2>/dev/null")
 ```
-Import the OS package and use the os.environ and os.system statements to disable parallelism and to redirect stderr, which suppresses the warning messages in the output. 
+Import the OS package and use the os.environ and os.system methods to disable parallelism and to redirect stderr, which suppresses the warning messages in the output. 
 
 ### Load models and pipelines
 
@@ -484,6 +478,8 @@ model_ids = ['google/flan-t5-large', 'google/flan-t5-xl']
 This line defines a list called model_ids containing the IDs of the models that will be used in the script for inference.  The list has two model ids, 'google/flan-t5-large' and 'google/flan-t5-xl'.
 
 ### Define prompts in a list
+
+This statement creates a list called prompt with each prompt provided as a text string.
 
 ```
 # Define prompts and types
@@ -502,6 +498,8 @@ prompts = [
 ```
 ### Defiine each prompt type in a list
 
+This statement creates a list called prompt type with each prompt type provided as a text string.
+
 ```
 types = [
     'Knowledge Retrieval',
@@ -517,6 +515,9 @@ types = [
 ]
 ```
 ### Create empty lists to store generation times, model load times, tokenizer load times, pipeline load times, and prompt_types for the XL and Large models.
+
+These lists will be used appended to later in the script as an answer to each question is generated by each model.   
+
 ```
 xl_generation_times = []
 large_generation_times = []
@@ -533,9 +534,9 @@ large_pipeline_load_times = []
 prompt_types = []
 ```
 
- This list will be used later as prompts for the model to answer.   
-
 ### Load tokenizer and model
+
+Each line is detailed following the code block.
 
 ```
 for model_id in model_ids:
@@ -558,26 +559,27 @@ for model_id in model_ids:
 ```
 for model_id in model_ids: This line starts a loop that iterates over each model ID in the model_ids list.
 
-tokenizer_start_time = time.time()
+tokenizer_start_time = time.time(): sets the tokenizer_start_time to the currrent time
 
 tokenizer = AutoTokenizer.from_pretrained(model_id): This line loads the tokenizer for the current model ID. The AutoTokenizer.from_pretrained method is used to automatically download and instantiate the tokenizer associated with the given model ID.
 
-tokenizer_end_time = time.time()
+tokenizer_end_time = time.time(): sets the tokenizer_end_time to the currrent time
 
-model_start_time = time.time()
+model_start_time = time.time(): sets the model_start_time to the current time
 
 model = AutoModelForSeq2SeqLM.from_pretrained(model_id): This line loads the model for the current model ID. The AutoModelForSeq2SeqLM.from_pretrained method is used to automatically download and instantiate the model associated with the given model ID.
 
-model_end_time = time.time()
+model_end_time = time.time(): sets the model_end_time to the current time
 
-pipe_start_time = time.time()
+pipe_start_time = time.time(): sets the pipe_start_time to the current time
 
 pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512): This line creates a pipeline for text-to-text generation using the loaded tokenizer and model. The pipeline is configured with the model and tokenizer objects, as well as a maximum length of 512 tokens.
 
 local_llm = HuggingFacePipeline(pipeline=pipe): This line creates an instance of the HuggingFacePipeline class, which is a wrapper around the Hugging Face pipeline. It takes the pipeline object created in the previous step as an argument.
 
-pipe_end_time = time.time()
+pipe_end_time = time.time(): sets the pipe_end_time to the current time
 
+### Sttore the loading time
 ```
     # Store loading times
     if model_id == 'google/flan-t5-large':
@@ -590,7 +592,7 @@ pipe_end_time = time.time()
         xl_pipeline_load_times.append(pipe_end_time - pipe_start_time)
 
 ```
-Use the append method to store the loading times in the appropriate lists based upon the model name.
+After calculating the time to load using end minus start, use the append method to store the loading times in the appropriate list based upon the model name.
 
 ```
     # Print model results
@@ -599,12 +601,12 @@ Use the append method to store the loading times in the appropriate lists based 
     print("=" * 30)
 ```
 print(): print a new line
-
 print(f"Results for model {model_id}"): This line prints the model ID to indicate the current model being used.
-
 print("=" * 30): This line prints a line of equal signs for visual separation.
 
 ### Prompt processsing
+
+Each line is defined after the code block.
 
 ```
  # Prompt processing
@@ -673,8 +675,7 @@ print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "secon
 
 ```
 # Plot generation times
-plt.figure(figsize=(18, 6))
-plt.subplot(131)
+plt.figure(figsize=(9, 6))
 plt.barh(range(len(types)), xl_generation_times, height=0.4, align='center', color='blue', label='XL Model')
 plt.barh([x + 0.4 for x in range(len(types))], large_generation_times, height=0.4, align='center', color='orange', alpha=0.5, label='Large Model')
 plt.yticks(range(len(types)), types)
@@ -682,6 +683,9 @@ plt.ylabel('Type')
 plt.xlabel('Generation Time (seconds)')
 plt.title('Generation Time Comparison')
 plt.legend()
+
+plt.tight_layout()
+plt.show()
 
 ```
 Generation Time Comparison:
@@ -709,7 +713,8 @@ plt.legend(): This line adds a legend to the chart, which shows the labels and c
 model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]
 model_labels = ['XL Model', 'Large Model']
 
-plt.subplot(132)
+plt.figure(figsize=(18, 6))
+plt.subplot(131)
 plt.bar(model_labels, model_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
@@ -735,7 +740,7 @@ plt.title('Model Load Time Comparison'): This line sets the title of the chart a
 # Plot tokenizer load times
 tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]
 
-plt.subplot(133)
+plt.subplot(132)
 plt.bar(model_labels, tokenizer_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
@@ -759,8 +764,7 @@ plt.title('Tokenizer Load Time Comparison'): This line sets the title of the cha
 ```
 # Plot pipeline load times
 pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]
-
-plt.figure(figsize=(8, 6))
+plt.subplot(133)
 plt.bar(model_labels, pipeline_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
@@ -885,6 +889,11 @@ Answer: no one would have invented the light bulb
 Generation Time: 1.40766 seconds
 Type: Counterfactual Reasoning
 
+```
+The last question tests providing several lines of content in the prompt along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided but it does not answer the question correctly regarding the place or time of the storm's landfall.
+
+```
+
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba
 Generation Time: 7.50129 seconds
@@ -930,9 +939,9 @@ Type: Knowledge Retrieval
 ```
 For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The xl version answered Germany and Canada correct, but it still missed the capital of Spain, although Spain is the capital city of Spain's Cantabria region.
 
-Generation Time: The generation time varied greatly from 58.9 seconds for Germaany, which was the first question, whereas the answers for Spain and Canada were similar at 2.6 aand 33.7 seconds.   
+Generation Time: The generation time varied greatly from 33.7 seconds for Germany, which was the first question, whereas the answers for Spain and Canada were similar at 2.6 and 3.0 seconds.   We assume the generation time was longer
 
-WE ARE NOT SURE WHY THE GERMANY TOOK SO LONG?
+
    
 
 Next let's look at the answers to the reasoning questions.
@@ -968,10 +977,16 @@ Answer: the world would be dark
 Generation Time: 3.63687 seconds
 Type: Counterfactual Reasoning
 
+```
+The last question tests providing several lines of content in the prompt along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided but it does not answer the question correctly regarding the place or time of the storm's landfall.
+ 
+```
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: Fort Myers in Florida
 Generation Time: 12.89732 seconds
 Type: In Context
+```
+### Loading time summary
 
 ```
 Loading times for model google/flan-t5-xl
