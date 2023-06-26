@@ -1,6 +1,6 @@
 # Testing LLMs with LangChain in a local environment for (6) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides scripts that enable you to test these LLMs' capabilities in answering three prompt types i.e. knowledge retreival, six forms of reasoning questions and a long question with details in context.  After providing some details on the models and LangChain, we will walk your through installing dependencies, and we will review the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  
+Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides scripts that enable you to test these LLMs' capabilities in answering three prompt types i.e. knowledge retrieval, six forms of reasoning questions and a long question with details in context.  After providing some details on the models and LangChain, we will walk you through installing dependencies, and we will review the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  
 
 Caveats and notes - Although you will not need a real-time connection to HuggingFace for model serving, you will need a connection to Huggingface to fetch code. Additionally, if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip3 installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
@@ -15,16 +15,16 @@ Some of the reasons why you may need to run your model locally, and not use an e
 * Performance
     * You might need to manage your model's response times by using a private network and/or a specific server / processor type.
 * Functionality
-    * Your model might only run locally (i.e. Blenderbot, Meta's chatbot models).
+    * Your model might only run locally (e.g. Blenderbot, Meta's chatbot models).
 
 
 ## Large Language Models - Flan-T5-Large and Flan-T5-XL
 
 In this blog, we will show the process to run the Flan-T5-Large and Flan-T5-XL models.   This family of transformer models, open sourced from Google, is designed for natural language processing tasks and provides both text-to-text and text generation capabilities, especially for question answering. 
 
-The Flan-T5-Large version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 780M parameters.  This [paper](https://arxiv.org/pdf/2210.11416.pdf), which provides the following chart, claims that the Flan-T5-Large achieved a MMLU score of 45.1%, which is pretty good when compared to ChatGPT3's score of 43.9% (see page 10). It is a fairly popular model, which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
+The Flan-T5-Large version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 780M parameters.  This [paper](https://arxiv.org/pdf/2210.11416.pdf), which provides the following chart, claims that the Flan-T5-Large achieved a MMLU score of 45.1%, which is pretty good when compared to ChatGPT-3's score of 43.9% (see page 10). It is a fairly popular model, which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).  
 
-The Flan-T5-xl version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 3B parameters.   It is a fairly popular model, which had 349,257 downloads last month. It achieved a MMLU score of 52%, which is better than T5-Large and ChatGPT3.  For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-xl](https://huggingface.co/google/flan-t5-xl). 
+The Flan-T5-xl version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 3B parameters.   It is a fairly popular model, which had 349,257 downloads last month. It achieved a MMLU score of 52%, which is better than T5-Large and ChatGPT-3.  For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-xl](https://huggingface.co/google/flan-t5-xl). 
 
 ![alt_text](image1.png "image_tooltip")
 
@@ -796,7 +796,7 @@ plt.show(): This line displays all the created charts on the screen.
 
 For each model, the script prints text output for each prompt including the prompt, answer, generation time and prompt type.   It provides a text output on the loading times for the model, tokenizer and pipeline times.   It produces charts for generation time for each prompt type and load times for the model, tokenizer and pipeline.   In our tests, the XL model took significantly longer in all aspects than the Large model, but the XL model answered more questions correctly.
 
- Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.    The answers did not provide much context, although we did not ask for context.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.    The XL was stronger than the Large model on knowledge retreival, in context, cause and effect, and analogical reasoning.  The XL did not perform well initially on analogical or counterfactual questions but its answers improved as we ran more epochs.   Both models were better at answering reasoning quesstions than knowledge retreival or in context quesstions.
+ Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.    The answers did not provide much context, although we did not ask for context.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.    The XL was stronger than the Large model on knowledge retrieval, in context, cause and effect, and analogical reasoning.  The XL did not perform well initially on analogical or counterfactual questions but its answers improved as we ran more epochs.   Both models were better at answering reasoning questions than knowledge retrieval or in context questions.
 
 The following table provides a summary of the models' correct answers.  We recognize that the format of the prompts, especially asking two questions in one prompt, can impact the model.   We used these more complex examples as they might reflect human interaction.  As you can see, the model's performance can vary depending on the question type and the prompt construction.   This is to be expected and could be fine tuned, which is a potential topic for follow-on discussions and/or further experimentations.
 
@@ -810,7 +810,7 @@ For reference, we are provided the plots which show the model generation as well
 
 ### Summary for the Large model
 
-The Large model did not answer the first question in the prompts with multiple questions.   If you count the those first questions, the Large model missed more quesstions than it got correct.  Addittionally, the answers did not provide much context, although we did not ask for context in the answer.   Determinining what is correct or incorrect for a reasoning question could have some subjectivity.
+The Large model did not answer the first question in the prompts with multiple questions.   If you count the those first questions, the Large model missed more quesstions than it got correct.  Additionally, the answers did not provide much context, although we did not ask for context in the answer.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.
 
 Let's analyze the output for the Large model's output. This chart provides the question types, the correctness of the answer, and the time required to generate the pipelines answers.
 
@@ -827,7 +827,7 @@ Let's analyze the output for the Large model's output. This chart provides the q
 | Counterfactual Reasoning | 50% | 2.2 |
 | In Context | 0%| 10.7 |
 
-Now, let’s examine the results of the flan-t5-large model for knowledge retreival.  
+Now, let’s examine the results of the flan-t5-large model for knowledge retrieval.  
 
 ```
 Results for model: google/flan-t5-large
@@ -897,7 +897,7 @@ Type: Counterfactual Reasoning
 ```
 Each of the answers did not answer the first question.   The answers did not provide much context on the correct answers (logical, inductive and deductive), although we did not ask for context in the pipeline configuration parameters.   Determinining what is correct or incorrect for a reasoning question could have some subjectivity, but we considered the counterfactual and in context answers as in correct.   The cause and effect, analogical answers were pretty far off.  
 
-The last question (in context) tests providing several lines of context in the prompt, along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided, but it does not answer the question correctly regarding the place or time of the storm's landfall.
+The last question (in context) tests providing several lines of context in the prompt, along with the question being asked.   We label this as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided, but it does not answer the question correctly regarding the place or time of the storm's landfall.
 
 ```
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
@@ -940,9 +940,9 @@ Next let's analyze output for the XL model's output. This chart provides the que
 | Counterfactual Reasoning | 50% | 3.8 |
 | In Context | 25%| 14.1 |
 
-The XL model did a pretty good job.   It answered 2 of the 3 Knowledge retreival questions correctly.   It answered all of the reasoning questions correctly and it provided an answer for the In Context question that could be correct.    Because if only answer the second question in the reasoning prompts, we gave it a grade of 50% on correctness for these quetions.
+The XL model did a pretty good job.   It answered 2 of the 3 Knowledge retrieval questions correctly.   It answered all of the reasoning questions correctly and it provided an answer for the In Context question that could be correct.    Because if only answer the second question in the reasoning prompts, we gave it a grade of 50% on correctness for these questions.
 
-Next let's look at the answers for the knowledge retreival questions. 
+Next let's look at the answers for the knowledge retrieval questions. 
 
 ```
 Results for model: google/flan-t5-xl
@@ -964,7 +964,7 @@ Type: Knowledge Retrieval
 ```
 For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The xl version answered Germany and Canada correctly, but it still missed the capital of Spain, although Santander is the capital city of Spain's Cantabria region.
 
-Generation Time: The generation time varied greatly from 43.6 seconds for Germany, which was the first question, which is an outlier in terms of time.  The answers for Spain and Canada were similar at 2.8 and 3.1 seconds.   We have not examined why the 1st knowledge retreival question took 10x more time, but assume it might be related to loading times.
+Generation Time: The generation time varied greatly from 43.6 seconds for Germany, which was the first question, which is an outlier in terms of time.  The answers for Spain and Canada were similar at 2.8 and 3.1 seconds.   We have not examined why the 1st knowledge retrieval question took 10x more time, but assume it might be related to loading times.
 
 Next let's look at the answers to the reasoning questions.
 
@@ -1001,9 +1001,9 @@ Type: Counterfactual Reasoning
 ```
 Of the answers provided by the XL model, we considered all of the reasoning answers as correct.  We did not set-up the pipeline to provide context, which would be an interesting follow-on experiment.  The correctness of the answer could be subjective.  We counted this answer as 50% correct i.e.  Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb? Answer: the world would be dark.  
 
-The analogical prompt took the shortest, 2.6 seconds, and the cause and effect was the longest, 5.0 seconds.   The Large model was much faster with 1.5 and 0.7 seconds for the same prompts.   There could be much more analysis of the reasoning prompts and their response corrnectness and timing, which are potential future topics for discussion. 
+The analogical prompt took the shortest, 2.6 seconds, and the cause and effect was the longest, 5.0 seconds.   The Large model was much faster with 1.5 and 0.7 seconds for the same prompts.   There could be much more analysis of the reasoning prompts and their response correctness and timing, which are potential future topics for discussion. 
 
-The last question tests providing several lines of context in the prompt along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided i.e Fort Myers and seems to use that as the answer for where.  The answer does not provide an answer to "when".   We counted this as 25% correct, which is a subjective grade.  For a better model to predict a storm's landfall, please watch for an upcoming post from Patterson Consulting.
+The last question tests providing several lines of context in the prompt along with the question being asked.   We label this as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided i.e Fort Myers and seems to use that as the answer for where.  The answer does not provide an answer to "when".   We counted this as 25% correct, which is a subjective grade.  For a better model to predict a storm's landfall, please watch for an upcoming post from Patterson Consulting.
  
 ```
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
