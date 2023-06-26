@@ -81,7 +81,7 @@ for model_id in model_ids:
 
     # Print model results
     print()
-    print(f"Results for model {model_id}")
+    print(f"Results for model: {model_id}")
     print("=" * 30)
 
     # Knowledge retrieval examples
@@ -107,22 +107,13 @@ for model_id in model_ids:
     print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "seconds")
     print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "seconds\n\n")
 
-# Plot generation times
-plt.figure(figsize=(18, 6))
-plt.subplot(131)
-plt.barh(range(len(types)), xl_generation_times, height=0.4, align='center', color='blue', label='XL Model')
-plt.barh([x + 0.4 for x in range(len(types))], large_generation_times, height=0.4, align='center', color='orange', alpha=0.5, label='Large Model')
-plt.yticks(range(len(types)), types)
-plt.ylabel('Type')
-plt.xlabel('Generation Time (seconds)')
-plt.title('Generation Time Comparison')
-plt.legend()
 
 # Plot model load times
 model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]
 model_labels = ['XL Model', 'Large Model']
 
-plt.subplot(132)
+plt.figure(figsize=(18, 6))
+plt.subplot(131)
 plt.bar(model_labels, model_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
@@ -131,7 +122,7 @@ plt.title('Model Load Time Comparison')
 # Plot tokenizer load times
 tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]
 
-plt.subplot(133)
+plt.subplot(132)
 plt.bar(model_labels, tokenizer_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
@@ -139,13 +130,23 @@ plt.title('Tokenizer Load Time Comparison')
 
 # Plot pipeline load times
 pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]
-
-plt.figure(figsize=(8, 6))
+plt.subplot(133)
 plt.bar(model_labels, pipeline_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
 plt.title('Pipeline Load Time Comparison')
 
+# Plot generation times
+plt.figure(figsize=(9, 6))
+plt.barh(range(len(types)), xl_generation_times, height=0.4, align='center', color='blue', label='XL Model')
+plt.barh([x + 0.4 for x in range(len(types))], large_generation_times, height=0.4, align='center', color='orange', alpha=0.5, label='Large Model')
+plt.yticks(range(len(types)), types)
+plt.ylabel('Type')
+plt.xlabel('Generation Time (seconds)')
+plt.title('Generation Time Comparison')
+plt.legend()
+
 plt.tight_layout()
 plt.show()
+
 
