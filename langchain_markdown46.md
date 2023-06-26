@@ -555,7 +555,6 @@ for model_id in model_ids:
     pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=512)
     local_llm = HuggingFacePipeline(pipeline=pipe)
     pipe_end_time = time.time()
-
 ```
 for model_id in model_ids: This line starts a loop that iterates over each model ID in the model_ids list.
 
@@ -590,7 +589,6 @@ pipe_end_time = time.time(): sets the pipe_end_time to the current time
         xl_model_load_times.append(model_end_time - model_start_time)
         xl_tokenizer_load_times.append(tokenizer_end_time - tokenizer_start_time)
         xl_pipeline_load_times.append(pipe_end_time - pipe_start_time)
-
 ```
 After calculating the time to load using end minus start, use the append method to store the loading times in the appropriate list based upon the model name.
 
@@ -641,7 +639,7 @@ print(f"Type: {types[i]}"):This line prints the corresponding type of the prompt
 
 prompt_types.append(types[i]): This line appends the type of the prompt (types[i]) to the prompt_types list, which is used to store the prompt types for later use or analysis.
 
-## Save model generation times
+### Save model generation times
 
 ```
       if model_id == 'google/flan-t5-large':
@@ -703,7 +701,6 @@ plt.ylabel('Load Time (seconds)'): This line sets the y-axis label as 'Load Time
 plt.xlabel('Model'): This line sets the x-axis label as 'Model'.
 
 plt.title('Model Load Time Comparison'): This line sets the title of the chart as 'Model Load Time Comparison'.
-
 ```
 # Plot tokenizer load times
 tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]
@@ -713,7 +710,6 @@ plt.bar(model_labels, tokenizer_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
 plt.title('Tokenizer Load Time Comparison')
-
 ```
 ### Tokenizer Load Time Comparison:
 
@@ -737,9 +733,8 @@ plt.bar(model_labels, pipeline_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
 plt.title('Pipeline Load Time Comparison')
-
 ```
-### Pipeline Load Time Comparison: pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]: This line calculates the total pipeline load times for the XL model and large model by summing up the individual load times.
+Pipeline Load Time Comparison: pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]: This line calculates the total pipeline load times for the XL model and large model by summing up the individual load times.
 
 plt.figure(figsize=(8, 6)): This line creates a new figure with a specific size (8 inches wide and 6 inches tall) to accommodate the pipeline load time comparison chart.
 
@@ -764,7 +759,6 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-
 ```
 ### Pipeline Generation Time Comparison:
 
