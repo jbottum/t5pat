@@ -681,6 +681,9 @@ The script uses matplotlib to plot four charts in two figures, which are named, 
 
 Let's look at the details on the loading times for the model, tokenizer and pipeline.
 
+### Model Load Time Comparison
+
+The following provides the code to plot the model load time and then a description of each line of code.
 ```
 # Plot model load times
 model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]
@@ -694,8 +697,6 @@ plt.xlabel('Model')
 plt.title('Model Load Time Comparison')
 
 ```
-Model Load Time Comparison: 
-
 model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]: This line calculates the total model load times for the XL model and large model by summing up the individual load times. 
 
 model_labels = ['XL Model', 'Large Model']: This line defines the labels for the model load time chart.
@@ -711,6 +712,10 @@ plt.ylabel('Load Time (seconds)'): This line sets the y-axis label as 'Load Time
 plt.xlabel('Model'): This line sets the x-axis label as 'Model'.
 
 plt.title('Model Load Time Comparison'): This line sets the title of the chart as 'Model Load Time Comparison'.
+
+### Tokenizer Load Time Comparison:
+
+The following provides the code to plot the tokenizer load time and then a description of each line of code.
 ```
 # Plot tokenizer load times
 tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]
@@ -721,8 +726,6 @@ plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
 plt.title('Tokenizer Load Time Comparison')
 ```
-### Tokenizer Load Time Comparison:
-
 tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]: This line calculates the total tokenizer load times for the XL model and large model by summing up the individual load times.
 
 plt.subplot(132): This line selects the third subplot for the tokenizer load time comparison chart.
@@ -734,6 +737,10 @@ plt.ylabel('Load Time (seconds)'): This line sets the y-axis label as 'Load Time
 plt.xlabel('Model'): This line sets the x-axis label as 'Model'.
 
 plt.title('Tokenizer Load Time Comparison'): This line sets the title of the chart as 'Tokenizer Load Time Comparison'.
+
+### Pipeline Load Time Comparison
+
+The following provides the code to plot the pipeline load time and then a description of each line of code.
 
 ```
 # Plot pipeline load times
@@ -756,6 +763,10 @@ plt.xlabel('Model'): This line sets the x-axis label as 'Model'.
 
 plt.title('Pipeline Load Time Comparison'): This line sets the title of the chart as 'Pipeline Load Time Comparison'.
 
+### Pipeline Generation Time Comparison:
+
+This code plots the generation times of the pipelines for each prompt in a chart, which is called Figure_2.  Like Figure_1, Figure_2 can be saved or dismissed and the script will continue, complete and take you back to your terminal prompt.   
+
 ```
 # Plot generation times
 plt.figure(figsize=(9, 6))
@@ -769,11 +780,7 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-```
-### Pipeline Generation Time Comparison:
-
-This code plots the generation times of the pipelines for each prompt in a chart, which is called Figure_2.  Like Figure_1, Figure_2 can be saved or dismissed and the script will continue, complete and take you back to your terminal prompt.    
-
+``` 
 plt.figure(figsize=(9, 6)): This line creates a new figure with a specific size (9 inches wide and 6 inches tall) to accommodate the generation time comparison chart.
 
 plt.barh(range(len(types)), xl_generation_times, height=0.4, align='center', color='blue', label='XL Model'): This line creates a horizontal bar chart (barh) with the XL model's generation times (xl_generation_times) and assigns the color blue to the bars. Each bar represents a different prompt type, and the height and alignment of the bars are set accordingly. The label 'XL Model' is provided for the legend.
