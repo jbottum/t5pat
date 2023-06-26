@@ -700,7 +700,9 @@ model_load_times = [sum(xl_model_load_times), sum(large_model_load_times)]: This
 
 model_labels = ['XL Model', 'Large Model']: This line defines the labels for the model load time chart.
 
-plt.subplot(132): This line selects the second subplot for the model load time comparison chart.
+plt.subplot(131): This line selects the second subplot for the model load time comparison chart.
+
+plt.figure(figsize=(18, 6)): This line creates a new figure with a specific size (18 inches wide and 6 inches tall) to accommodate the model, tokenizer, and pipeline comparison charts.
 
 plt.bar(model_labels, model_load_times, color=['blue', 'orange']): This line creates a bar chart (bar) with the model load times (model_load_times). The bars are assigned the colors blue and orange, corresponding to the XL model and large model, respectively.
 
@@ -723,7 +725,7 @@ plt.title('Tokenizer Load Time Comparison')
 
 tokenizer_load_times = [sum(xl_tokenizer_load_times), sum(large_tokenizer_load_times)]: This line calculates the total tokenizer load times for the XL model and large model by summing up the individual load times.
 
-plt.subplot(133): This line selects the third subplot for the tokenizer load time comparison chart.
+plt.subplot(132): This line selects the third subplot for the tokenizer load time comparison chart.
 
 plt.bar(model_labels, tokenizer_load_times, color=['blue', 'orange']): This line creates a vertical bar chart with the tokenizer load times (tokenizer_load_times). The bars are assigned the colors blue and orange, corresponding to the XL model and large model, respectively.
 
@@ -744,7 +746,7 @@ plt.title('Pipeline Load Time Comparison')
 ```
 Pipeline Load Time Comparison: pipeline_load_times = [sum(xl_pipeline_load_times), sum(large_pipeline_load_times)]: This line calculates the total pipeline load times for the XL model and large model by summing up the individual load times.
 
-plt.figure(figsize=(8, 6)): This line creates a new figure with a specific size (8 inches wide and 6 inches tall) to accommodate the pipeline load time comparison chart.
+plt.subplot(133): This line selects the third subplot for the tokenizer load time comparison chart.
 
 plt.bar(model_labels, pipeline_load_times, color=['blue', 'orange']): This line creates a vertical bar chart with the pipeline load times (pipeline_load_times). The bars are assigned the colors blue and orange, corresponding to the XL model and large model, respectively.
 
@@ -772,7 +774,7 @@ plt.show()
 
 This code plots the generation times of the pipelines for each prompt in a chart, which is called Figure_2.  Like Figure_1, Figure_2 can be saved or dismissed and the script will continue, complete and take you back to your terminal prompt.    
 
-plt.figure(figsize=(9, 6)): This line creates a new figure with a specific size (18 inches wide and 6 inches tall) to accommodate the generation time comparison chart.
+plt.figure(figsize=(9, 6)): This line creates a new figure with a specific size (9 inches wide and 6 inches tall) to accommodate the generation time comparison chart.
 
 plt.barh(range(len(types)), xl_generation_times, height=0.4, align='center', color='blue', label='XL Model'): This line creates a horizontal bar chart (barh) with the XL model's generation times (xl_generation_times) and assigns the color blue to the bars. Each bar represents a different prompt type, and the height and alignment of the bars are set accordingly. The label 'XL Model' is provided for the legend.
 
