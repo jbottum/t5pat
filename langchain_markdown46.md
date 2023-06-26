@@ -436,7 +436,6 @@ Loading times for model google/flan-t5-xl
 Tokenizer Loading Time: 0.54048 seconds
 Model Loading Time: 131.81162 seconds
 Pipeline Loading Time: 0.57841 seconds
-
 ```
 
 ![alt_text](Figure_1.png "image_tooltip")
@@ -795,6 +794,12 @@ plt.show(): This line displays all the created charts on the screen.
 The following table provides a summary of the models' correct answers.  We recognize that the format of the prompts, especially asking two questions in one prompt, can impact the model.   We used these more complex examples as they might relect human interaction.  As you can see, the model's performance can vary depending on the question type and the prompt.   This is to be expected and could be fine tuned, which is a potential follow-on discussion and/or further experimentation.
 
 ![alt_text](correct.png "image_tooltip")
+
+For reference, we are provided the plots which show the model generation as well as the loading times for the models, tokenizers and pipelines.
+
+![alt_text](Figure_2.png "image_tooltip")
+
+![alt_text](Figure_1.png "image_tooltip")
 
 ### Summary for Large model
 
