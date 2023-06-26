@@ -800,29 +800,29 @@ Of the 17 questions, both models answered answered under 50% of the questions co
 
 Generation and Loading times
 
-
-
 For our detailed review of the answers, let’s first examine the results of the flan-t5-large model for knowledge retreival.  
 
 ## Output review
 
 ```
-Results for model google/flan-t5-large
+
+Results for model: google/flan-t5-large
 ==============================
 Prompt: What is the capital of Germany?
 Answer: berlin
-Generation Time: 0.75208 seconds
+Generation Time: 1.06194 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Spain?
 Answer: turin
-Generation Time: 0.79062 seconds
+Generation Time: 0.73172 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Canada?
 Answer: toronto
-Generation Time: 0.72141 seconds
+Generation Time: 1.12487 seconds
 Type: Knowledge Retrieval
+
 ```
 The model provided answers to three questions on the capitals of Germany, Spain and Canada.  Generated answers: The lines berlin, turin, and toronto represent the generated answers for the given input prompts: "What is the capital of Germany?", "What is the capital of Spain?", and "What is the capital of Canada?" respectively. These answers are produced by the flan_t5_large model used in the HuggingFacePipeline.
 
@@ -841,73 +841,55 @@ Generation Time: The generation times vary from 0.72 to 0.79 seconds.   These ar
 The following provides analysis of the output of the Question Answer with Reasoning examples:
 
 ```
-
-Results for model google/flan-t5-large
-==============================
-Prompt: What is the capital of Germany?
-Answer: berlin
-Generation Time: 0.75208 seconds
-Type: Knowledge Retrieval
-
-Prompt: What is the capital of Spain?
-Answer: turin
-Generation Time: 0.79062 seconds
-Type: Knowledge Retrieval
-
-Prompt: What is the capital of Canada?
-Answer: toronto
-Generation Time: 0.72141 seconds
-Type: Knowledge Retrieval
-
 Prompt: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
 Answer: yes
-Generation Time: 0.77981 seconds
+Generation Time: 1.08774 seconds
 Type: Logical Reasoning
 
 Prompt: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
 Answer: no
-Generation Time: 0.64559 seconds
+Generation Time: 0.69614 seconds
 Type: Cause and Effect
 
 Prompt: In the same way that pen is related to paper, what is fork related to? If tree is related to forest, what is brick related to?
 Answer: brick is related to brick
-Generation Time: 1.11533 seconds
+Generation Time: 1.51508 seconds
 Type: Analogical Reasoning
 
 Prompt: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
 Answer: yes
-Generation Time: 0.89685 seconds
+Generation Time: 1.24550 seconds
 Type: Inductive Reasoning
 
 Prompt: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary does not like to get wet, will Mary take an umbrella?
 Answer: yes
-Generation Time: 0.76685 seconds
+Generation Time: 1.28181 seconds
 Type: Deductive Reasoning
 
 Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb?
 Answer: no one would have invented the light bulb
-Generation Time: 1.40766 seconds
+Generation Time: 2.15294 seconds
 Type: Counterfactual Reasoning
+
 
 ```
 The last question tests providing several lines of content in the prompt along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided but it does not answer the question correctly regarding the place or time of the storm's landfall.
 
 ```
-
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba
-Generation Time: 7.50129 seconds
+Generation Time: 10.67541 seconds
 Type: In Context
-
 ```
 
 As you can see, the model's performance can vary depending on the question type.   This is to be expected. 
 
 ```
 Loading times for model google/flan-t5-large
-Tokenizer Loading Time: 0.24903 seconds
-Model Loading Time: 16.61096 seconds
-Pipeline Loading Time: 0.08496 seconds
+Tokenizer Loading Time: 0.94174 seconds
+Model Loading Time: 17.28348 seconds
+Pipeline Loading Time: 0.11213 seconds
+
 ```
 
 The loading times show that flan-t5-large model takes 16.6 seconds, whereas the tokenizer takes .24 seconds and the Pipeline loading is shortest at 0.08 seconds.
@@ -915,26 +897,26 @@ The loading times show that flan-t5-large model takes 16.6 seconds, whereas the 
 Now, let's examine the results of the flan-t5-xl model. The information message below is printed as the script loads checkpoint shards as part of initializing the model and tokenizer.  
 
 ```
-Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████| 2/2 [01:44<00:00, 52.47s/it]
+Loading checkpoint shards: 100%|██████████████████| 2/2 [01:38<00:00, 49.17s/it]
 ```
 Next let's look at the output for the XL model and starting with the answers for the knowledge retreival questions. 
 
 ```
-Results for model google/flan-t5-xl
+Results for model: google/flan-t5-xl
 ==============================
 Prompt: What is the capital of Germany?
 Answer: berlin
-Generation Time: 33.72834 seconds
+Generation Time: 43.58305 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Spain?
 Answer: santander
-Generation Time: 2.68822 seconds
+Generation Time: 2.80783 seconds
 Type: Knowledge Retrieval
 
 Prompt: What is the capital of Canada?
 Answer: ottawa
-Generation Time: 3.03528 seconds
+Generation Time: 3.06489 seconds
 Type: Knowledge Retrieval
 ```
 For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The xl version answered Germany and Canada correct, but it still missed the capital of Spain, although Spain is the capital city of Spain's Cantabria region.
@@ -942,39 +924,54 @@ For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The 
 Generation Time: The generation time varied greatly from 33.7 seconds for Germany, which was the first question, whereas the answers for Spain and Canada were similar at 2.6 and 3.0 seconds.   We assume the generation time was longer
 
 
-   
-
 Next let's look at the answers to the reasoning questions.
 
 ```
+Results for model: google/flan-t5-xl
+==============================
+Prompt: What is the capital of Germany?
+Answer: berlin
+Generation Time: 43.58305 seconds
+Type: Knowledge Retrieval
+
+Prompt: What is the capital of Spain?
+Answer: santander
+Generation Time: 2.80783 seconds
+Type: Knowledge Retrieval
+
+Prompt: What is the capital of Canada?
+Answer: ottawa
+Generation Time: 3.06489 seconds
+Type: Knowledge Retrieval
+
 Prompt: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
 Answer: yes
-Generation Time: 2.69330 seconds
+Generation Time: 2.89040 seconds
 Type: Logical Reasoning
 
 Prompt: If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?
 Answer: It increases the risk of developing lung cancer.
-Generation Time: 4.97590 seconds
+Generation Time: 5.07974 seconds
 Type: Cause and Effect
 
 Prompt: In the same way that pen is related to paper, what is fork related to? If tree is related to forest, what is brick related to?
 Answer: building
-Generation Time: 2.45197 seconds
+Generation Time: 2.60167 seconds
 Type: Analogical Reasoning
 
 Prompt: Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?
 Answer: yes
-Generation Time: 3.15866 seconds
+Generation Time: 3.53700 seconds
 Type: Inductive Reasoning
 
 Prompt: All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary does not like to get wet, will Mary take an umbrella?
 Answer: yes
-Generation Time: 2.69511 seconds
+Generation Time: 2.90499 seconds
 Type: Deductive Reasoning
 
 Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb?
 Answer: the world would be dark
-Generation Time: 3.63687 seconds
+Generation Time: 3.81147 seconds
 Type: Counterfactual Reasoning
 
 ```
@@ -983,16 +980,18 @@ The last question tests providing several lines of content in the prompt along w
 ```
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
 Answer: Fort Myers in Florida
-Generation Time: 12.89732 seconds
+Generation Time: 14.06618 seconds
 Type: In Context
+
 ```
 ### Loading time summary
 
 ```
 Loading times for model google/flan-t5-xl
-Tokenizer Loading Time: 0.14427 seconds
-Model Loading Time: 131.39278 seconds
-Pipeline Loading Time: 0.71615 seconds
+Tokenizer Loading Time: 0.54048 seconds
+Model Loading Time: 131.81162 seconds
+Pipeline Loading Time: 0.57841 seconds
+
 ```
 The loading times show that flan-t5-xl model takes 131.1 seconds, whereas the Pipeline loads in 0.71 sseconds and the the tokenizer is the shorest with o.14 seconds to load. 
 
