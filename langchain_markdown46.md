@@ -499,7 +499,7 @@ prompts = [
     'The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?'
 ]
 ```
-### Defiine each prompt type in a list
+### Define each prompt type in a list
 
 This statement creates a list called prompt type.  The list stores each prompt type as a text string.
 
@@ -692,6 +692,7 @@ plt.bar(model_labels, model_load_times, color=['blue', 'orange'])
 plt.ylabel('Load Time (seconds)')
 plt.xlabel('Model')
 plt.title('Model Load Time Comparison')
+
 ```
 Model Load Time Comparison: 
 
