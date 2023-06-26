@@ -592,14 +592,17 @@ pipe_end_time = time.time(): sets the pipe_end_time to the current time
 ```
 After calculating the time to load using end minus start, use the append method to store the loading times in the appropriate list based upon the model name.
 
+Now print the model output startign with a header that identifies the model name.
 ```
     # Print model results
     print()
     print(f"Results for model {model_id}")
     print("=" * 30)
 ```
-print(): print a new line
+print(): prints a new line
+
 print(f"Results for model {model_id}"): This line prints the model ID to indicate the current model being used.
+
 print("=" * 30): This line prints a line of equal signs for visual separation.
 
 ### Prompt processsing
@@ -762,9 +765,9 @@ plt.show()
 ```
 ### Pipeline Generation Time Comparison:
 
-plt.figure(figsize=(18, 6)): This line creates a new figure with a specific size (18 inches wide and 6 inches tall) to accommodate the generation time comparison chart.
+This code plots the generation times of the pipelines for each prompt in a chart, which is called Figure_2.  Like Figure_1, Figure_2 can be saved or dismissed and the script will continue, complete and take you back to your terminal prompt.    
 
-plt.subplot(131): This line creates a subplot with 1 row, 3 columns, and selects the first subplot for the generation time comparison chart.
+plt.figure(figsize=(9, 6)): This line creates a new figure with a specific size (18 inches wide and 6 inches tall) to accommodate the generation time comparison chart.
 
 plt.barh(range(len(types)), xl_generation_times, height=0.4, align='center', color='blue', label='XL Model'): This line creates a horizontal bar chart (barh) with the XL model's generation times (xl_generation_times) and assigns the color blue to the bars. Each bar represents a different prompt type, and the height and alignment of the bars are set accordingly. The label 'XL Model' is provided for the legend.
 
@@ -1001,7 +1004,7 @@ Tokenizer Loading Time: 0.54048 seconds
 Model Loading Time: 131.81162 seconds
 Pipeline Loading Time: 0.57841 seconds
 ```
-The loading times show that flan-t5-xl model takes 131.1 seconds, whereas the Pipeline loads in 0.71 sseconds and the the tokenizer is the shorest with 0.58 seconds to load. 
+The loading times show that flan-t5-xl model takes 131.1 seconds, whereas the Pipeline loads in 0.71 seconds and the the tokenizer is the shorest with 0.58 seconds to load. 
 
 
 ## Further reading
