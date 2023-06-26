@@ -2,7 +2,7 @@
 
 Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides scripts that enable you to test these LLMs' capabilities in answering three prompt types i.e. knowledge retrieval, six forms of reasoning questions and a long question with details in context.  After providing some details on the models and LangChain, we will walk you through installing dependencies, and we will review the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  
 
-Caveats and notes - Although you will not need a real-time connection to HuggingFace for model serving, you will need a connection to Huggingface to fetch code. Additionally, if you only have a few minutes and just want to run the models (and you have python3 i.e 3.11 and pip3 installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
+Caveats and notes - Although you will not need a real-time connection to HuggingFace for model serving, you will need a connection to Huggingface to fetch code. Additionally, if you only have a few minutes and just want to run the models (and you have Python3 i.e 3.11 and pip3 installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
 ## Why run local
 
@@ -78,13 +78,13 @@ In our example and process, we wanted to simplify the getting started.   We sele
 
 ## Step 0
 
-This post assumes that users have this software: a terminal emulator, Python3 and pip3.  For those that do not, the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you know how to access your terminal and have a recent version of Python 3.x and pip3, then please skip to Step 1 - [Installing dependencies for the models](#step-1---installing-dependencies-for-the-models).
+This post assumes that users have this software: a terminal emulator, Python3 and pip3.  For those that do not, the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will be installed automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you know how to access your terminal and have a recent version of Python 3.x and pip3, then please skip to Step 1 - [Installing dependencies for the models](#step-1---installing-dependencies-for-the-models).
 
 
 
 ## Accessing your terminal
 
-To access the terminal on any macOS device, you can follow these steps:
+To access the terminal on any MacOS device, you can follow these steps:
 
 Click on the "Finder" icon in the Dock, which is typically located at the bottom of the screen.
 
@@ -100,15 +100,15 @@ Press the "Command" key and the "Space" bar simultaneously to open Spotlight Sea
 
 In the search field that appears, type "Terminal" and press "Return" or click on the "Terminal" application from the search results.
 
-Once the Terminal is open, you will see a command-line interface where you can type commands and interact with the macOS command-line environment.
+Once the Terminal is open, you will see a command-line interface where you can type commands and interact with the MacOS command-line environment.
 
 ## Installing Python3
 
 Installing Python on a Mac is relatively straightforward. Here's a step-by-step guide to help you:
 
-Check the installed version (optional): Open the Terminal application (found in the Utilities folder within the Applications folder) and type python3 --version to see if Python is already installed on your system. Note that macOS usually comes with a pre-installed version of Python.
+Check the installed version (optional): Open the Terminal application (found in the Utilities folder within the Applications folder) and type python3 --version to see if Python is already installed on your system. Note that MacOS usually comes with a pre-installed version of Python.
 
-Download Python: Visit the official Python website at https://www.python.org/downloads/ and click on the "Download Python" button. Choose the latest stable version suitable for your macOS.
+Download Python: Visit the official Python website at https://www.python.org/downloads/ and click on the "Download Python" button. Choose the latest stable version suitable for your MacOS.
 
 Run the installer: Locate the downloaded Python3 installer package (e.g., python-3.11.x-macosx11.x.pkg) and double-click on it to start the installation process. Follow the prompts and instructions in the installer.
 
