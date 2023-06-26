@@ -78,7 +78,9 @@ In our example and process, we wanted to simplify the getting started.   We sele
 
 ## Step 0
 
-This post assumes that users have this software: a terminal emulator, Python3 and pip3.  For those that do not, the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you know how to access your terminal and have a recent version of Python 3.x and pip3, then please skip to [step 1](## Step 1 - Installing dependencies for the models).
+This post assumes that users have this software: a terminal emulator, Python3 and pip3.  For those that do not, the installation for that software can be found in the instructions below.   Before installing the software, you should consider which directories that you will use.  Most dependencies will install automatically.   You will need a directory for the python script that runs the models and we suggest a directory named t5pat.  If you know how to access your terminal and have a recent version of Python 3.x and pip3, then please skip to Step 1 - [Installing dependencies for the models](#step-1---installing-dependencies-for-the-models).
+
+
 
 ## Accessing your terminal
 
@@ -848,19 +850,19 @@ Type: Knowledge Retrieval
 ```
 The model provided answers to three questions on the capitals of Germany, Spain and Canada.  Generated answers: The lines berlin, turin, and toronto represent the generated answers for the given input prompts: "What is the capital of Germany?", "What is the capital of Spain?", and "What is the capital of Canada?" respectively. These answers are produced by the flan_t5_large model used in the HuggingFacePipeline.
 
-The model answered 2 of the 3 questions incorrectly.  When reviewing the incorrect answers, the model did answer with cities in the correct country, just not the capital.
+The model answered 2 of the 3 questions incorrectly. 
 
 Berlin (correct)
 
-Turin (wrong, it's Madrid)
+Turin (wrong, it's Madrid, and Turin is in Italy)
 
-Toronto (wrong, it's Ottowa)
+Toronto (wrong, it's Ottowa, but Toronto is the capital of the Canadian state of Ontario)
 
 Generation Time: The generation times vary from 0.72 to 0.79 seconds.   These are very similar.
 
 ### Question Answer with Reasoning Examples - output review
 
-The following provides analysis of the output of the Question Answer with Reasoning examples:
+The following provides the output and an analysis of the Large model's answers of the reasoning prompts:
 
 ```
 Prompt: What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?
@@ -893,10 +895,9 @@ Answer: no one would have invented the light bulb
 Generation Time: 2.15294 seconds
 Type: Counterfactual Reasoning
 ```
-Each of the answers did not answer the first question.   The answers did not provide much context, although we did not ask for context in the answer.   Determinining what is correct or incorrect for a reasoning question could have some subjectivity.
+Each of the answers did not answer the first question.   The answers did not provide much context on the correct answers (logical, inductive and deductive), although we did not ask for context in the pipeline configuration parameters.   Determinining what is correct or incorrect for a reasoning question could have some subjectivity, but we considered the counterfactual and in context answers as in correct.   The cause and effect, analogical answers were pretty far off.  
 
-
-The last question tests providing several lines of content in the prompt along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided but it does not answer the question correctly regarding the place or time of the storm's landfall.
+The last question (in context) tests providing several lines of context in the prompt, along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided, but it does not answer the question correctly regarding the place or time of the storm's landfall.
 
 ```
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
@@ -905,7 +906,7 @@ Generation Time: 10.67541 seconds
 Type: In Context
 ```
 
-As you can see, the model's performance can vary depending on the question type.   This is to be expected. 
+As you can see, the model's performance can vary depending on the question type.   This is to be expected.   Now, let's move on to the loading times.
 
 ```
 Loading times for model google/flan-t5-large
@@ -915,14 +916,16 @@ Pipeline Loading Time: 0.11213 seconds
 
 ```
 
-The loading times show that flan-t5-large model takes 16.6 seconds, whereas the tokenizer takes .24 seconds and the Pipeline loading is shortest at 0.08 seconds.
+The loading times show that flan-t5-large model takes 17.2 seconds, whereas the tokenizer takes .94 seconds and the Pipeline loading is shortest at 0.11 seconds.  From an operational standpoint, it is probably helpful that pipeline loading is relatively short.
 
-Now, let's examine the results of the flan-t5-xl model. The information message below is printed as the script loads checkpoint shards as part of initializing the model and tokenizer.  
+### XL Model Review
+
+Now, let's examine the results of the flan-t5-xl model. The information message below is printed as the script loads checkpoint shards as part of initializing the model and tokenizer.  This appears to take 49 seconds and there is a delay between the Large model output completion and the start of output from the XL Model.
 
 ```
 Loading checkpoint shards: 100%|██████████████████| 2/2 [01:38<00:00, 49.17s/it]
 ```
-Next let's look at the output for the XL model's output in the pipeline. This chart provides the question types, the correctness of the answer, and the time required to generate the pipelines answers.
+Next let's analyze output for the XL model's output. This chart provides the question types, the correctness of the answer, and the time required to generate the pipelines answers.
 
 | Prompt| Correct | Time in sec |
 | --- | --- | --- |
@@ -936,6 +939,8 @@ Next let's look at the output for the XL model's output in the pipeline. This ch
 | Deductive Reasoning | 50%| 2.9 |
 | Counterfactual Reasoning | 50% | 3.8 |
 | In Context | 25%| 14.1 |
+
+The XL model did a pretty good job.   It answered 2 of the 3 Knowledge retreival questions correctly.   It answered all of the reasoning questions correctly and it provided an answer for the In Context question that could be correct.    Because if only answer the second question in the reasoning prompts, we gave it a grade of 50% on correctness for these quetions.
 
 Next let's look at the answers for the knowledge retreival questions. 
 
@@ -957,9 +962,9 @@ Answer: ottawa
 Generation Time: 3.06489 seconds
 Type: Knowledge Retrieval
 ```
-For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The xl version answered Germany and Canada correct, but it still missed the capital of Spain, although Spain is the capital city of Spain's Cantabria region.
+For knowledge retrieval, the flan-t5-xl did better than the flan-t5-large.  The xl version answered Germany and Canada correctly, but it still missed the capital of Spain, although Santander is the capital city of Spain's Cantabria region.
 
-Generation Time: The generation time varied greatly from 33.7 seconds for Germany, which was the first question, whereas the answers for Spain and Canada were similar at 2.6 and 3.0 seconds.   We have not examined why the 1st Knowledge Retreival question took 10x more time.
+Generation Time: The generation time varied greatly from 43.6 seconds for Germany, which was the first question, which is an outlier in terms of time.  The answers for Spain and Canada were similar at 2.8 and 3.1 seconds.   We have not examined why the 1st knowledge retreival question took 10x more time, but assume it might be related to loading times.
 
 Next let's look at the answers to the reasoning questions.
 
@@ -994,11 +999,11 @@ Answer: the world would be dark
 Generation Time: 3.81147 seconds
 Type: Counterfactual Reasoning
 ```
-Of the answers provided, we considered all of the reasoning answers as correct.  We did not set-up the pipeline to provide context, which would be an interesting follow-on experiment.  The correctness of the answer could be subjective i.e.  Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb? Answer: the world would be dark.  
+Of the answers provided by the XL model, we considered all of the reasoning answers as correct.  We did not set-up the pipeline to provide context, which would be an interesting follow-on experiment.  The correctness of the answer could be subjective.  We counted this answer as 50% correct i.e.  Prompt: If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb? Answer: the world would be dark.  
 
-The analogical prompt took the shortest, 2.6 seconds, and the cause and effect was the longest, 5.0 seconds.   These times might change with difference equipemnt.
+The analogical prompt took the shortest, 2.6 seconds, and the cause and effect was the longest, 5.0 seconds.   The Large model was much faster with 1.5 and 0.7 seconds for the same prompts.   There could be much more analysis of the reasoning prompts and their response corrnectness and timing, which are potential future topics for discussion. 
 
-The last question tests providing several lines of content in the prompt along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided but it does not answer the question correctly regarding the place or time of the storm's landfall.
+The last question tests providing several lines of context in the prompt along with the question being asked.   We label this as as an "in-context" type prompt.   The model's response to this prompt extracts relevant information from the context provided i.e Fort Myers and seems to use that as the answer for where.  The answer does not provide an answer to "when".   We counted this as 25% correct, which is a subjective grade.  For a better model to predict a storm's landfall, please watch for an upcoming post from Patterson Consulting.
  
 ```
 Prompt: The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?
@@ -1008,14 +1013,16 @@ Type: In Context
 ```
 ### Loading time summary
 
+The following are the loading times for the XL Model.
+
 ```
 Loading times for model google/flan-t5-xl
 Tokenizer Loading Time: 0.54048 seconds
 Model Loading Time: 131.81162 seconds
 Pipeline Loading Time: 0.57841 seconds
 ```
-The loading times show that flan-t5-xl model takes 131.1 seconds, whereas the Pipeline loads in 0.71 seconds and the the tokenizer is the shorest with 0.58 seconds to load. 
-
+The loading times show that flan-t5-xl model takes 131.1 seconds, and the Pipeline loads in 0.57 seconds.  The tokenizer is the shorest with 0.54 seconds to load.  Compared to the Large model, the XL took ~8x longer (131.1 vs 17.2) to load the model, and about 5x longer to load the pipeline (0.57 vs 0.11).  The XL loaded tokenizer 40% faster than the Large (0.54 vs 0.94).  The big outlier is the model loading time at over 2 minutes, and methods to optimize this delay needs to be reviewed in future discussions or experiments. 
+ 
 
 ## Further reading
 
@@ -1038,3 +1045,4 @@ What are embeddings
 
 Previous Patterson Consulting post on using Huggingface with Docker and KServe.
 [http://www.pattersonconsultingtn.com/blog/deploying_huggingface_with_kfserving.html](http://www.pattersonconsultingtn.com/blog/deploying_huggingface_with_kfserving.html) 
+
