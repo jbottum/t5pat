@@ -579,7 +579,7 @@ local_llm = HuggingFacePipeline(pipeline=pipe): This line creates an instance of
 
 pipe_end_time = time.time(): sets the pipe_end_time to the current time
 
-### Sttore the loading time
+### Store the loading time
 ```
     # Store loading times
     if model_id == 'google/flan-t5-large':
@@ -799,11 +799,6 @@ The following table provides a summary of the models' correct answers.  We recog
 
 ![alt_text](correct.png "image_tooltip")
 
-Generation and Loading times
-
-
-For our detailed review of the answers, let’s first examine the results of the flan-t5-large model for knowledge retreival.  
-
 ## Output review
 
 ### Summary for Large model
@@ -811,6 +806,8 @@ For our detailed review of the answers, let’s first examine the results of the
 Each of the answers did not answer the first question.   The answers did not provide much context, although we did not ask for context in the answer.   Determinining what is correct or incorrect for a reasoning question could have some subjectivity.
 
 Let's look at the output for the Large model's output in the pipeline. This chart provides the question types, the correctness of the answer, and the time required to generate the pipelines answers.
+
+For our detailed review of the answers, let’s first examine the results of the flan-t5-large model for knowledge retreival.  
 
 | Prompt| Correct | Time in sec |
 | --- | --- | --- |
