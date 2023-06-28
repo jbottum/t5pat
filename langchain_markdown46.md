@@ -1,6 +1,6 @@
 # Testing LLMs with LangChain in a local environment for (6) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides scripts that enable you to test these LLMs' capabilities in answering three prompt types i.e. knowledge retrieval, six forms of reasoning questions and a long question with details in context.  After providing some details on the models and LangChain, we will walk you through installing dependencies, and we will review the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  
+Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides the scripts that will enable you to test these LLMs' capabilities in answering three prompt types i.e. knowledge retrieval, six forms of reasoning questions and a long question with details in context.  After providing some background on the models and LangChain, we will walk you through installing dependencies, and we will review the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  
 
 Caveats and notes - Although you will not need a real-time connection to HuggingFace for model serving, you will need a connection to Huggingface to fetch code. Additionally, if you only have a few minutes and just want to run the models (and you have Python3 i.e 3.11 and pip3 installed), you can proceed to [Step 1](#step-1---installing-dependencies-for-the-models-step1).
 
@@ -443,7 +443,9 @@ Pipeline Loading Time: 0.57841 seconds
 ![alt_text](Figure_1.png "image_tooltip")
 ![alt_text](Figure_2.png "image_tooltip")
 
+Note - the following might display on the terminal while the figures as rendering.   It is informational.
 
+``` Python[23374:939566] +[CATransaction synchronize] called within transaction ```
 
 ## Detailed review of the code blocks
 
@@ -470,7 +472,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Redirect stderr to /dev/null
 os.system("python t5pat20.py 2>/dev/null")
 ```
-Import the OS package and use the os.environ and os.system methods to disable parallelism and to redirect stderr, which suppresses the warning messages in the script's output. 
+This code imports the os package and uses the os.environ and os.system methods to disable parallelism and redirect stderr, which suppresses the warning messages in the script's output.
 
 ### Load models and pipelines
 
@@ -679,7 +681,7 @@ print("Pipeline Loading Time:", f"{pipe_end_time - pipe_start_time:.5f}", "secon
 
 The script uses matplotlib to plot four charts in two figures, which are named, Figure_1 and Figure_2.
 
-Let's look at the details on the loading times for the model, tokenizer and pipeline.
+Let's look at the details on the loading times for the model, tokenizer and pipeline.   These charts are displayed as Figure_1, which can be saved using the interface provided by the script, or dismissed.
 
 ### Model Load Time Comparison
 
