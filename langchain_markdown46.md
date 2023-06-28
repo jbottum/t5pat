@@ -629,7 +629,7 @@ Each line is defined after the code block.
         prompt_types.append(types[i])  # Store the prompt type
 ```
 
-for i, prompt in enumerate(prompts): This line initiates a loop that iterates over the prompts list and assigns each element to the variable prompt. The enumerate() function is used to retrieve both the index (i) and the value (prompt) of each element in the list.
+for i, prompt in enumerate(prompts): This line initiates a loop that iterates over the prompts list. The enumerate() function is used to retrieve both the index (i) and the value (prompt) of each element in the list.
 
 start_time = time.time(): This line records the current time as the start time of the generation process. It uses the time module's time() function, which returns the current time in seconds since the epoch.
 
@@ -806,15 +806,15 @@ plt.show(): This line displays all the created charts on the screen.
 
 ## Review of the script's output and performance
 
-For each model, the script prints text output for each prompt including the prompt, answer, generation time and prompt type.   It provides a text output on the loading times for the model, tokenizer and pipeline times.   It produces charts for generation time for each prompt type and load times for the model, tokenizer and pipeline.   In our tests, the XL model took significantly longer in all aspects than the Large model, but the XL model answered more questions correctly.
+For each model, the script prints text output for each prompt including the prompt, answer, generation time and prompt type.   It provides a text output on the loading times for the model, tokenizer and pipeline times.   It produces charts for generation time for each prompt type and load times for the model, tokenizer and pipeline.   
 
- Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.    The answers did not provide much context, although we did not ask for context.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.    The XL was stronger than the Large model on knowledge retrieval, in context, cause and effect, and analogical reasoning.  The XL did not perform well initially on analogical or counterfactual questions but its answers improved as we ran more epochs.   Both models were better at answering reasoning questions than knowledge retrieval or in context questions.
+In our tests, the XL model took significantly longer in all aspects than the Large model, but the XL model answered more questions correctly. Neither model did a good job with prompts that contained two questions and both models mostly answered the second question and ignored the 1st question.    The answers did not provide much context, although we did not ask for context.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.    The XL was stronger than the Large model on knowledge retrieval, in context, cause and effect, and analogical reasoning.  The XL did not perform well initially on analogical or counterfactual questions but its answers improved as we ran more epochs.   Both models were better at answering reasoning questions than knowledge retrieval or in context questions.
 
 The following table provides a summary of the models' correct answers.  We recognize that the format of the prompts, especially asking two questions in one prompt, can impact the model.   We used these more complex examples as they might reflect human interaction.  As you can see, the model's performance can vary depending on the question type and the prompt construction.   This is to be expected and could be fine tuned, which is a potential topic for follow-on discussions and/or further experimentations.
 
 ![alt_text](correct.png "image_tooltip")
 
-For reference, we are provided the plots which show the model generation as well as the loading times for the models, tokenizers and pipelines.
+For reference, we are providing the output plots, which show the model generation as well as the loading times for the models, tokenizers and pipelines.
 
 ![alt_text](Figure_2.png "image_tooltip")
 
@@ -822,7 +822,7 @@ For reference, we are provided the plots which show the model generation as well
 
 ### Summary for the Large model
 
-The Large model did not answer the first question in the prompts with multiple questions.   If you count the those first questions, the Large model missed more quesstions than it got correct.  Additionally, the answers did not provide much context, although we did not ask for context in the answer.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.
+The Large model did not answer the first question in the prompts which contained multiple questions.  If you count the first questions, the Large model missed more quesstions than it answered correctly.  Additionally, the answers did not provide much context, but to fair, we did not ask for context in the answer.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.
 
 Let's analyze the output for the Large model's output. This chart provides the question types, the correctness of the answer, and the time required to generate the pipelines answers.
 
@@ -952,9 +952,9 @@ Next let's analyze output for the XL model's output. This chart provides the que
 | Counterfactual Reasoning | 50% | 3.8 |
 | In Context | 25%| 14.1 |
 
-The XL model did a pretty good job.   It answered 2 of the 3 Knowledge retrieval questions correctly.   It answered all of the reasoning questions correctly and it provided an answer for the In Context question that could be correct.    Because if only answer the second question in the reasoning prompts, we gave it a grade of 50% on correctness for these questions.
+The XL model did a pretty good job.   It answered (2) of the (3) Knowledge retrieval questions correctly.   It answered all of the reasoning questions correctly and it provided an answer for the In Context question that could be correct.    From a grading standpoint, it only answered the second question in the reasoning prompts, and so we gave it a grade of 50% for answering those prompts.
 
-Next let's look at the answers for the knowledge retrieval questions. 
+To start, let's look at the answers for the knowledge retrieval questions. 
 
 ```
 Results for model: google/flan-t5-xl
