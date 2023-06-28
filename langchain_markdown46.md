@@ -443,7 +443,7 @@ Pipeline Loading Time: 0.57841 seconds
 ![alt_text](Figure_1.png "image_tooltip")
 ![alt_text](Figure_2.png "image_tooltip")
 
-Note - the following might display on the terminal while the figures as rendering.   It is informational.
+Note - the following might display on the terminal while the figures are rendering.   This message is informational.
 
 ``` Python[23374:939566] +[CATransaction synchronize] called within transaction ```
 
