@@ -393,15 +393,15 @@ The following table provides a summary of the models' correct answers.  We recog
 
 ### Summary for the Large model
 
-The Large model did not answer the first question in the prompts which contained multiple questions.  If you count the first questions, the Large model missed more quesstions than it answered correctly.  Additionally, the answers did not provide much context, but to fair, we did not ask for context in the answer.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.
+The Large model did not answer the first question in the prompts which contained multiple questions.  If you count the first questions, the Large model missed more questions than it answered correctly.  Additionally, the answers did not provide much context, but to fair, we did not ask for context in the answer.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.
 
 Let's analyze the output for the Large model's output. This chart provides the question types, the correctness of the answer, and the time required to generate the pipelines answers.
 
 | Prompt| Correct | Time in sec |
 | --- | --- | --- |
-| Knowledge retrieval | 100%| 1.1 |
-| Knowledge retrieval |   0%| 0.7 |
-| Knowledge retrieval |   0%| 1.1 |
+| Knowledge retrieval 1 | 100%| 1.1 |
+| Knowledge retrieval 2 |   0%| 0.7 |
+| Knowledge retrieval 3 |   0%| 1.1 |
 | Logical Reasoning | 50% | 1.1 | 
 | Cause Effect Reasoning | 0% | 0.7 |
 | Analogical Reasoning | 0%| 1.5 |
@@ -421,9 +421,9 @@ Next let's analyze output for the XL model's output. This chart provides the que
 
 | Prompt| Correct | Time in sec |
 | --- | --- | --- |
-| Knowledge retrieval | 100%| 43.6 |
-| Knowledge retrieval |   0%| 2.8 |
-| Knowledge retrieval | 100%| 3.1 |
+| Knowledge retrieval 1| 100%| 43.6 |
+| Knowledge retrieval 2 |   0%| 2.8 |
+| Knowledge retrieval 3 | 100%| 3.1 |
 | Logical Reasoning | 50% | 2.9 | 
 | Cause Effect Reasoning | 50% | 5.1 |
 | Analogical Reasoning | 50%| 2.6 |
@@ -434,6 +434,8 @@ Next let's analyze output for the XL model's output. This chart provides the que
 
 The XL model did a pretty good job.   It answered (2) of the (3) Knowledge retrieval questions correctly.   It answered all of the reasoning questions correctly and it provided an answer for the In Context question that could be correct.    From a grading standpoint, it only answered the second question in the reasoning prompts, and so we gave it a grade of 50% for answering those prompts.
 
-This initial post is intended to provide a first cut of this effort to test reasoning.   In a follow-on post, we plan to provide more details and descriptions of the code and output, along with suggested further reading.
+This initial post is intended to provide a first cut of this effort to test reasoning.   In a follow-on post, we plan to provide more details and descriptions of the code and output, along with suggested further reading.   
+
+We hope this post helps to get you started with testing LLMs.
 
 
