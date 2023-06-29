@@ -22,7 +22,7 @@ Some of the reasons why you may need to run your model locally, and not use an e
 
 In this blog, we will show the process to run the Flan-T5-Large and Flan-T5-XL models.   This family of transformer models, open sourced from Google, is designed for natural language processing tasks and provides both text-to-text and text generation capabilities, especially for question answering. 
 
-The Flan-T5-Large version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 780M parameters.  This [paper](https://arxiv.org/pdf/2210.11416.pdf), which provides the following chart, claims that the Flan-T5-Large achieved a MMLU score of 45.1%, which is pretty good when compared to ChatGPT-3's score of 43.9% (see page 10). It is a fairly popular model, which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-large](https://huggingface.co/google/flan-t5-large).   For reference, the Measuring Massive Multitask Language Understanding(MMLU) tests cover 57 tasks including elementary mathematics, US history, computer science, law, and more. To attain high accuracy on this test, models must possess extensive world knowledge and problem solving ability.  Please find more on MMLU in this (paper)[https://arxiv.org/pdf/2009.03300.pdf].
+The Flan-T5-Large version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 780M parameters.  This [paper](https://arxiv.org/pdf/2210.11416.pdf), which provides the following chart, claims that the Flan-T5-Large achieved a MMLU score of 45.1%, which is pretty good when compared to ChatGPT-3's score of 43.9% (see page 10). It is a fairly popular model, which had 446,125 downloads last month. For more detailed information on this model’s background, performance and capabilities, please see this [link](https://huggingface.co/google/flan-t5-large) on HuggingFaceHub. For reference, the Measuring Massive Multitask Language Understanding(MMLU) tests cover 57 tasks including elementary mathematics, US history, computer science, law, and more. To attain high accuracy on this test, models must possess extensive world knowledge and problem solving ability.  Please find more on MMLU in this [paper](https://arxiv.org/pdf/2009.03300.pdf).
  
 The Flan-T5-xl version is based on the T5 (Text-To-Text Transfer Transformer) architecture and has 3B parameters.   It is a fairly popular model, which had 349,257 downloads last month. It achieved a MMLU score of 52%, which is better than T5-Large and ChatGPT-3.  For more detailed information on this model’s background, performance and capabilities, please see this link on HuggingFaceHub, [https://huggingface.co/google/flan-t5-xl](https://huggingface.co/google/flan-t5-xl). 
 
@@ -822,15 +822,15 @@ For reference, we are providing the output plots, which show the model generatio
 
 ### Summary for the Large model
 
-The Large model did not answer the first question in the prompts which contained multiple questions.  If you count the first questions, the Large model missed more quesstions than it answered correctly.  Additionally, the answers did not provide much context, but to fair, we did not ask for context in the answer.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.
+The Large model did not answer the first question in the prompts which contained multiple questions.  If you count the first questions, the Large model missed more questions than it answered correctly.  Additionally, the answers did not provide much context, but to fair, we did not ask for context in the answer.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.
 
 Let's analyze the output for the Large model's output. This chart provides the question types, the correctness of the answer, and the time required to generate the pipelines answers.
 
 | Prompt| Correct | Time in sec |
 | --- | --- | --- |
-| Knowledge retrieval | 100%| 1.1 |
-| Knowledge retrieval |   0%| 0.7 |
-| Knowledge retrieval |   0%| 1.1 |
+| Knowledge retrieval 1 | 100%| 1.1 |
+| Knowledge retrieval 2 |   0%| 0.7 |
+| Knowledge retrieval 3 |   0%| 1.1 |
 | Logical Reasoning | 50% | 1.1 | 
 | Cause Effect Reasoning | 0% | 0.7 |
 | Analogical Reasoning | 0%| 1.5 |
@@ -941,9 +941,9 @@ Next let's analyze output for the XL model's output. This chart provides the que
 
 | Prompt| Correct | Time in sec |
 | --- | --- | --- |
-| Knowledge retrieval | 100%| 43.6 |
-| Knowledge retrieval |   0%| 2.8 |
-| Knowledge retrieval | 100%| 3.1 |
+| Knowledge retrieval 1 | 100%| 43.6 |
+| Knowledge retrieval 2 |   0%| 2.8 |
+| Knowledge retrieval 3 | 100%| 3.1 |
 | Logical Reasoning | 50% | 2.9 | 
 | Cause Effect Reasoning | 50% | 5.1 |
 | Analogical Reasoning | 50%| 2.6 |
