@@ -1,6 +1,6 @@
 # Testing LLMs with LangChain in a local environment for (6) types of reasoning
 
-Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides the scripts that will enable you to test these LLMs' capabilities in answering three prompt types i.e. knowledge retrieval, six forms of reasoning questions and a long question with details in context.  After providing some background on the models and LangChain, we will walk you through installing dependencies, and we will provide the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  
+Within (30) minutes of reading this post, you should be able to complete model serving requests from two variants of a popular python-based large language model (LLM) using LangChain on your local computer without requiring the connection or costs to an external 3rd party API server, such as HuggingFaceHub or OpenAI.  This exercise provides the scripts that will enable you to test these LLMs' capabilities in answering three prompt types i.e. knowledge retrieval, six forms of reasoning questions and a long question with details in context.  After providing some background on the models and LangChain, we will walk you through installing dependencies, and we will provide the code and the output of each model.   We will also provide side by side comparisons on model performance and processing times.  We hope that this code helps you to your develop plans on how to test reasoning in your LLMs.
 
 Caveats and notes - Although you will not need a real-time connection to HuggingFace for model serving, you will need a connection to Huggingface to fetch code. 
 
@@ -74,7 +74,7 @@ As you can see, LangChain includes many advanced features and it enables complex
 
 ## Step 1 - Installing dependencies for the models (#step1)
 
-After installing the software above, you will need to install the dependencies.  From the terminal, please run the commands below:
+From the terminal, please run the commands below:
 
 ```
 pip3 install transformers
@@ -174,7 +174,7 @@ for model_id in model_ids:
     print(f"Results for model: {model_id}")
     print("=" * 30)
 
-    # Knowledge retrieval examples
+    # Loop thru prompt list, measure the time to the generate answers, print prompt, answer, time, type
     for i, prompt in enumerate(prompts):
         start_time = time.time()
         answer = local_llm(prompt)
@@ -185,6 +185,7 @@ for model_id in model_ids:
         print(f"Type: {types[i]}")
         print()
 
+    # store prompt types and time measures to generate ansswers by prompt types 
         prompt_types.append(types[i])  # Store the prompt type
 
         if model_id == 'google/flan-t5-large':
@@ -192,6 +193,7 @@ for model_id in model_ids:
         elif model_id == 'google/flan-t5-xl':
             xl_generation_times.append(end_time - start_time)
 
+    # print loading times
     print(f"Loading times for model {model_id}")
     print("Tokenizer Loading Time:", f"{tokenizer_end_time - tokenizer_start_time:.5f}", "seconds")
     print("Model Loading Time:", f"{model_end_time - model_start_time:.5f}", "seconds")
@@ -434,8 +436,6 @@ Next let's analyze output for the XL model's output. This chart provides the que
 
 The XL model did a pretty good job.   It answered (2) of the (3) Knowledge retrieval questions correctly.   It answered all of the reasoning questions correctly and it provided an answer for the In Context question that could be correct.    From a grading standpoint, it only answered the second question in the reasoning prompts, and so we gave it a grade of 50% for answering those prompts.
 
-This initial post is intended to provide a first cut of this effort to test reasoning.   In a follow-on post, we plan to provide more details and descriptions of the code and output, along with suggested further reading.   
-
-We hope this post helps to get you started with testing LLMs.
+This initial post is intended to help you to develop a plan to test reasoning questions in your LLMs.   In a follow-on post, we plan to provide more details and descriptions of the code and output, along with suggested further reading.   
 
 
