@@ -85,7 +85,7 @@ pip3 install matplotlib
 
 ## Build your python script, T5pat.py
 
-After installing the dependencies, please build your python script.   In your terminal or code editor, please create a file, t5pat.py, in your directory i.e. t5pat, and cut and paste in following code into your t5pat.py file.
+After installing the dependencies, please build your python script.   In your terminal or code editor, please create a file, t5pat.py, in your directory i.e. t5pat, and cut and paste in the following code into your t5pat.py file.
 
 ```
 import time
@@ -395,7 +395,7 @@ The following table provides a summary of the models' correct answers.  We recog
 
 ### Summary for the Large model
 
-The Large model did not answer the first question in the prompts which contained multiple questions.  If you count the first questions, the Large model missed more questions than it answered correctly.  Additionally, the answers did not provide much context, but to fair, we did not ask for context in the answer.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.
+The Large model did not answer the first question in the prompts which contained multiple questions.  If you count the first questions, the Large model missed more questions than it answered correctly.  Additionally, the answers did not provide much context, but to be fair, we did not ask for context in the answer.   Determining what is correct or incorrect for a reasoning question could have some subjectivity.
 
 Let's analyze the output for the Large model's output. This chart provides the question types, the correctness of the answer, and the time required to generate the pipelines answers.
 
@@ -414,7 +414,7 @@ Let's analyze the output for the Large model's output. This chart provides the q
 
 ### XL Model Review
 
-Now, let's examine the results of the flan-t5-xl model. The information message below is printed as the script loads checkpoint shards as part of initializing the model and tokenizer.  This appears to take 49 seconds and there is a delay between the Large model output completion and the start of output from the XL Model.
+Now, let's examine the results of the flan-t5-xl model. The XL model takes longer but provides better answers.   Before the XL produces answers to the prompts, it prints the following information message (below) as the script loads its checkpoint shards.  In our test, this took 49 seconds and it caused a noticable delay between the completion of the Large model output and the start of output from the XL Model.
 
 ```
 Loading checkpoint shards: 100%|██████████████████| 2/2 [01:38<00:00, 49.17s/it]
