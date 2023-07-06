@@ -414,7 +414,7 @@ Let's analyze the output for the Large model's output. This chart provides the q
 
 ### XL Model Review
 
-Now, let's examine the results of the flan-t5-xl model. The XL model takes longer but provides better answers.   Before the XL produces answers to the prompts, it prints the following information message (below) as the script loads its checkpoint shards.  In our test, this took 49 seconds and it caused a noticable delay between the completion of the Large model output and the start of output from the XL Model.
+Now, let's examine the results of the flan-t5-xl model. The XL model takes longer but provides better answers.   Before the XL produces answers to the prompts, it prints the following informational message (below) as the script loads its checkpoint shards.  In our test, this took 49 seconds and it caused a noticable delay between the completion of the Large model output and the start of output from the XL Model.
 
 ```
 Loading checkpoint shards: 100%|██████████████████| 2/2 [01:38<00:00, 49.17s/it]
@@ -436,6 +436,6 @@ Next let's analyze output for the XL model's output. This chart provides the que
 
 The XL model did a pretty good job.   It answered (2) of the (3) Knowledge retrieval questions correctly.   It answered all of the reasoning questions correctly and it provided an answer for the In Context question that could be correct.    From a grading standpoint, it only answered the second question in the reasoning prompts, and so we gave it a grade of 50% for answering those prompts.
 
-This initial post is intended to help you to develop a plan to test reasoning questions in your LLMs.   In a follow-on post, we plan to provide more details and descriptions of the code and output, along with suggested further reading.   
+This initial post is intended to help you to develop a plan to test reasoning questions in your LLMs.   In a follow-on post, we plan to provide more details and descriptions of the code and output.   We look forward to your feedback and hope these examples provide you with ideas for your LLM testing.
 
 
