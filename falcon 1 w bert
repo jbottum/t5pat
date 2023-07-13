@@ -5,6 +5,10 @@ from langchain.llms import HuggingFacePipeline
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModelForSeq2SeqLM, pipeline
 import transformers
 import torch
+# install bert-score
+!pip install bert-score
+import bert_score
+
 
 import os
 # Disable parallelism and avoid the warning message
@@ -60,6 +64,32 @@ large_pipeline_load_times = []
 falcon_pipeline_load_times = []
 
 prompt_types = []
+
+# Example reference answers
+reference_list = [
+    'Berlin',
+    'Madrid',
+    'Ottawa'
+    'The next number in the sequence is 10.  Yes, Fluffy is a cat and therefore has a tail',
+    'Eating junk food can result in health problems like weight gain and high colesterol.',
+    'Fork is related to a plate.  A brick is related to a building.',
+    'Yes, Max is a dog and has fur.   Yes, Mary will take an umbrella',
+    'Yes, if you studied harder, you would have passed the test.  If Thomas Edison did not invent the light blub, another inventor would have created the light bulb.',
+    'If Arlene continues in the same direciton and speed, storm will make landfall in the Forida Keys in 18 hours from this report.    
+]
+
+prompts = [
+    'What is the capital of Germany?',
+    'What is the capital of Spain?',
+    'What is the capital of Canada?',
+    'What is the next number in the sequence: 2, 4, 6, 8, ...? If all cats have tails, and Fluffy is a cat, does Fluffy have a tail?',
+    'If you eat too much junk food, what will happen to your health? How does smoking affect the risk of lung cancer?',
+    'In the same way that pen is related to paper, what is fork related to? If tree is related to forest, what is brick related to?',
+    'Every time John eats peanuts, he gets a rash. Does John have a peanut allergy? Every time Sarah studies for a test, she gets an A. Will Sarah get an A on the next test if she studies?',
+    'All dogs have fur. Max is a dog. Does Max have fur? If it is raining outside, and Mary does not like to get wet, will Mary take an umbrella?',
+    'If I had studied harder, would I have passed the exam? What would have happened if Thomas Edison had not invented the light bulb?',
+    'The center of Tropical Storm Arlene, at 02/1800 UTC, is near 26.7N 86.2W. This position is about 425 km/230 nm to the west of Fort Myers in Florida, and it is about 550 km/297 nm to the NNW of the western tip of Cuba. The tropical storm is moving southward, or 175 degrees, 4 knots. The estimated minimum central pressure is 1002 mb. The maximum sustained wind speeds are 35 knots with gusts to 45 knots. The sea heights that are close to the tropical storm are ranging from 6 feet to a maximum of 10 feet.  Precipitation: scattered to numerous moderate is within 180 nm of the center in the NE quadrant. Isolated moderate is from 25N to 27N between 80W and 84W, including parts of south Florida.  Broad surface low pressure extends from the area of the tropical storm, through the Yucatan Channel, into the NW part of the Caribbean Sea.   Where and when will the storm make landfall?',
+]
 
 for model_id in model_ids:
     # Load tokenizer
@@ -148,6 +178,17 @@ for model_id in model_ids:
         print("=" * 10)
 
         prompt_types.append(types[i])
+
+        # Example sentences
+        references = references_list[i]
+        candidates = generated
+
+        # Calculate BERTScore
+        P, R, F1 = bert_score.score(candidates, references, lang="en", verbose=True)
+        print("Precision:", P.numpy())
+        print("Recall:", R.numpy())
+        print("F1 Score:", F1.numpy())
+
 
 # Print average loading and generation times
 print()
