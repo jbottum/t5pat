@@ -167,7 +167,7 @@ for model_id in model_ids:
         prompt_types.append(types[i])
 
         # Example sentences
-        references = references_list[i]
+        references = reference_list[i]
         candidates = generated
 
         # Calculate BERTScore
