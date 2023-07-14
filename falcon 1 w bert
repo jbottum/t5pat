@@ -16,8 +16,8 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # Define model IDs
 # model_ids = ['google/flan-t5-large', 'google/flan-t5-xl', 'tiiuae/falcon-7b']
-model_ids = ['tiiuae/falcon-7b']
-# model_ids = ['google/flan-t5-xl']
+# model_ids = ['tiiuae/falcon-7b']
+model_ids = ['google/flan-t5-large']
 
 # Define prompts and types
 prompts = [
@@ -70,10 +70,11 @@ reference_list = [
     'Berlin',
     'Madrid',
     'Ottawa',
-    'The next number in the sequence is 10.  Yes, Fluffy is a cat and therefore has a tail',
-    'Eating junk food can result in health problems like weight gain and high cholesterol.',
+    'The next number in the sequence is 10.  Yes, Fluffy is a cat and therefore has a tail.',
+    'Eating junk food can result in health problems like weight gain and high cholesterol. Smoking can cause lung issues including cancer.',
     'Fork is related to a plate.  A brick is related to a building.',
-    'Yes, Max is a dog and has fur.   Yes, Mary will take an umbrella',
+    'Maybe, John to determine if his rash is caused by peanut, he should get an allergy test.   Maybe, Sarah will likely do well if she studies and may be able to get an A.',
+    'Yes, Max is a dog and has fur.   Yes, Mary will take an umbrella.',
     'Yes, if you studied harder, you would have passed the test.  If Thomas Edison did not invent the light blub, another inventor would have created the light bulb.',
     'If Arlene continues in the same direciton and speed, storm will make landfall in the Forida Keys in 18 hours from this report.'    
 ]
@@ -87,9 +88,9 @@ for model_id in model_ids:
     # Load model
     model_start_time = time.time()
     if model_id == 'tiiuae/falcon-7b':
-      model = AutoModelForCausalLM.from_pretrained(model_id)
+        model = AutoModelForCausalLM.from_pretrained(model_id)
     else:
-      model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
+        model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
     model_end_time = time.time()
 
     # Load pipeline
@@ -141,47 +142,46 @@ for model_id in model_ids:
             print("=" * 10)
 
     # Generation examples
-  for i, prompt in enumerate(prompts):
-    start_time = time.time()
-    if model_id == 'tiiuae/falcon-7b':
-        generated = pipeline(prompt, max_length=50, num_return_sequences=1)[0]['generated_text']
-    else:
-        generated = pipe(prompt, max_length=50, num_return_sequences=1)[0]['generated_text']
-    end_time = time.time()
-    generation_time = end_time - start_time
+    for i, prompt in enumerate(prompts):
+        start_time = time.time()
+        if model_id == 'tiiuae/falcon-7b':
+            generated = pipeline(prompt, max_length=50, num_return_sequences=1)[0]['generated_text']
+        else:
+            generated = pipe(prompt, max_length=50, num_return_sequences=1)[0]['generated_text']
+        end_time = time.time()
+        generation_time = end_time - start_time
 
-    # Store generation times
-    if model_id == 'google/flan-t5-large':
-        large_generation_times.append(generation_time)
-    elif model_id == 'google/flan-t5-xl':
-        xl_generation_times.append(generation_time)
-    elif model_id == 'tiiuae/falcon-7b':
-        falcon_generation_times.append(generation_time)
+        # Store generation times
+        if model_id == 'google/flan-t5-large':
+            large_generation_times.append(generation_time)
+        elif model_id == 'google/flan-t5-xl':
+            xl_generation_times.append(generation_time)
+        elif model_id == 'tiiuae/falcon-7b':
+            falcon_generation_times.append(generation_time)
 
-    # Print generation example
-    print(f"Generation Example {i + 1}:")
-    print("Prompt:", prompt)
-    print("Generated Text:", generated)
+        # Print generation example
+        print(f"Generation Example {i + 1}:")
+        print("Prompt:", prompt)
+        print("Generated Text:", generated)
 
-    prompt_types.append(types[i])
+        prompt_types.append(types[i])
 
-    # Example sentences
-    reference_index = i % len(reference_list)
-    references = reference_list[reference_index]
-    candidates = [generated]  # Wrap generated text in a list to handle multiple candidates
+        candidates = [generated]  # Wrap generated text in a list to handle multiple candidates
 
-    for j, candidate in enumerate(candidates):
-        print(f"Generated Text {j + 1}:")
-        print(candidate)
+        for j, candidate in enumerate(candidates):
 
-        # Calculate BERTScore
-        reference = references  # Use the same reference for all candidates
-        P, R, F1 = bert_score.score([candidate], [reference], lang="en", verbose=True)
-        print("Precision:", P.numpy())
-        print("Recall:", R.numpy())
-        print("F1 Score:", F1.numpy())
+            # Calculate BERTScore
+  #          reference = references  # Use the same reference for all candidates
+            reference = reference_list[i]
+            print(f"Reference Answer:", reference)
 
-    print("=" * 10)
+            P, R, F1 = bert_score.score([candidate], [reference], lang="en", verbose=False)
+            print("Precision:", P.numpy())
+            print("Recall:", R.numpy())
+            print("F1 Score:", F1.numpy())
+
+        print("=" * 10)
+
 
 # Print average loading and generation times
 print()
