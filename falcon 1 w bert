@@ -75,7 +75,7 @@ reference_list = [
     'Fork is related to a plate.  A brick is related to a building.',
     'Yes, Max is a dog and has fur.   Yes, Mary will take an umbrella',
     'Yes, if you studied harder, you would have passed the test.  If Thomas Edison did not invent the light blub, another inventor would have created the light bulb.',
-    'If Arlene continues in the same direciton and speed, storm will make landfall in the Forida Keys in 18 hours from this report.    
+    'If Arlene continues in the same direciton and speed, storm will make landfall in the Forida Keys in 18 hours from this report.'    
 ]
 
 for model_id in model_ids:
