@@ -69,7 +69,7 @@ prompt_types = []
 reference_list = [
     'Berlin',
     'Madrid',
-    'Ottawa'
+    'Ottawa',
     'The next number in the sequence is 10.  Yes, Fluffy is a cat and therefore has a tail',
     'Eating junk food can result in health problems like weight gain and high cholesterol.',
     'Fork is related to a plate.  A brick is related to a building.',
