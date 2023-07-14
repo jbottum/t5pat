@@ -141,41 +141,47 @@ for model_id in model_ids:
             print("=" * 10)
 
     # Generation examples
-    for i, prompt in enumerate(prompts):
-        start_time = time.time()
-        if model_id == 'tiiuae/falcon-7b':
-            generated = pipeline(prompt, max_length=50, num_return_sequences=1)[0]['generated_text']
-        else:
-            generated = pipe(prompt, max_length=50, num_return_sequences=1)[0]['generated_text']
-        end_time = time.time()
-        generation_time = end_time - start_time
+  for i, prompt in enumerate(prompts):
+    start_time = time.time()
+    if model_id == 'tiiuae/falcon-7b':
+        generated = pipeline(prompt, max_length=50, num_return_sequences=1)[0]['generated_text']
+    else:
+        generated = pipe(prompt, max_length=50, num_return_sequences=1)[0]['generated_text']
+    end_time = time.time()
+    generation_time = end_time - start_time
 
-        # Store generation times
-        if model_id == 'google/flan-t5-large':
-            large_generation_times.append(generation_time)
-        elif model_id == 'google/flan-t5-xl':
-            xl_generation_times.append(generation_time)
-        elif model_id == 'tiiuae/falcon-7b':
-            falcon_generation_times.append(generation_time)
+    # Store generation times
+    if model_id == 'google/flan-t5-large':
+        large_generation_times.append(generation_time)
+    elif model_id == 'google/flan-t5-xl':
+        xl_generation_times.append(generation_time)
+    elif model_id == 'tiiuae/falcon-7b':
+        falcon_generation_times.append(generation_time)
 
-        # Print generation example
-        print(f"Generation Example {i + 1}:")
-        print("Prompt:", prompt)
-        print("Generated Text:", generated)
-        print("=" * 10)
+    # Print generation example
+    print(f"Generation Example {i + 1}:")
+    print("Prompt:", prompt)
+    print("Generated Text:", generated)
 
-        prompt_types.append(types[i])
+    prompt_types.append(types[i])
 
-        # Example sentences
-        references = reference_list[i]
-        candidates = generated
+    # Example sentences
+    reference_index = i % len(reference_list)
+    references = reference_list[reference_index]
+    candidates = [generated]  # Wrap generated text in a list to handle multiple candidates
+
+    for j, candidate in enumerate(candidates):
+        print(f"Generated Text {j + 1}:")
+        print(candidate)
 
         # Calculate BERTScore
-        P, R, F1 = bert_score.score(candidates, references, lang="en", verbose=True)
+        reference = references  # Use the same reference for all candidates
+        P, R, F1 = bert_score.score([candidate], [reference], lang="en", verbose=True)
         print("Precision:", P.numpy())
         print("Recall:", R.numpy())
         print("F1 Score:", F1.numpy())
 
+    print("=" * 10)
 
 # Print average loading and generation times
 print()
